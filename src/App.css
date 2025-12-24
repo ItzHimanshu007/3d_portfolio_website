@@ -1,0 +1,10 @@
+/* App level styles */
+#home {
+    position: relative;
+    z-index: 1;
+}
+
+main {
+    width: 100%;
+    overflow-x: hidden;
+}

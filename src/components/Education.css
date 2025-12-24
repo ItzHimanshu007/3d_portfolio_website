@@ -1,0 +1,368 @@
+/* Creative Academic Journey Styles */
+.education-premium-section {
+    padding: 180px 0;
+    position: relative;
+    background: #000;
+    overflow: hidden;
+}
+
+.edu-journey-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.journey-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 51, 51, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 51, 51, 0.05) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(circle at center, black, transparent 80%);
+}
+
+.journey-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle, rgba(255, 51, 51, 0.05) 0%, transparent 70%);
+}
+
+.edu-journey-timeline {
+    position: relative;
+    max-width: 1100px;
+    margin: 100px auto 0;
+    padding: 40px 0;
+}
+
+/* Central path line */
+.knowledge-path-track {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(-50%);
+}
+
+.knowledge-path-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #ff3333, #880000, transparent);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.6);
+}
+
+.milestones-container {
+    position: relative;
+}
+
+.edu-milestone {
+    position: relative;
+    width: 50%;
+    margin-bottom: 120px;
+}
+
+.edu-milestone.left {
+    left: 0;
+    padding-right: 80px;
+}
+
+.edu-milestone.right {
+    left: 50%;
+    padding-left: 80px;
+}
+
+/* Card Styling */
+.milestone-content {
+    position: relative;
+    z-index: 5;
+}
+
+.edu-card-glass {
+    background: rgba(10, 10, 10, 0.8);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    padding: 35px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.edu-card-glass:hover {
+    border-color: rgba(255, 51, 51, 0.3);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.edu-card-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.milestone-icon-wrap {
+    width: 54px;
+    height: 54px;
+    background: rgba(255, 51, 51, 0.1);
+    border: 1px solid rgba(255, 51, 51, 0.2);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ff3333;
+}
+
+.milestone-meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.milestone-year {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ff3333;
+    letter-spacing: 1px;
+}
+
+.milestone-type {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.milestone-degree {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 1.2;
+}
+
+.milestone-school {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 20px;
+}
+
+.milestone-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.footer-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 0.85rem;
+}
+
+.grade-badge {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.8rem;
+}
+
+.milestone-courses {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.milestone-tag {
+    font-size: 0.75rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 4px 10px;
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Connector Dots */
+.milestone-connector {
+    position: absolute;
+    top: 55px;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+}
+
+.left .milestone-connector {
+    right: -12px;
+}
+
+.right .milestone-connector {
+    left: -12px;
+}
+
+.connector-dot {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border: 3px solid #ff3333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.3);
+}
+
+.dot-pulse {
+    position: absolute;
+    width: 60%;
+    height: 60%;
+    background: #ff3333;
+    border-radius: 50%;
+    animation: eduPulse 2s infinite;
+}
+
+@keyframes eduPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: scale(0.8);
+        opacity: 0.8;
+    }
+}
+
+/* Academic Mascot Styles */
+.milestone-mascot-container {
+    position: absolute;
+    top: 50%;
+    width: 240px;
+    height: auto;
+    z-index: 10;
+    pointer-events: none;
+    transform: translateY(-50%);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Zig-Zag Placement: Push to opposite sides */
+.left .milestone-mascot-container {
+    left: auto;
+    right: -380px;
+}
+
+.right .milestone-mascot-container {
+    right: auto;
+    left: -380px;
+}
+
+.milestone-content:hover .milestone-mascot-container {
+    transform: translateY(-55%) scale(1.05) rotate(3deg);
+}
+
+.milestone-mascot-img {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+    animation: edu-mascot-float 6s ease-in-out infinite;
+}
+
+@media (max-width: 1100px) {
+    .milestone-mascot-container {
+        width: 160px;
+        top: -60px;
+        transform: none;
+    }
+
+    .left .milestone-mascot-container {
+        right: 0;
+        left: auto;
+    }
+
+    .right .milestone-mascot-container {
+        left: 0;
+        right: auto;
+    }
+
+    .milestone-content:hover .milestone-mascot-container {
+        transform: translateY(-10px) scale(1.08);
+    }
+}
+
+.mascot-platform-glow {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 20px;
+    background: radial-gradient(ellipse at center, rgba(255, 51, 51, 0.2) 0%, transparent 70%);
+    filter: blur(8px);
+    z-index: -1;
+}
+
+@keyframes edu-mascot-float {
+
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+
+    50% {
+        transform: translateY(-15px) rotate(2deg);
+    }
+}
+
+/* Card HUD lines */
+.card-hud-lines::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    right: 20%;
+    width: 40%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #ff3333, transparent);
+}
+
+@media (max-width: 900px) {
+    .knowledge-path-track {
+        left: 20px;
+    }
+
+    .edu-milestone {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 60px !important;
+        padding-right: 0 !important;
+        text-align: left;
+    }
+
+    .left .milestone-connector,
+    .right .milestone-connector {
+        left: 8px;
+        right: auto;
+    }
+
+    .milestone-mascot-container {
+        display: none;
+    }
+}

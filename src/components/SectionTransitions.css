@@ -1,0 +1,36 @@
+.section-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.section-revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.transition-line {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, #ff3333 50%, transparent 100%);
+    pointer-events: none;
+    z-index: 100;
+    /* Ensure visibility on top of sections */
+    transform-origin: top;
+}
+
+.transition-line-1 {
+    left: 10%;
+}
+
+.transition-line-2 {
+    right: 10%;
+}
+
+@media (max-width: 768px) {
+    .transition-line {
+        display: none;
+    }
+}

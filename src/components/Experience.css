@@ -1,0 +1,243 @@
+/* Experience Section Styles */
+.experience-premium-section {
+    padding: 140px 0;
+    background: #000;
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-header-premium {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+/* Heading Unified */
+.premium-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.6rem 1.4rem;
+    background: rgba(255, 51, 51, 0.05);
+    border: 1px solid rgba(255, 51, 51, 0.2);
+    border-radius: 50px;
+    color: #ff3333;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.premium-main-title {
+    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-weight: 950;
+    color: #fff;
+    line-height: 0.95;
+    letter-spacing: -0.05em;
+    margin-bottom: 2rem;
+}
+
+.premium-main-title span {
+    color: #ff3333;
+}
+
+/* Timeline */
+.experience-timeline-premium {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.timeline-line-bg {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.03);
+    transform: translateX(-50%);
+    border-radius: 10px;
+}
+
+.timeline-line-active {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #ff3333, #880000);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.4);
+    transform: translateX(-50%);
+    z-index: 2;
+    border-radius: 10px;
+}
+
+.timeline-progress-head {
+    position: absolute;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background: #ff3333;
+    border: 3px solid #000;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 5;
+    box-shadow: 0 0 20px #ff3333;
+}
+
+.experience-item-premium {
+    position: relative;
+    width: 50%;
+    margin-bottom: 120px;
+}
+
+.experience-item-premium.left {
+    left: 0;
+    padding-right: 80px;
+    text-align: right;
+}
+
+.experience-item-premium.right {
+    left: 50%;
+    padding-left: 80px;
+    text-align: left;
+}
+
+.timeline-dot-wrapper {
+    position: absolute;
+    top: 40px;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+}
+
+.left .timeline-dot-wrapper {
+    right: -12px;
+}
+
+.right .timeline-dot-wrapper {
+    left: -12px;
+}
+
+.timeline-dot-bg {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.timeline-dot-active {
+    position: absolute;
+    inset: 0;
+    background: #ff3333;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ff3333;
+    z-index: 1;
+}
+
+/* Card */
+.experience-card-premium {
+    background: #0a0a0a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 28px;
+    padding: 35px;
+    position: relative;
+    transition: all 0.4s ease;
+}
+
+.experience-card-premium:hover {
+    border-color: rgba(255, 51, 51, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-5px);
+}
+
+.card-year-badge {
+    display: inline-block;
+    background: rgba(255, 51, 51, 0.1);
+    color: #ff3333;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+}
+
+.card-role {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.card-company-meta {
+    display: flex;
+    gap: 20px;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+.left .card-company-meta {
+    justify-content: flex-end;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-desc {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.card-achievements {
+    list-style: none;
+    padding: 0;
+}
+
+.card-achievements li {
+    position: relative;
+    padding-left: 20px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.card-achievements li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 6px;
+    height: 6px;
+    background: #ff3333;
+    border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+    .timeline-line {
+        left: 20px;
+    }
+
+    .experience-item-premium {
+        width: 100%;
+        left: 0 !important;
+        padding-left: 60px !important;
+        padding-right: 0 !important;
+        text-align: left !important;
+    }
+
+    .left .card-company-meta {
+        justify-content: flex-start;
+    }
+
+    .timeline-dot {
+        left: 10px !important;
+    }
+}

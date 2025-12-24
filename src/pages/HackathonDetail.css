@@ -1,0 +1,327 @@
+.hackathon-detail-page {
+    background: #000;
+    min-height: 100vh;
+    color: #fff;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.back-btn-premium {
+    position: fixed;
+    top: 40px;
+    left: 40px;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px 24px;
+    border-radius: 50px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-btn-premium:hover {
+    background: #ff3333;
+    border-color: #ff3333;
+    transform: translateX(-5px);
+}
+
+/* Hero Section */
+.hack-detail-hero {
+    height: 80vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.hero-header-content {
+    position: relative;
+    z-index: 10;
+    max-width: 900px;
+}
+
+.award-badge-huge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 51, 51, 0.1);
+    color: #ff3333;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 51, 51, 0.3);
+}
+
+.hack-main-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 950;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+    letter-spacing: -0.05em;
+}
+
+.hack-event-subtitle {
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+.hero-visual-depth {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.hero-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+    filter: saturate(0.5);
+}
+
+.hero-overlay-gradient {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 0%, #000 70%),
+        linear-gradient(to bottom, transparent 0%, #000 100%);
+}
+
+/* Container & Grid */
+.hack-detail-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+    position: relative;
+    z-index: 10;
+}
+
+.hack-main-grid {
+    display: grid;
+    grid-template-columns: 1.8fr 1fr;
+    gap: 80px;
+}
+
+/* Section Styling */
+.detail-section {
+    margin-bottom: 6rem;
+}
+
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #ff3333;
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+}
+
+.section-text {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+}
+
+/* List Items */
+.learnings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.learning-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.learning-dot {
+    width: 6px;
+    height: 6px;
+    background: #ff3333;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ff3333;
+}
+
+.achievements-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.achievement-pill {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 12px 24px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Sidebar Box */
+.sidebar-box {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 2.5rem;
+    border-radius: 32px;
+    backdrop-filter: blur(20px);
+}
+
+.sticky-card {
+    position: sticky;
+    top: 120px;
+}
+
+.sidebar-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.tech-pills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tech-pill-detail {
+    background: rgba(255, 51, 51, 0.1);
+    color: #ff3333;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(255, 51, 51, 0.2);
+}
+
+.sidebar-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.05);
+    margin: 2rem 0;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.action-btn-primary {
+    background: #ff3333;
+    color: #fff;
+    border: none;
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn-secondary {
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px;
+    border-radius: 16px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.gallery-sidebar-preview {
+    margin-top: 3rem;
+}
+
+.gallery-mini-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.mini-gallery-card {
+    border-radius: 12px;
+    overflow: hidden;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mini-gallery-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.mini-gallery-card:hover img {
+    opacity: 1;
+}
+
+.detail-page-glow {
+    position: fixed;
+    top: 50%;
+    right: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(255, 51, 51, 0.08) 0%, transparent 70%);
+    filter: blur(80px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .hack-main-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .sticky-card {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .hack-main-title {
+        font-size: 3.5rem;
+    }
+
+    .back-btn-premium {
+        top: 20px;
+        left: 20px;
+        padding: 8px 16px;
+    }
+}
