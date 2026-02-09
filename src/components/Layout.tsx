@@ -8,15 +8,16 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
     useEffect(() => {
         const lenis = new Lenis({
-            duration: 1.8, // Slightly faster return for better responsiveness
+            duration: 1.5,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
-            wheelMultiplier: 1.1, // Restore power for better scrolling control
-            touchMultiplier: 2.5,
+            wheelMultiplier: 1.0,
+            touchMultiplier: 2.0,
             infinite: false,
         });
+        (window as any).lenis = lenis;
 
         function raf(time: number) {
             lenis.raf(time);
@@ -27,6 +28,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         return () => {
             lenis.destroy();
+            (window as any).lenis = undefined;
         };
     }, []);
 

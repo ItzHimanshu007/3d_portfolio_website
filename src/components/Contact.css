@@ -107,36 +107,59 @@
     letter-spacing: -0.02em;
 }
 
-.social-grid-premium {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 15px;
-    margin-bottom: 50px;
-}
-
-.social-btn-premium {
+/* Cyber Contact Form */
+.contact-form-cyber {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    background: rgba(255, 255, 255, 0.03);
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 18px;
-    border-radius: 20px;
-    color: rgba(255, 255, 255, 0.6);
-    text-decoration: none;
-    font-weight: 700;
-    transition: all 0.4s ease;
+    padding: 35px;
+    border-radius: 30px;
+    backdrop-filter: blur(10px);
 }
 
-.direct-message-btn {
+.form-group-cyber {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-group-cyber label {
+    font-size: 0.75rem;
+    color: #ff3333;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.form-group-cyber input,
+.form-group-cyber textarea {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 16px 20px;
+    border-radius: 14px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group-cyber input:focus,
+.form-group-cyber textarea:focus {
+    border-color: rgba(255, 51, 51, 0.5);
+    background: rgba(255, 51, 51, 0.05);
+}
+
+.cyber-contact-btn {
     width: 100%;
-    padding: 22px;
+    padding: 20px;
     background: #ff3333;
     color: #fff;
     border: none;
-    border-radius: 24px;
-    font-size: 1.1rem;
+    border-radius: 18px;
+    font-size: 1rem;
     font-weight: 800;
     display: flex;
     align-items: center;
@@ -144,6 +167,38 @@
     gap: 12px;
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(255, 51, 51, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.4s ease;
+}
+
+.cyber-contact-btn.success {
+    background: #22c55e;
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+}
+
+.cyber-contact-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.social-grid-premium {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.social-btn-premium {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.4s ease;
 }
 
 .contact-mascot-peek {

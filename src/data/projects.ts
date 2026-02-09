@@ -33,10 +33,9 @@ export const projectsData: ProjectMission[] = [
         challenge: 'Synchronizing real-time biometric data with dynamic VR environments while maintaining clinical accuracy.',
         solution: 'Developed a custom WebSocket bridge that streams heart rate and stress levels into our ML model to adjust environmental variables instantly.',
         tech: ['React.js', 'TensorFlow', 'Unity', 'Python', 'WebRTC'],
-        image: '/assets/uploaded_image_3_1766494380575.png',
+        image: '/projects/neuronest.png',
         gallery: [
-            '/assets/uploaded_image_3_1766494380575.png',
-            '/assets/uploaded_image_3_1766494380575.png'
+            '/projects/neuronest.png'
         ],
         IconComponent: Monitor,
         color: '#ff3333',
@@ -56,9 +55,9 @@ export const projectsData: ProjectMission[] = [
         challenge: 'Ensuring data veracity and preventing sybil attacks in community voting systems.',
         solution: 'Implemented a decentralized identity verification system using digital signatures and geographic fencing.',
         tech: ['React.js', 'Node.js', 'MongoDB', 'AI', 'Google Maps API'],
-        image: '/assets/uploaded_image_3_1766494380575.png',
+        image: '/projects/civic.png',
         gallery: [
-            '/assets/uploaded_image_3_1766494380575.png'
+            '/projects/civic.png'
         ],
         IconComponent: Layers,
         color: '#ff3333',
@@ -78,9 +77,9 @@ export const projectsData: ProjectMission[] = [
         challenge: 'Handling imbalanced datasets where approval cases vastly outnumbered rejections.',
         solution: 'Applied SMOTE (Synthetic Minority Over-sampling Technique) and tuned the XGBoost model to optimize for recall without sacrificing precision.',
         tech: ['Python', 'Scikit-learn', 'Pandas', 'XGBoost', 'Streamlit'],
-        image: '/assets/uploaded_image_3_1766494380575.png',
+        image: '/projects/loan.png',
         gallery: [
-            '/assets/uploaded_image_3_1766494380575.png'
+            '/projects/loan.png'
         ],
         IconComponent: Cpu,
         color: '#ff3333',
@@ -100,8 +99,8 @@ export const projectsData: ProjectMission[] = [
         challenge: 'Developing a robust verification system to ensure compute tasks were actually completed and not spoofed.',
         solution: 'Implemented Proof-of-Execution (PoE) consensus where results are cross-verified by multiple neutral nodes.',
         tech: ['Golang', 'Docker', 'Kubernetes', 'Web3', 'CUDA'],
-        image: '/assets/uploaded_image_3_1766494380575.png',
-        gallery: ['/assets/uploaded_image_3_1766494380575.png'],
+        image: '/projects/quantum.png',
+        gallery: ['/projects/quantum.png'],
         IconComponent: Zap,
         color: '#ff3333',
         links: {
@@ -120,8 +119,8 @@ export const projectsData: ProjectMission[] = [
         challenge: 'Filtering sensor noise in harsh industrial environments to provide accurate emission data.',
         solution: 'Developed a Kalman filter-based signal processing pipeline on the edge devices.',
         tech: ['C++', 'MQTT', 'InfluxDB', 'Grafana', 'ESP32'],
-        image: '/assets/uploaded_image_3_1766494380575.png',
-        gallery: ['/assets/uploaded_image_3_1766494380575.png'],
+        image: '/projects/eco.png',
+        gallery: ['/projects/eco.png'],
         IconComponent: Rocket,
         color: '#ff3333',
         links: {

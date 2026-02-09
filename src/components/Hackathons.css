@@ -361,3 +361,49 @@
         height: 300px;
     }
 }
+
+/* Footer Section for Hackathons Archive */
+.projects-cta-footer.h-cta {
+    text-align: center;
+    position: relative;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    z-index: 5;
+}
+
+.cta-divider {
+    width: 60px;
+    height: 4px;
+    background: #ff3333;
+    margin: 0 auto 3rem;
+    border-radius: 2px;
+}
+
+.projects-cta-footer.h-cta p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 2.5rem;
+}
+
+.premium-view-all {
+    position: relative;
+    padding: 1.2rem 3.5rem;
+    background: #ff3333;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.btn-glow {
+    position: absolute;
+    inset: 0;
+    background: #ff3333;
+    border-radius: 50px;
+    filter: blur(20px);
+    opacity: 0.3;
+    z-index: -1;
+}

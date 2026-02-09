@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
 import './SectionTransitions.css';
 
 const SectionTransitions = () => {
-    const { scrollYProgress } = useScroll();
 
     // Add reveal animations on scroll
     useEffect(() => {
@@ -32,23 +30,7 @@ const SectionTransitions = () => {
         };
     }, []);
 
-    return (
-        <>
-            {/* Transition overlay effects */}
-            <motion.div
-                className="transition-line transition-line-1"
-                style={{
-                    scaleY: useTransform(scrollYProgress, [0, 0.2, 0.4, 0.6, 0.8, 1], [0, 1, 0, 1, 0, 1])
-                }}
-            />
-            <motion.div
-                className="transition-line transition-line-2"
-                style={{
-                    scaleY: useTransform(scrollYProgress, [0, 0.3, 0.5, 0.7, 0.9, 1], [0, 1, 0, 1, 0, 1])
-                }}
-            />
-        </>
-    );
+    return null;
 };
 
 export default SectionTransitions;

@@ -82,5 +82,71 @@ export const hackathonsData: Hackathon[] = [
             'Pilot program initiated in 3 rural clinics'
         ],
         icon: Trophy
+    },
+    {
+        id: 'smartcity-vision',
+        title: 'SmartCity Vision',
+        event: 'Urban Tech Challenge',
+        date: 'August 2024',
+        description: 'Real-time traffic optimization system using computer vision and edge computing for smart intersections.',
+        award: 'Best Technical Implementation',
+        tech: ['Python', 'YOLO', 'Raspberry Pi', 'MQTT'],
+        mainImage: '/character-tablet.png',
+        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
+        learnings: [
+            'Deploying ML models on edge devices',
+            'Real-time video processing optimization',
+            'IoT communication protocols'
+        ],
+        achievements: [
+            'Reduced traffic wait time by 35% in simulation',
+            'Sub-100ms inference latency',
+            'Collaboration with city planning officials'
+        ],
+        icon: Cpu
+    },
+    {
+        id: 'agribot',
+        title: 'AgriBot Autonomous',
+        event: 'AgTech Innovation Sprint',
+        date: 'June 2024',
+        description: 'Autonomous drone system for precision agriculture with AI-powered crop disease detection.',
+        award: '2nd Place',
+        tech: ['ROS', 'TensorFlow Lite', 'React Native', 'AWS'],
+        mainImage: '/character-drone.png',
+        gallery: ['/hackathon-win-standing.png', '/hackathon-win-trophy.png'],
+        learnings: [
+            'ROS integration for drone control',
+            'Mobile-first agricultural interfaces',
+            'Cloud-based crop analytics'
+        ],
+        achievements: [
+            '94% disease detection accuracy',
+            'Covered 50 acres in pilot test',
+            'Partnership offer from AgriTech startup'
+        ],
+        icon: Globe
+    },
+    {
+        id: 'eduverse',
+        title: 'EduVerse XR',
+        event: 'EdTech Global Hackathon',
+        date: 'April 2024',
+        description: 'Immersive VR classroom platform enabling interactive 3D learning experiences for remote students.',
+        award: 'Grand Prize Winner',
+        tech: ['Unity', 'WebXR', 'Node.js', 'MongoDB'],
+        mainImage: '/character-hero.png',
+        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
+        learnings: [
+            'Multi-user VR synchronization',
+            'Optimizing WebXR for low-end devices',
+            'Gamification in educational contexts'
+        ],
+        achievements: [
+            'Won $25k grand prize',
+            'Featured on EdTech Weekly',
+            '1000+ beta signups in first week'
+        ],
+        icon: Trophy
     }
 ];

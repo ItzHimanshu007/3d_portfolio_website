@@ -7,7 +7,7 @@ import './Projects.css';
 
 import { projectsData } from '../data/projects';
 
-const featuredProjects = projectsData.slice(0, 3);
+const featuredProjects = projectsData.slice(0, 4);
 
 export default function Projects() {
     const navigate = useNavigate();

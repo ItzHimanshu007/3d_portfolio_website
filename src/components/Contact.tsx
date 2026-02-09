@@ -6,6 +6,13 @@ import './Contact.css';
 const Contact: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
+    const [formState, setFormState] = React.useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = React.useState(false);
+    const [submitted, setSubmitted] = React.useState(false);
 
     const contactInfo = [
         { icon: Mail, label: 'Email', value: 'hjasoriya007@gmail.com', link: 'mailto:hjasoriya007@gmail.com' },
@@ -18,6 +25,22 @@ const Contact: React.FC = () => {
         { icon: Github, name: 'GitHub', url: 'https://github.com/ItzHimanshu007' },
         { icon: Twitter, name: 'Twitter', url: 'https://x.com/itzhimanshu_07' }
     ];
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormState(prev => ({ ...prev, [name]: value }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        setIsSubmitting(false);
+        setSubmitted(true);
+        setFormState({ name: '', email: '', message: '' });
+        setTimeout(() => setSubmitted(false), 3000);
+    };
 
     return (
         <section className="contact-premium-section" ref={sectionRef} id="contact">
@@ -66,15 +89,60 @@ const Contact: React.FC = () => {
                         </div>
                     </motion.div>
 
-                    {/* Right Column - Form/CTA */}
+                    {/* Right Column - Form */}
                     <motion.div
                         className="contact-actions-premium"
                         initial={{ opacity: 0, x: 50 }}
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
+                        <form className="contact-form-cyber" onSubmit={handleSubmit}>
+                            <div className="form-group-cyber">
+                                <label>IDENTIFIER_NAME</label>
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formState.name}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter your name"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group-cyber">
+                                <label>CONTACT_NODE_EMAIL</label>
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formState.email}
+                                    onChange={handleInputChange}
+                                    placeholder="your@email.com"
+                                    required
+                                />
+                            </div>
+                            <div className="form-group-cyber">
+                                <label>TRANSMISSION_DATA</label>
+                                <textarea
+                                    name="message"
+                                    value={formState.message}
+                                    onChange={handleInputChange}
+                                    placeholder="What's your vision?"
+                                    rows={4}
+                                    required
+                                />
+                            </div>
+                            <motion.button
+                                type="submit"
+                                className={`cyber-contact-btn ${submitted ? 'success' : ''}`}
+                                disabled={isSubmitting}
+                                whileHover={{ scale: 1.02 }}
+                                whileTap={{ scale: 0.98 }}
+                            >
+                                <Send size={18} />
+                                <span>{isSubmitting ? 'ENCRYPTING...' : submitted ? 'TRANSMITTED' : 'EXECUTE_SEND'}</span>
+                            </motion.button>
+                        </form>
+
                         <div className="social-connect-premium">
-                            <h3>Connect Verbally</h3>
                             <div className="social-grid-premium">
                                 {socialLinks.map((social, idx) => {
                                     const Icon = social.icon;
@@ -87,24 +155,11 @@ const Contact: React.FC = () => {
                                             className="social-btn-premium"
                                             whileHover={{ y: -5, backgroundColor: '#ff3333', color: '#fff' }}
                                         >
-                                            <Icon size={22} />
-                                            <span>{social.name}</span>
+                                            <Icon size={18} />
                                         </motion.a>
                                     );
                                 })}
                             </div>
-                        </div>
-
-                        <div className="contact-footer-cta">
-                            <motion.button
-                                className="direct-message-btn"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() => window.location.href = 'mailto:hjasoriya007@gmail.com'}
-                            >
-                                <span>Send Direct Message</span>
-                                <Send size={18} />
-                            </motion.button>
                         </div>
 
                         <div className="contact-mascot-peek">

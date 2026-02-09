@@ -23,7 +23,7 @@ const HackathonDetail = () => {
 
     return (
         <div className="hackathon-detail-page" ref={containerRef}>
-            <button className="back-btn-premium" onClick={() => navigate(-1)}>
+            <button className="back-btn-premium" onClick={() => navigate('/', { state: { scrollTo: 'hackathons' } })}>
                 <ArrowLeft size={20} />
                 <span>BACK TO MISSION</span>
             </button>

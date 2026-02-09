@@ -118,29 +118,41 @@ const ExperienceItem = ({ exp, index, total, progress }: { exp: typeof experienc
             </div>
 
             <div className="experience-card-premium">
-                <div className="card-year-badge">{exp.year}</div>
+                <div className="card-glass-bg"></div>
+                <div className="card-glowing-border"></div>
 
-                <div className="card-header">
-                    <h3 className="card-role">{exp.role}</h3>
-                    <div className="card-company-meta">
-                        <div className="meta-item">
-                            <Briefcase size={16} />
-                            <span>{exp.company}</span>
-                        </div>
-                        <div className="meta-item">
-                            <MapPin size={16} />
-                            <span>{exp.location}</span>
+                {/* Tech Corners */}
+                <div className="tech-corner tl"></div>
+                <div className="tech-corner tr"></div>
+                <div className="tech-corner bl"></div>
+                <div className="tech-corner br"></div>
+
+                <div className="card-content-relative">
+                    <div className="card-top-row">
+                        <div className="card-year-badge">{exp.year}</div>
+                        <div className="card-company-meta">
+                            <div className="meta-item">
+                                <MapPin size={14} />
+                                <span>{exp.location}</span>
+                            </div>
                         </div>
                     </div>
+
+                    <h3 className="card-role">{exp.role}</h3>
+
+                    <div className="card-company-display">
+                        <Briefcase size={16} className="company-icon" />
+                        <span className="company-name">{exp.company}</span>
+                    </div>
+
+                    <p className="card-desc">{exp.description}</p>
+
+                    <ul className="card-achievements">
+                        {exp.achievements.map((ach, aIdx) => (
+                            <li key={aIdx}>{ach}</li>
+                        ))}
+                    </ul>
                 </div>
-
-                <p className="card-desc">{exp.description}</p>
-
-                <ul className="card-achievements">
-                    {exp.achievements.map((ach, aIdx) => (
-                        <li key={aIdx}>{ach}</li>
-                    ))}
-                </ul>
             </div>
         </motion.div>
     );

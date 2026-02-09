@@ -40,7 +40,7 @@ const ProjectDetail: React.FC = () => {
                 </div>
 
                 <div className="header-nav">
-                    <button onClick={() => navigate(-1)} className="back-link">
+                    <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} className="back-link">
                         <ArrowLeft size={18} />
                         <span>Return</span>
                     </button>
@@ -161,7 +161,7 @@ const ProjectDetail: React.FC = () => {
             </main>
 
             <footer className="detail-footer">
-                <button onClick={() => navigate('/archive')} className="footer-nav-btn">
+                <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} className="footer-nav-btn">
                     <ArrowLeft size={16} />
                     EXPLORE OTHER MISSIONS
                 </button>

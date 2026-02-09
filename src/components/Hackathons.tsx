@@ -73,6 +73,7 @@ const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
 };
 
 export default function Hackathons() {
+    const navigate = useNavigate();
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
@@ -126,10 +127,32 @@ export default function Hackathons() {
                 </div>
 
                 <div className="hack-grid-premium">
-                    {hackathonsData.map((hack, index) => (
+                    {hackathonsData.slice(0, 4).map((hack, index) => (
                         <HackathonCard key={hack.id} hack={hack} index={index} />
                     ))}
                 </div>
+
+                {/* Final CTA */}
+                <motion.div
+                    className="projects-cta-footer h-cta"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.8 }}
+                    style={{ marginTop: '0px' }}
+                >
+                    <div className="cta-divider"></div>
+                    <p>Want to see the full mission history?</p>
+                    <motion.button
+                        className="premium-view-all"
+                        whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 51, 51, 0.6)' }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => navigate('/hackathons-archive')}
+                    >
+                        Browse Archive
+                        <div className="btn-glow"></div>
+                    </motion.button>
+                </motion.div>
 
                 <motion.div
                     className="character-peeking-container-premium"

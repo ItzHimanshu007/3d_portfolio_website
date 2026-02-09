@@ -1,0 +1,21 @@
+# Tasks
+
+- [x] Planning and Analysis
+    - [x] Initial codebase exploration
+    - [x] Browser exploration and identification of issues
+    - [x] Create implementation plan
+- [/] Fix Visual Bugs [ ]
+    - [x] Fix broken project thumbnails
+    - [/] Enhance text contrast for readability
+- [ ] Improve Responsiveness [ ]
+    - [ ] Optimize Hero section for mobile
+    - [ ] Ensure 3D models scale correctly across devices
+- [ ] Enhance Interactivity and Aesthetics [ ]
+    - [ ] Add animations to 3D models (breathing, mouse-follow)
+    - [ ] Make particle background reactive to mouse
+    - [ ] Implement glitch effects for buttons/transitions
+    - [/] Cinematic Page Transitions (Glitch/Wipe)
+    - [ ] Create a custom Cyberpunk-themed loader
+- [ ] Final Verification [ ]
+    - [ ] Verify all fixes and enhancements
+    - [ ] Create walkthrough

@@ -73,10 +73,6 @@ const SkillCard = ({ skill, index }: { skill: typeof skillsData[0], index: numbe
                     <motion.span
                         key={idx}
                         className="tech-tag-pill"
-                        animate={{
-                            backgroundColor: isHovered ? 'rgba(255, 51, 51, 0.1)' : 'rgba(255, 255, 255, 0.03)',
-                            borderColor: isHovered ? 'rgba(255, 51, 51, 0.2)' : 'rgba(255, 255, 255, 0.05)',
-                        }}
                     >
                         {tag}
                     </motion.span>

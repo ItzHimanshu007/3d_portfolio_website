@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useTransform, useSpring, useMotionValue } from 'framer-motion';
-import { MapPin, Code2, Award, Zap, Sparkles } from 'lucide-react';
+import { MapPin, Code2, Award, Zap, Sparkles, Download } from 'lucide-react';
 import './About.css';
 
 const About: React.FC = () => {
@@ -66,6 +66,16 @@ const About: React.FC = () => {
                             an innovative AI + VR mental health therapy platform. My mission is to build intelligent solutions
                             that matter.
                         </p>
+
+                        <motion.button
+                            className="about-resume-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => window.open('/resume.pdf', '_blank')}
+                        >
+                            <Download size={18} />
+                            <span>GET_RESUME</span>
+                        </motion.button>
 
                         <div className="about-stats-grid">
                             {skills.map((skill, idx) => {

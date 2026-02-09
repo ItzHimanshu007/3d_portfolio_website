@@ -25,9 +25,13 @@ const Home = () => {
             const timer = setTimeout(() => {
                 const element = document.getElementById(target);
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    if ((window as any).lenis) {
+                        (window as any).lenis.scrollTo(element, { offset: -50 });
+                    } else {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
                 }
-            }, 100);
+            }, 300);
 
             // Clean up state to prevent re-scroll on refresh
             window.history.replaceState({}, document.title);
