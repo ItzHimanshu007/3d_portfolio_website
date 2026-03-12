@@ -207,7 +207,12 @@ const Hero: React.FC = () => {
                         </button>
                         <button
                             className="cyber-btn secondary"
-                            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={() => {
+                                const el = document.getElementById('contact');
+                                if (el) {
+                                    window.lenis ? window.lenis.scrollTo(el, { offset: -50 }) : el.scrollIntoView({ behavior: 'smooth' });
+                                }
+                            }}
                         >
                             <span>CONTACT_NODE</span>
                         </button>

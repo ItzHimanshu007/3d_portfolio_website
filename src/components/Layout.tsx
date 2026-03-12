@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Lenis from '@studio-freight/lenis';
+import '../types/global.d.ts';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -17,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             touchMultiplier: 2.0,
             infinite: false,
         });
-        (window as any).lenis = lenis;
+        window.lenis = lenis;
 
         function raf(time: number) {
             lenis.raf(time);
@@ -28,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
         return () => {
             lenis.destroy();
-            (window as any).lenis = undefined;
+            window.lenis = undefined;
         };
     }, []);
 
@@ -36,3 +37,4 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 
 export default Layout;
+

@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
     const scrollToSection = (href: string) => {
         const element = document.querySelector(href);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth' });
+            window.lenis ? window.lenis.scrollTo(element as HTMLElement, { offset: -50 }) : element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 
-const containerVariants = {
+const containerVariants: Variants = {
     initial: {
         opacity: 0,
         scale: 0.98,
@@ -28,7 +28,7 @@ const containerVariants = {
     }
 };
 
-const pixelVariants = {
+const pixelVariants: Variants = {
     initial: {
         opacity: 1,
         scale: 1
@@ -38,7 +38,7 @@ const pixelVariants = {
         scale: 0,
         transition: {
             duration: 0.3,
-            delay: 0.02 * (i % 10) + 0.01 * Math.floor(i / 10) // Randomized diagonal wave feel
+            delay: 0.02 * (i % 10) + 0.01 * Math.floor(i / 10)
         }
     }),
     exit: (i: number) => ({

@@ -1,0 +1,245 @@
+.ironman-preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #020202;
+    z-index: 100000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Background Hex Grid */
+.hex-background {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 10px;
+    transform: rotate(15deg) scale(1.5);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hex-cell {
+    width: 100px;
+    height: 100px;
+    background: rgba(255, 51, 51, 0.05);
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    border: 1px solid rgba(255, 51, 51, 0.1);
+}
+
+.hud-advanced-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    max-width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+/* Data Streams */
+.data-stream {
+    position: absolute;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: #ff3333;
+    opacity: 0.6;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.top-left-stream {
+    top: 10%;
+    left: 5%;
+    text-align: left;
+}
+
+.top-right-stream {
+    top: 10%;
+    right: 5%;
+    text-align: right;
+}
+
+.stream-label {
+    color: rgba(255, 51, 51, 0.4);
+    font-size: 0.6rem;
+}
+
+.stream-value {
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* Arc Reactor Complex */
+.arc-reactor-complex {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.reactor-pulse-field {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    background: radial-gradient(circle, rgba(255, 51, 51, 0.2) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 51, 51, 0.15);
+}
+
+.core-ring {
+    width: 100px;
+    height: 100px;
+    border: 3px solid #ff3333;
+    box-shadow: 0 0 15px #ff3333;
+}
+
+.mid-ring-1 {
+    width: 160px;
+    height: 160px;
+    border: 2px dashed rgba(255, 51, 51, 0.5);
+}
+
+.mid-ring-2 {
+    width: 220px;
+    height: 220px;
+    border-left: 5px solid #ff3333;
+    border-right: 5px solid #ff3333;
+}
+
+.outer-ring-segmented {
+    width: 280px;
+    height: 280px;
+    border: 1px solid rgba(255, 51, 51, 0.1);
+}
+
+.segment {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 4px;
+    height: 15px;
+    background: #ff3333;
+    transform-origin: 0 140px;
+}
+
+.reactor-center {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #ff3333, 0 0 80px rgba(255, 51, 51, 0.4);
+    z-index: 20;
+}
+
+/* SVG Progress Overlay */
+.hud-svg-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.progress-circle {
+    fill: none;
+    stroke: #ff3333;
+    stroke-width: 2;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 5px #ff3333);
+}
+
+/* Status Panel */
+.status-panel {
+    position: absolute;
+    bottom: 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+}
+
+.loading-title {
+    font-size: 0.6rem;
+    letter-spacing: 5px;
+    color: rgba(255, 51, 51, 0.6);
+    font-weight: 700;
+}
+
+.loading-progress {
+    font-size: 4rem;
+    font-weight: 900;
+    color: #ff3333;
+    text-shadow: 0 0 30px rgba(255, 51, 51, 0.5);
+    display: flex;
+    align-items: flex-start;
+}
+
+.loading-progress .unit {
+    font-size: 1rem;
+    margin-top: 1rem;
+    opacity: 0.5;
+}
+
+.jarvis-console {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: #ff3333;
+    background: rgba(255, 51, 51, 0.1);
+    padding: 2px 10px;
+    border-left: 2px solid #ff3333;
+}
+
+/* Scanning Bars */
+.scanning-bars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.scan-bar {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 51, 51, 0.2);
+    box-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+.hud-vignette {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 30%, #000 150%);
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .arc-reactor-complex {
+        transform: scale(0.7);
+    }
+
+    .loading-progress {
+        font-size: 3rem;
+    }
+
+    .data-stream {
+        display: none;
+    }
+}

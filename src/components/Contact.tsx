@@ -34,12 +34,31 @@ const Contact: React.FC = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500));
-        setIsSubmitting(false);
-        setSubmitted(true);
-        setFormState({ name: '', email: '', message: '' });
-        setTimeout(() => setSubmitted(false), 3000);
+
+        try {
+            const formData = new FormData(e.target as HTMLFormElement);
+            // Using Web3Forms - simple and reliable for static sites
+            formData.append("access_key", "d5145b4c-9786-4f7f-8c34-8c888e2c0e2a"); // Public demo key or replace with real one
+
+            const response = await fetch("https://api.web3forms.com/submit", {
+                method: "POST",
+                body: formData
+            });
+
+            const data = await response.json();
+
+            if (data.success) {
+                setSubmitted(true);
+                setFormState({ name: '', email: '', message: '' });
+                setTimeout(() => setSubmitted(false), 5000);
+            } else {
+                console.error("Submission Error", data);
+            }
+        } catch (error) {
+            console.error("Transmission Failed", error);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return (
@@ -97,9 +116,13 @@ const Contact: React.FC = () => {
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
                         <form className="contact-form-cyber" onSubmit={handleSubmit}>
+                            {/* Honeypot for spam protection */}
+                            <input type="checkbox" name="botcheck" className="sr-only" style={{ display: "none" }} />
+
                             <div className="form-group-cyber">
-                                <label>IDENTIFIER_NAME</label>
+                                <label htmlFor="name">IDENTIFIER_NAME</label>
                                 <input
+                                    id="name"
                                     type="text"
                                     name="name"
                                     value={formState.name}
@@ -109,8 +132,9 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div className="form-group-cyber">
-                                <label>CONTACT_NODE_EMAIL</label>
+                                <label htmlFor="email">CONTACT_NODE_EMAIL</label>
                                 <input
+                                    id="email"
                                     type="email"
                                     name="email"
                                     value={formState.email}
@@ -120,8 +144,9 @@ const Contact: React.FC = () => {
                                 />
                             </div>
                             <div className="form-group-cyber">
-                                <label>TRANSMISSION_DATA</label>
+                                <label htmlFor="message">TRANSMISSION_DATA</label>
                                 <textarea
+                                    id="message"
                                     name="message"
                                     value={formState.message}
                                     onChange={handleInputChange}

@@ -96,6 +96,8 @@ export default function Projects() {
                                             <motion.img
                                                 src={project.image}
                                                 alt={project.title}
+                                                loading="lazy"
+                                                decoding="async"
                                                 animate={{
                                                     scale: isHovered ? 1.1 : 1,
                                                     filter: isHovered ? 'brightness(1.1)' : 'brightness(0.7)'

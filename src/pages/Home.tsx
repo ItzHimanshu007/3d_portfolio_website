@@ -10,6 +10,7 @@ import Hackathons from '../components/Hackathons';
 import Experience from '../components/Experience';
 import Education from '../components/Education';
 import Certificates from '../components/Certificates';
+import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 import ScrollEffects from '../components/ScrollEffects';
 import ParticleBackground from '../components/ParticleBackground';
@@ -19,14 +20,15 @@ const Home = () => {
     const location = useLocation();
 
     useEffect(() => {
-        if (location.state && (location.state as any).scrollTo) {
-            const target = (location.state as any).scrollTo;
+        const state = location.state as { scrollTo?: string } | null;
+        if (state?.scrollTo) {
+            const target = state.scrollTo;
             // Delay to allow DOM and Lenis to initialize
             const timer = setTimeout(() => {
                 const element = document.getElementById(target);
                 if (element) {
-                    if ((window as any).lenis) {
-                        (window as any).lenis.scrollTo(element, { offset: -50 });
+                    if (window.lenis) {
+                        window.lenis.scrollTo(element, { offset: -50 });
                     } else {
                         element.scrollIntoView({ behavior: 'smooth' });
                     }
@@ -54,6 +56,7 @@ const Home = () => {
                 <Experience />
                 <Education />
                 <Certificates />
+                <Testimonials />
                 <Contact />
                 <QuickLinks />
             </main>
@@ -62,3 +65,4 @@ const Home = () => {
 };
 
 export default Home;
+
