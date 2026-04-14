@@ -1,8 +1,7 @@
-import Lenis from 'lenis';
-
 declare global {
     interface Window {
-        lenis?: Lenis;
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        lenis?: any;
     }
 }
 
