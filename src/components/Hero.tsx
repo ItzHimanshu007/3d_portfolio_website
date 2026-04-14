@@ -210,7 +210,7 @@ const Hero: React.FC = () => {
                             onClick={() => {
                                 const el = document.getElementById('contact');
                                 if (el) {
-                                    window.lenis ? window.lenis.scrollTo(el, { offset: -50 }) : el.scrollIntoView({ behavior: 'smooth' });
+                                    (window as any).lenis ? (window as any).lenis.scrollTo(el, { offset: -50 }) : el.scrollIntoView({ behavior: 'smooth' });
                                 }
                             }}
                         >

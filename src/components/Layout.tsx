@@ -18,7 +18,7 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
             touchMultiplier: 2.0,
             infinite: false,
         });
-        window.lenis = lenis;
+        (window as any).lenis = lenis;
 
         function raf(time: number) {
             lenis.raf(time);
@@ -29,7 +29,7 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
 
         return () => {
             lenis.destroy();
-            window.lenis = undefined;
+            (window as any).lenis = undefined;
         };
     }, []);
 

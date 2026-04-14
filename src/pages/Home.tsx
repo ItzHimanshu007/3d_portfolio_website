@@ -27,8 +27,8 @@ const Home = () => {
             const timer = setTimeout(() => {
                 const element = document.getElementById(target);
                 if (element) {
-                    if (window.lenis) {
-                        window.lenis.scrollTo(element, { offset: -50 });
+                    if ((window as any).lenis) {
+                        (window as any).lenis.scrollTo(element, { offset: -50 });
                     } else {
                         element.scrollIntoView({ behavior: 'smooth' });
                     }
