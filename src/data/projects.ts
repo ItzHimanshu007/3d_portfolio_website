@@ -1,4 +1,4 @@
-import { Monitor, Layers, Cpu, Zap, Rocket } from 'lucide-react';
+import { Monitor, Layers, Activity, Shield, Globe } from 'lucide-react';
 
 export interface ProjectMission {
     id: string;
@@ -26,17 +26,15 @@ export const projectsData: ProjectMission[] = [
         id: 'neuronest',
         year: '2024',
         title: 'Neuronest',
-        subtitle: 'AI + VR Therapy Platform',
+        subtitle: 'Adaptive VR Therapy System',
         category: 'Health Tech',
-        description: 'An innovative mental health platform combining Artificial Intelligence and Virtual Reality to provide immersive therapy experiences.',
-        briefing: 'Neuronest was designed to bridge the gap between traditional therapy and the digital age, utilizing VR environments to simulate exposure therapy and AI to track progress.',
-        challenge: 'Synchronizing real-time biometric data with dynamic VR environments while maintaining clinical accuracy.',
-        solution: 'Developed a custom WebSocket bridge that streams heart rate and stress levels into our ML model to adjust environmental variables instantly.',
-        tech: ['React.js', 'TensorFlow', 'Unity', 'Python', 'WebRTC'],
+        description: 'An AI + VR adaptive therapy platform targeting PTSD, phobias, and anxiety disorders using biofeedback-driven personalization with GSR and HRV signals.',
+        briefing: 'Neuronest bridges the gap between traditional therapy and emerging technology by creating immersive, personalized VR environments that adapt in real-time to patient biofeedback.',
+        challenge: 'Synchronizing real-time biometric signals (GSR, HRV) with dynamic VR therapy environments while maintaining clinical reliability and low latency.',
+        solution: 'Developed an adaptive biofeedback-driven system leveraging GSR and HRV signals to personalize therapy in real-time; validated with mental health professionals.',
+        tech: ['Python', 'TensorFlow', 'Unity', 'WebRTC'],
         image: '/projects/neuronest.png',
-        gallery: [
-            '/projects/neuronest.png'
-        ],
+        gallery: ['/projects/neuronest.png'],
         IconComponent: Monitor,
         color: '#ff3333',
         links: {
@@ -45,21 +43,19 @@ export const projectsData: ProjectMission[] = [
         }
     },
     {
-        id: 'civic-pulse',
-        year: '2024',
-        title: 'Civic Pulse',
-        subtitle: 'Smart City Governance',
-        category: 'Gov Tech',
-        description: 'Bridging the gap between citizens and local authorities through AI-driven insights and community participation analytics.',
-        briefing: 'A centralized dashboard for city officials and a mobile app for citizens to report issues, track urban development, and vote on local initiatives.',
-        challenge: 'Ensuring data veracity and preventing sybil attacks in community voting systems.',
-        solution: 'Implemented a decentralized identity verification system using digital signatures and geographic fencing.',
-        tech: ['React.js', 'Node.js', 'MongoDB', 'AI', 'Google Maps API'],
-        image: '/projects/civic.png',
-        gallery: [
-            '/projects/civic.png'
-        ],
-        IconComponent: Layers,
+        id: 'jal-drishti',
+        year: '2025',
+        title: 'Jal Drishti',
+        subtitle: 'Urban Flood Prediction Engine',
+        category: 'Civic Tech',
+        description: 'A scalable flood prediction system integrating satellite imagery, GIS data, and meteorological datasets for real-time urban flood risk assessment.',
+        briefing: 'Jal Drishti was built to give city planners and citizens actionable, real-time flood risk intelligence using geospatial AI — winner of multiple hackathons including India Innovates 2026.',
+        challenge: 'Integrating heterogeneous geospatial data sources — satellite imagery, GIS layers, and live meteorological feeds — into a unified, low-latency prediction pipeline.',
+        solution: 'Developed a scalable data pipeline leveraging spatial interpolation and geospatial analytics, with a React.js frontend for real-time risk visualization.',
+        tech: ['Python', 'Geospatial Analysis', 'React.js'],
+        image: '/projects/jal-drishti.png',
+        gallery: ['/projects/jal-drishti.png'],
+        IconComponent: Globe,
         color: '#ff3333',
         links: {
             github: 'https://github.com/ItzHimanshu007',
@@ -67,61 +63,19 @@ export const projectsData: ProjectMission[] = [
         }
     },
     {
-        id: 'ai-loan-predictor',
-        year: '2023',
-        title: 'AI Loan Predictor',
-        subtitle: 'Financial ML System',
-        category: 'FinTech',
-        description: 'Predictive machine learning system for financial institutions to assess loan eligibility with high accuracy.',
-        briefing: 'Automation of the credit scoring process using ensemble learning models to reduce human bias and processing time.',
-        challenge: 'Handling imbalanced datasets where approval cases vastly outnumbered rejections.',
-        solution: 'Applied SMOTE (Synthetic Minority Over-sampling Technique) and tuned the XGBoost model to optimize for recall without sacrificing precision.',
-        tech: ['Python', 'Scikit-learn', 'Pandas', 'XGBoost', 'Streamlit'],
-        image: '/projects/loan.png',
-        gallery: [
-            '/projects/loan.png'
-        ],
-        IconComponent: Cpu,
-        color: '#ff3333',
-        links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
-        }
-    },
-    {
-        id: 'quantum-mesh',
-        year: '2024',
-        title: 'Quantum Mesh',
-        subtitle: 'Distributed Computing',
-        category: 'Infrastructure',
-        description: 'A decentralized computing network leveraging idle GPU power for large-scale AI training and scientific research.',
-        briefing: 'Building a marketplace for compute power where users could lease their hardware for cryptographic rewards.',
-        challenge: 'Developing a robust verification system to ensure compute tasks were actually completed and not spoofed.',
-        solution: 'Implemented Proof-of-Execution (PoE) consensus where results are cross-verified by multiple neutral nodes.',
-        tech: ['Golang', 'Docker', 'Kubernetes', 'Web3', 'CUDA'],
-        image: '/projects/quantum.png',
-        gallery: ['/projects/quantum.png'],
-        IconComponent: Zap,
-        color: '#ff3333',
-        links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
-        }
-    },
-    {
-        id: 'eco-tracker',
-        year: '2023',
-        title: 'Eco Tracker',
-        subtitle: 'IOT Sustainability',
-        category: 'Environment',
-        description: 'Real-time carbon footprint monitoring system for manufacturing plants using multi-sensor IOT arrays.',
-        briefing: 'Creating a transparency tool for stakeholders to monitor environmental compliance in real-time.',
-        challenge: 'Filtering sensor noise in harsh industrial environments to provide accurate emission data.',
-        solution: 'Developed a Kalman filter-based signal processing pipeline on the edge devices.',
-        tech: ['C++', 'MQTT', 'InfluxDB', 'Grafana', 'ESP32'],
-        image: '/projects/eco.png',
-        gallery: ['/projects/eco.png'],
-        IconComponent: Rocket,
+        id: 'medinexus',
+        year: '2025',
+        title: 'MediNexus',
+        subtitle: 'Hospital Management Platform',
+        category: 'Health Tech',
+        description: 'A multi-tenant healthcare SaaS platform supporting patients, doctors, and admins with EHR management, billing, appointment scheduling, and inventory tracking.',
+        briefing: 'MediNexus was designed to modernize hospital operations through a unified, role-based platform that handles everything from patient records to concurrent appointment booking.',
+        challenge: 'Building a concurrent appointment booking system with slot locking and race condition prevention while maintaining performance under multi-user loads.',
+        solution: 'Implemented Supabase Auth for role-based access control, PostgreSQL indexing for query optimization, and a Health Passport system for unified patient records across hospitals.',
+        tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'Supabase'],
+        image: '/projects/medinexus.png',
+        gallery: ['/projects/medinexus.png'],
+        IconComponent: Activity,
         color: '#ff3333',
         links: {
             github: 'https://github.com/ItzHimanshu007',

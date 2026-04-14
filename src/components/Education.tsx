@@ -6,12 +6,12 @@ import './Education.css';
 const educationData = [
     {
         id: 1,
-        degree: 'Bachelor of Technology in AI & Data Science',
-        school: 'Arya College of Engineering & IT, Jaipur',
+        degree: 'Bachelor of Technology in Artificial Intelligence and Data Science',
+        school: 'Arya College of Engineering and IT, Jaipur',
         type: 'Rajasthan Technical University',
-        year: '2024 - Present',
+        year: 'Aug 2024 - May 2028',
         location: 'Jaipur, Rajasthan',
-        grade: 'Pursuing',
+        grade: 'CGPA: 9.2/10',
         courses: ['Artificial Intelligence', 'Data Science', 'Machine Learning', 'Neural Networks'],
         icon: <Zap size={24} />,
         image: '/character-college.png'

@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
                         />
                         <div className="footer-text">
                             <h3 className="footer-name">Himanshu Jasoriya</h3>
-                            <p className="footer-tagline">AI/ML Engineer & Tech Innovator</p>
+                            <p className="footer-tagline">Freelance Full-Stack & AI/ML Developer</p>
                         </div>
                     </div>
 

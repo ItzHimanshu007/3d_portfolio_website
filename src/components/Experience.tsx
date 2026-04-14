@@ -6,29 +6,15 @@ import './Experience.css';
 const experiences = [
     {
         id: 1,
-        year: '2025',
-        role: 'Machine Learning Intern',
-        company: 'Cognifyz Technologies',
-        location: 'Remote',
-        description: 'Working on real-world machine learning and data analytics projects, contributing to predictive modeling and automation tasks.',
-        achievements: [
-            'Built classification model with 90%+ accuracy',
-            'Improved model training speed by 35%',
-            'Delivered technical presentations'
-        ],
-        current: true
-    },
-    {
-        id: 2,
         year: '2024',
         role: 'Founder',
         company: 'Neuronest',
         location: 'India',
-        description: 'Leading development of an AI + VR mental health therapy platform for schizophrenia, PTSD, and phobias.',
+        description: 'Leading development of an AI + VR adaptive therapy platform targeting PTSD, phobias, and anxiety disorders using biofeedback-driven personalization.',
         achievements: [
-            'Selected among top teams in HackGrounds India 2K25',
-            'Developed early prototype using Unity3D + AI',
-            'Recognized at E-Cell ACEIT Eureka 2025'
+            'Winner of HACKSTORM \'25 among 250+ teams',
+            'Winner of IDEA-THON \'25 among 160+ teams',
+            'Validated prototype with mental health professionals; exploring pilot deployment'
         ],
         current: true
     }

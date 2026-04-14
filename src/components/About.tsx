@@ -62,7 +62,7 @@ const About: React.FC = () => {
                         </div>
 
                         <p className="about-bio-premium">
-                            I am a <span className="highlight-red">Machine Learning Intern</span> at Cognifyz Technologies and the <span className="highlight-red">Founder of Neuronest</span>,
+                            I am a <span className="highlight-red">Freelance Full-Stack & AI/ML Developer</span> and the <span className="highlight-red">Founder of Neuronest</span>,
                             an innovative AI + VR mental health therapy platform. My mission is to build intelligent solutions
                             that matter.
                         </p>

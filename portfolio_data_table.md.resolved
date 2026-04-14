@@ -1,0 +1,394 @@
+# 📋 Portfolio Data Upload Table
+
+Fill in the **Your Data** column with your real information. After filling, tell me which sections to update and I'll edit all the files automatically.
+
+---
+
+## 🏠 Section 1 — HERO
+
+> File: `src/components/Hero.tsx` (lines 175–192)
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Full Name | `HIMANSHU JASORIYA` | |
+| Tagline Line 1 | `ARCHITECTING` | |
+| Tagline Line 2 (red) | `DIGITAL` | |
+| Tagline Line 3 | `FUTURES` | |
+| Sub-description | `Merging bleeding-edge technology with high-end aesthetics to build immersive digital ecosystems.` | |
+| Protocol Badge Text | `PROTOCOL ACTIVE v2.0` | |
+| Hero Character Image | `/character-hero.png` | |
+
+---
+
+## 👤 Section 2 — ABOUT
+
+> File: `src/components/About.tsx` (lines 61–68, 74)
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Location | `Jaipur, Rajasthan, India` | |
+| Bio — Role/Title | `Machine Learning Intern` | |
+| Bio — Company | `Cognifyz Technologies` | |
+| Bio — Side Title | `Founder of Neuronest` | |
+| Bio — Side Description | `an innovative AI + VR mental health therapy platform` | |
+| Bio — Mission | `My mission is to build intelligent solutions that matter.` | |
+| Resume PDF path | `/resume.pdf` | |
+| About Character Image | `/character-thinking.png` | |
+| Skill Tag 1 | `Full-Stack Dev` | |
+| Skill Tag 2 | `AI/ML Expert` | |
+| Skill Tag 3 | `Fast Learner` | |
+
+---
+
+## 💼 Section 3 — EXPERIENCE
+
+> File: `src/components/Experience.tsx` (lines 6–35)
+
+### Experience Entry 1
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Year | `2025` | |
+| Role | `Machine Learning Intern` | |
+| Company | `Cognifyz Technologies` | |
+| Location | `Remote` | |
+| Description | `Working on real-world machine learning and data analytics projects, contributing to predictive modeling and automation tasks.` | |
+| Achievement 1 | `Built classification model with 90%+ accuracy` | |
+| Achievement 2 | `Improved model training speed by 35%` | |
+| Achievement 3 | `Delivered technical presentations` | |
+| Is Current? | `true` | |
+
+### Experience Entry 2
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Year | `2024` | |
+| Role | `Founder` | |
+| Company | `Neuronest` | |
+| Location | `India` | |
+| Description | `Leading development of an AI + VR mental health therapy platform for schizophrenia, PTSD, and phobias.` | |
+| Achievement 1 | `Selected among top teams in HackGrounds India 2K25` | |
+| Achievement 2 | `Developed early prototype using Unity3D + AI` | |
+| Achievement 3 | `Recognized at E-Cell ACEIT Eureka 2025` | |
+| Is Current? | `true` | |
+
+> ➕ **Want to add more experience entries?** Just tell me and provide the fields above.
+
+---
+
+## 🎓 Section 4 — EDUCATION
+
+> File: `src/components/Education.tsx` (lines 6–43)
+
+### Education Entry 1
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Degree | `Bachelor of Technology in AI & Data Science` | |
+| School | `Arya College of Engineering & IT, Jaipur` | |
+| Board/University | `Rajasthan Technical University` | |
+| Year Range | `2024 - Present` | |
+| Location | `Jaipur, Rajasthan` | |
+| Grade | `Pursuing` | |
+| Subject 1 | `Artificial Intelligence` | |
+| Subject 2 | `Data Science` | |
+| Subject 3 | `Machine Learning` | |
+| Subject 4 | `Neural Networks` | |
+
+### Education Entry 2
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Degree | `Senior Secondary (Class 12)` | |
+| School | `Vadanta International School, Jaipur` | |
+| Board/University | `CBSE Board` | |
+| Year Range | `2022 - 2024` | |
+| Location | `Jaipur, Rajasthan` | |
+| Grade | `Excellence` | |
+| Subject 1 | `Physics` | |
+| Subject 2 | `Chemistry` | |
+| Subject 3 | `Mathematics` | |
+| Subject 4 | `Computer Science` | |
+
+### Education Entry 3
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Degree | `Secondary Education` | |
+| School | `Vadanta International School, Jaipur` | |
+| Board/University | `CBSE Board` | |
+| Year Range | `2020 - 2022` | |
+| Location | `Jaipur, Rajasthan` | |
+| Grade | `Distinction` | |
+| Subject 1 | `Science` | |
+| Subject 2 | `Mathematics` | |
+| Subject 3 | `English` | |
+| Subject 4 | `Social Science` | |
+
+---
+
+## 🛠 Section 5 — SKILLS
+
+> File: `src/components/Skills.tsx` (lines 6–43)
+
+| Category | Current Title | Current Tags | Your Tags |
+|----------|--------------|-------------|-----------|
+| 1 | `Frontend Engineering` | React, Next.js, Three.js, Tailwind CSS, Framer Motion | |
+| 2 | `Backend Systems` | Node.js, Express, Python, Go, GraphQL | |
+| 3 | `Machine Learning` | TensorFlow, PyTorch, Computer Vision, NLP, Scikit-learn | |
+| 4 | `Data Infrastructure` | PostgreSQL, MongoDB, Redis, Prisma ORM | |
+| 5 | `UI/UX Design` | Figma, User Research, Prototyping, Design Systems | |
+| 6 | `DevOps & Tools` | Docker, AWS, Git, CI/CD, Linux | |
+
+> ➕ You can rename categories or add/remove tags — just let me know!
+
+---
+
+## 🚀 Section 6 — PROJECTS
+
+> File: `src/data/projects.ts`
+
+### Project 1
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| ID (slug) | `neuronest` | |
+| Year | `2024` | |
+| Title | `Neuronest` | |
+| Subtitle | `AI + VR Therapy Platform` | |
+| Category | `Health Tech` | |
+| Description | `An innovative mental health platform combining AI and VR...` | |
+| Briefing | `Neuronest was designed to bridge the gap between traditional therapy...` | |
+| Challenge | `Synchronizing real-time biometric data with dynamic VR environments...` | |
+| Solution | `Developed a custom WebSocket bridge that streams heart rate...` | |
+| Tech Stack | `React.js, TensorFlow, Unity, Python, WebRTC` | |
+| Image | `/projects/neuronest.png` | |
+| GitHub Link | `https://github.com/ItzHimanshu007` | |
+| Live Link | `#` | |
+
+### Project 2
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| ID (slug) | `civic-pulse` | |
+| Year | `2024` | |
+| Title | `Civic Pulse` | |
+| Subtitle | `Smart City Governance` | |
+| Category | `Gov Tech` | |
+| Description | `Bridging the gap between citizens and local authorities...` | |
+| Briefing | `A centralized dashboard for city officials...` | |
+| Challenge | `Ensuring data veracity and preventing sybil attacks...` | |
+| Solution | `Implemented a decentralized identity verification system...` | |
+| Tech Stack | `React.js, Node.js, MongoDB, AI, Google Maps API` | |
+| Image | `/projects/civic.png` | |
+| GitHub Link | `https://github.com/ItzHimanshu007` | |
+| Live Link | `#` | |
+
+### Project 3
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| ID (slug) | `ai-loan-predictor` | |
+| Year | `2023` | |
+| Title | `AI Loan Predictor` | |
+| Subtitle | `Financial ML System` | |
+| Category | `FinTech` | |
+| Description | `Predictive machine learning system for financial institutions...` | |
+| Tech Stack | `Python, Scikit-learn, Pandas, XGBoost, Streamlit` | |
+| Image | `/projects/loan.png` | |
+| GitHub Link | `https://github.com/ItzHimanshu007` | |
+| Live Link | `#` | |
+
+### Project 4
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| ID (slug) | `quantum-mesh` | |
+| Year | `2024` | |
+| Title | `Quantum Mesh` | |
+| Subtitle | `Distributed Computing` | |
+| Category | `Infrastructure` | |
+| Tech Stack | `Golang, Docker, Kubernetes, Web3, CUDA` | |
+| Image | `/projects/quantum.png` | |
+| GitHub Link | `https://github.com/ItzHimanshu007` | |
+| Live Link | `#` | |
+
+### Project 5
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| ID (slug) | `eco-tracker` | |
+| Year | `2023` | |
+| Title | `Eco Tracker` | |
+| Subtitle | `IOT Sustainability` | |
+| Category | `Environment` | |
+| Tech Stack | `C++, MQTT, InfluxDB, Grafana, ESP32` | |
+| Image | `/projects/eco.png` | |
+| GitHub Link | `https://github.com/ItzHimanshu007` | |
+| Live Link | `#` | |
+
+> ➕ Want to add or remove projects? You can have as many as you like.
+
+---
+
+## 🏆 Section 7 — HACKATHONS
+
+> File: `src/data/hackathons.ts`
+
+### Hackathon 1
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `Neural Nexus VR` | |
+| Event Name | `Global AI & XR Hackathon` | |
+| Date | `March 2025` | |
+| Description | `Developed a brain-computer interface controlled VR environment...` | |
+| Award | `1st Runner Up` | |
+| Tech Stack | `React, Three.js, Python, TensorFlow` | |
+| Learning 1 | `Integrating BCI sensors with real-time WebGL environments` | |
+| Learning 2 | `Optimizing neural data processing for low-latency VR feedback` | |
+| Learning 3 | `Designing accessible VR UIs for neuro-rehabilitation` | |
+| Achievement 1 | `Competed against 500+ global teams` | |
+| Achievement 2 | `Successfully live-demoed BCI control` | |
+| Achievement 3 | `Featured in TechCrunch Hackathon Special` | |
+
+### Hackathon 2
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `EcoChain Protocol` | |
+| Event Name | `Sustainability Block-Hack` | |
+| Date | `January 2025` | |
+| Description | `Built a decentralized carbon credit marketplace...` | |
+| Award | `Innovation Award` | |
+| Tech Stack | `Solidity, Web3.js, Next.js, Tailwind` | |
+| Achievement 1 | `Secured $10k in grant funding` | |
+| Achievement 2 | `Zero-gas optimized contract architecture` | |
+| Achievement 3 | `Winner of Best Use of Chainlink Oracle` | |
+
+### Hackathon 3
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `MediSync AI` | |
+| Event Name | `HealthTech Innovation Summit` | |
+| Date | `November 2024` | |
+| Award | `Top 5 Finalist` | |
+| Tech Stack | `Flutter, Firebase, OpenCV, Pytorch` | |
+
+### Hackathon 4
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `SmartCity Vision` | |
+| Event Name | `Urban Tech Challenge` | |
+| Date | `August 2024` | |
+| Award | `Best Technical Implementation` | |
+| Tech Stack | `Python, YOLO, Raspberry Pi, MQTT` | |
+
+### Hackathon 5
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `AgriBot Autonomous` | |
+| Event Name | `AgTech Innovation Sprint` | |
+| Date | `June 2024` | |
+| Award | `2nd Place` | |
+| Tech Stack | `ROS, TensorFlow Lite, React Native, AWS` | |
+
+### Hackathon 6
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `EduVerse XR` | |
+| Event Name | `EdTech Global Hackathon` | |
+| Date | `April 2024` | |
+| Award | `Grand Prize Winner` | |
+| Tech Stack | `Unity, WebXR, Node.js, MongoDB` | |
+
+---
+
+## 🏅 Section 8 — CERTIFICATES
+
+> File: `src/components/Certificates.tsx` (lines 10–29)
+
+### Certificate 1
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `Machine Learning Masterclass` | |
+| Issuer | `Google Cloud` | |
+| Date | `Dec 2024` | |
+| Description | `Advanced certification covering deep learning, neural networks, and production ML pipelines.` | |
+| Skills | `TensorFlow, PyTorch, GCP` | |
+| Certificate Link | `#` | |
+
+### Certificate 2
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Title | `Full Stack Development` | |
+| Issuer | `Meta` | |
+| Date | `Nov 2024` | |
+| Description | `Comprehensive program focused on modern web architecture and scalable cloud solutions.` | |
+| Skills | `React, Node.js, System Design` | |
+| Certificate Link | `#` | |
+
+> ➕ Add as many certificates as you want!
+
+---
+
+## 📞 Section 9 — CONTACT & SOCIAL
+
+> File: `src/components/Contact.tsx` (lines 18–27)
+
+| Field | Current Value | Your Data |
+|-------|--------------|-----------|
+| Email | `hjasoriya007@gmail.com` | |
+| Phone | `+91 6375884386` | |
+| Location | `Jaipur, Rajasthan, India` | |
+| LinkedIn URL | `https://www.linkedin.com/in/himanshu-jasoriya-23b77331a` | |
+| GitHub URL | `https://github.com/ItzHimanshu007` | |
+| Twitter/X URL | `https://x.com/itzhimanshu_07` | |
+
+---
+
+## 🖼️ Section 10 — IMAGES CHECKLIST
+
+> All images go in the `/public/` folder of your project.
+
+| Image File | Used In | Status |
+|-----------|---------|--------|
+| `/character-hero.png` | Hero section | ☐ |
+| `/character-thinking.png` | About section | ☐ |
+| `/character-peace-laptop.png` | Skills section | ☐ |
+| `/character-college.png` | Education (B.Tech) | ☐ |
+| `/character-high-school.png` | Education (Class 12) | ☐ |
+| `/character-middle-school.png` | Education (Secondary) | ☐ |
+| `/character-glasses-phone.png` | Contact section & Hackathon | ☐ |
+| `/character-globe.png` | Hackathon section | ☐ |
+| `/character-peace-laptop.png` | Hackathon section | ☐ |
+| `/character-tablet.png` | Hackathon section | ☐ |
+| `/character-drone.png` | Hackathon section | ☐ |
+| `/character-vinyl.png` | Footer | ☐ |
+| `/mascot-cert.png` | Certificates section | ☐ |
+| `/hackathon-win-trophy.png` | Hackathon galleries | ☐ |
+| `/hackathon-win-coding.png` | Hackathon galleries | ☐ |
+| `/hackathon-win-standing.png` | Hackathon galleries | ☐ |
+| `/projects/neuronest.png` | Projects section | ☐ |
+| `/projects/civic.png` | Projects section | ☐ |
+| `/projects/loan.png` | Projects section | ☐ |
+| `/projects/quantum.png` | Projects section | ☐ |
+| `/projects/eco.png` | Projects section | ☐ |
+| `/resume.pdf` | About section (download) | ☐ |
+
+---
+
+> [!IMPORTANT]
+> **How to use this table:**
+> 1. Fill in the **Your Data** column for every field you want to change
+> 2. Leave blank any row you're happy keeping as-is
+> 3. Send it back to me and I'll update all the files automatically!
+
+> [!TIP]
+> You only need to fill in the sections you want to **change**. If your current data (name, contact, social links, etc.) is already correct, just skip those rows.

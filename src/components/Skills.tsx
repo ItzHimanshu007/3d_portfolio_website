@@ -5,40 +5,40 @@ import './Skills.css';
 
 const skillsData = [
     {
-        icon: Code2,
-        title: 'Frontend Engineering',
-        desc: 'Architecting pixel-perfect, responsive interfaces with state-of-the-art libraries.',
-        tags: ['React', 'Next.js', 'Three.js', 'Tailwind CSS', 'Framer Motion']
-    },
-    {
         icon: Terminal,
-        title: 'Backend Systems',
-        desc: 'Building robust, scalable server-side solutions and API ecosystems.',
-        tags: ['Node.js', 'Express', 'Python', 'Go', 'GraphQL']
+        title: 'Languages',
+        desc: 'Proficient in a wide range of programming languages for various paradigms.',
+        tags: ['Python', 'C', 'C++', 'Java', 'JavaScript', 'SQL']
     },
     {
         icon: Cpu,
-        title: 'Machine Learning',
-        desc: 'Training predictive models and deploying intelligent agents.',
-        tags: ['TensorFlow', 'PyTorch', 'Computer Vision', 'NLP', 'Scikit-learn']
+        title: 'Machine Learning & AI',
+        desc: 'Building and deploying intelligent systems using state-of-the-art frameworks.',
+        tags: ['Scikit-learn', 'Pandas', 'NumPy', 'TensorFlow', 'Computer Vision']
+    },
+    {
+        icon: Sparkles,
+        title: 'Agentic AI',
+        desc: 'Designing autonomous workflows and multi-agent systems using LLMs.',
+        tags: ['LLM-based Agents', 'Prompt Engineering', 'Multi-Agent Systems', 'Autonomous Workflows']
+    },
+    {
+        icon: Code2,
+        title: 'Web Development',
+        desc: 'Crafting responsive and scalable full-stack web applications.',
+        tags: ['React.js', 'Node.js', 'Express.js', 'REST APIs']
     },
     {
         icon: Database,
-        title: 'Data Infrastructure',
-        desc: 'Optimizing data storage, retrieval, and complex query performance.',
-        tags: ['PostgreSQL', 'MongoDB', 'Redis', 'Prisma ORM']
-    },
-    {
-        icon: Layout,
-        title: 'UI/UX Design',
-        desc: 'Crafting intuitive user journeys and high-fidelity prototypes.',
-        tags: ['Figma', 'User Research', 'Prototyping', 'Design Systems']
+        title: 'Databases',
+        desc: 'Optimizing data storage and management across various database systems.',
+        tags: ['MySQL', 'PostgreSQL', 'MongoDB']
     },
     {
         icon: Layers,
-        title: 'DevOps & Tools',
-        desc: 'Streamlining deployment pipelines and ensuring system reliability.',
-        tags: ['Docker', 'AWS', 'Git', 'CI/CD', 'Linux']
+        title: 'Tools & Platforms',
+        desc: 'Utilizing modern tools and platforms for efficient development and collaboration.',
+        tags: ['Git', 'GitHub', 'Linux', 'Jupyter Notebook']
     }
 ];
 

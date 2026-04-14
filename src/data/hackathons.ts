@@ -1,4 +1,4 @@
-import { Trophy, Globe, Cpu } from 'lucide-react';
+import { Trophy, Globe, Award, Sparkles, Cpu, Zap, Target, Hexagon } from 'lucide-react';
 
 export interface Hackathon {
     id: string;
@@ -18,135 +18,179 @@ export interface Hackathon {
 
 export const hackathonsData: Hackathon[] = [
     {
-        id: 'neural-nexus',
-        title: 'Neural Nexus VR',
-        event: 'Global AI & XR Hackathon',
-        date: 'March 2025',
-        description: 'Developed a brain-computer interface controlled VR environment for neuro-rehabilitation using specialized neural sensors.',
-        award: '1st Runner Up',
-        tech: ['React', 'Three.js', 'Python', 'TensorFlow'],
+        id: 'hackstorm-25',
+        title: 'Neuronest VR Therapy',
+        event: 'HACKSTORM \'25',
+        date: '2025',
+        description: 'Built an AI-powered VR adaptive therapy platform for PTSD, phobias, and anxiety using real-time biofeedback.',
+        award: 'Winner',
+        tech: ['Python', 'TensorFlow', 'Unity'],
         mainImage: '/character-glasses-phone.png',
         gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
         learnings: [
-            'Integrating BCI sensors with real-time WebGL environments',
-            'Optimizing neural data processing for low-latency VR feedback',
-            'Designing accessible VR UIs for neuro-rehabilitation'
+            'Real-time biofeedback integration',
+            'VR exposure therapy design',
+            'Neural data processing'
         ],
         achievements: [
-            'Competed against 500+ global teams',
-            'Successfully live-demoed BCI control',
-            'Featured in TechCrunch Hackathon Special'
+            'Won among 250+ competing teams',
+            'Adaptive biofeedback loop validated with mental health professionals',
+            'Exploring pilot deployment in clinical settings'
         ],
-        icon: Cpu
+        icon: Trophy
     },
     {
-        id: 'ecochain',
-        title: 'EcoChain Protocol',
-        event: 'Sustainability Block-Hack',
-        date: 'January 2025',
-        description: 'Built a decentralized carbon credit marketplace to incentivize manufacturing plants to reduce their carbon footprint.',
-        award: 'Innovation Award',
-        tech: ['Solidity', 'Web3.js', 'Next.js', 'Tailwind'],
+        id: 'geospatial-hack-26',
+        title: 'Jal Drishti Flood Engine',
+        event: 'Geospatial Intelligence Hack \'26',
+        date: '2026',
+        description: 'Developed an ML-based urban flood prediction system using geospatial and meteorological data pipelines.',
+        award: 'Winner',
+        tech: ['Python', 'Geospatial Analysis', 'React.js'],
         mainImage: '/character-globe.png',
         gallery: ['/hackathon-win-coding.png', '/hackathon-win-trophy.png'],
         learnings: [
-            'Developing efficient Solidity contracts for carbon tokenization',
-            'Implementing verifiable off-chain data via Oracles',
-            'UX design for industrial-scale Web3 applications'
+            'Geospatial data interpolation',
+            'Satellite imagery processing',
+            'Real-time risk visualization'
         ],
         achievements: [
-            'Secured $10k in grant funding',
-            'Zero-gas optimized contract architecture',
-            'Winner of Best Use of Chainlink Oracle'
+            'Won among 180+ competing teams',
+            'Real-time flood risk visualization using satellite + GIS data',
+            'Selected for India Innovates 2026 at Bharat Mandapam'
         ],
         icon: Globe
     },
     {
-        id: 'medisync',
-        title: 'MediSync AI',
-        event: 'HealthTech Innovation Summit',
-        date: 'November 2024',
-        description: 'An AI-powered diagnostic tool for rural clinics that works offline and synchronizes data via satellite links.',
-        award: 'Top 5 Finalist',
-        tech: ['Flutter', 'Firebase', 'OpenCV', 'Pytorch'],
-        mainImage: '/character-peace-laptop.png',
-        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-standing.png'],
+        id: 'india-innovates-26',
+        title: 'Jal Drishti — Civic Tech',
+        event: 'India Innovates \'26',
+        date: '2026',
+        description: 'Presented civic-tech flood prediction solution to government officials, VCs, and international delegates at Bharat Mandapam, New Delhi.',
+        award: 'Top 10',
+        tech: ['Python', 'Geospatial Analysis', 'React.js'],
+        mainImage: '/character-hero.png',
+        gallery: ['/hackathon-win-standing.png', '/hackathon-win-trophy.png'],
         learnings: [
-            'Optimizing Pytorch models for edge devices',
-            'Building robust offline-first sync architectures',
-            'Human-centric AI design for non-technical users'
+            'High-stakes stakeholder pitching',
+            'Civic-tech policy integration',
+            'Scalable urban risk models'
         ],
         achievements: [
-            'Reached Final Top 5 from 1200+ entries',
-            '98% offline diagnostic accuracy',
-            'Pilot program initiated in 3 rural clinics'
+            'Top 10 among 26,000+ participants',
+            'One of India\'s largest civic-tech hackathons',
+            'Presented to government officials and international delegates'
         ],
-        icon: Trophy
+        icon: Award
     },
     {
-        id: 'smartcity-vision',
-        title: 'SmartCity Vision',
-        event: 'Urban Tech Challenge',
-        date: 'August 2024',
-        description: 'Real-time traffic optimization system using computer vision and edge computing for smart intersections.',
-        award: 'Best Technical Implementation',
-        tech: ['Python', 'YOLO', 'Raspberry Pi', 'MQTT'],
-        mainImage: '/character-tablet.png',
-        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
+        id: 'ideathon-25',
+        title: 'Neuronest Exposure Therapy',
+        event: 'IDEA-THON \'25',
+        date: '2025',
+        description: 'Developed an innovative VR exposure therapy system for PTSD and phobias, focusing on psychological immersion.',
+        award: 'Winner',
+        tech: ['Python', 'TensorFlow', 'Unity'],
+        mainImage: '/character-thinking.png',
+        gallery: ['/hackathon-win-trophy.png'],
         learnings: [
-            'Deploying ML models on edge devices',
-            'Real-time video processing optimization',
-            'IoT communication protocols'
+            'User immersion psychology',
+            'Prototype validation methodologies',
+            'Healthcare UI/UX'
         ],
         achievements: [
-            'Reduced traffic wait time by 35% in simulation',
-            'Sub-100ms inference latency',
-            'Collaboration with city planning officials'
+            'Won among 160+ teams',
+            'VR exposure therapy for PTSD and phobias',
+            'Recognized for innovative health solution'
+        ],
+        icon: Sparkles
+    },
+    {
+        id: 'hackjklu-5',
+        title: 'HackJKLU 5.0',
+        event: 'JKLU Hackathon',
+        date: '2025',
+        description: 'Developed a technical solution for solving urban challenges using real-time data integration.',
+        award: '2nd Place',
+        tech: ['React', 'Node.js', 'Python'],
+        mainImage: '/character-tablet.png',
+        gallery: ['/hackathon-win-coding.png'],
+        learnings: [
+            'Real-time data visualization',
+            'Agile hackathon development',
+            'Rapid prototyping'
+        ],
+        achievements: [
+            '2nd place among 250+ teams',
+            'Successful live demonstration',
+            'Positive judge feedback'
         ],
         icon: Cpu
     },
     {
-        id: 'agribot',
-        title: 'AgriBot Autonomous',
-        event: 'AgTech Innovation Sprint',
-        date: 'June 2024',
-        description: 'Autonomous drone system for precision agriculture with AI-powered crop disease detection.',
+        id: 'genisys-1',
+        title: 'Genisys 1.0',
+        event: 'MNIT Jaipur',
+        date: '2025',
+        description: 'Built a specialized AI solution for optimizing resource allocation in local ecosystems.',
         award: '2nd Place',
-        tech: ['ROS', 'TensorFlow Lite', 'React Native', 'AWS'],
-        mainImage: '/character-drone.png',
-        gallery: ['/hackathon-win-standing.png', '/hackathon-win-trophy.png'],
+        tech: ['Python', 'ML', 'React'],
+        mainImage: '/character-peace-laptop.png',
+        gallery: ['/hackathon-win-standing.png'],
         learnings: [
-            'ROS integration for drone control',
-            'Mobile-first agricultural interfaces',
-            'Cloud-based crop analytics'
+            'Resource optimization algorithms',
+            'Local ecosystem analysis',
+            'Full-stack AI integration'
         ],
         achievements: [
-            '94% disease detection accuracy',
-            'Covered 50 acres in pilot test',
-            'Partnership offer from AgriTech startup'
+            '2nd place among 150+ teams',
+            'Technical excellence award candidate',
+            'Recognized at MNIT Jaipur'
         ],
-        icon: Globe
+        icon: Zap
     },
     {
-        id: 'eduverse',
-        title: 'EduVerse XR',
-        event: 'EdTech Global Hackathon',
-        date: 'April 2024',
-        description: 'Immersive VR classroom platform enabling interactive 3D learning experiences for remote students.',
-        award: 'Grand Prize Winner',
-        tech: ['Unity', 'WebXR', 'Node.js', 'MongoDB'],
-        mainImage: '/character-hero.png',
-        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
+        id: 'acehack',
+        title: 'AceHack',
+        event: 'AceHack Hackathon',
+        date: '2025',
+        description: 'Participated in a high-intensity coding challenge focused on rapid product development.',
+        award: '3rd Place',
+        tech: ['React Native', 'Firebase', 'Express'],
+        mainImage: '/character-drone.png',
+        gallery: ['/hackathon-win-coding.png', '/hackathon-win-trophy.png'],
         learnings: [
-            'Multi-user VR synchronization',
-            'Optimizing WebXR for low-end devices',
-            'Gamification in educational contexts'
+            'Mobile-first development',
+            'Backend scalability',
+            'Team collaboration under pressure'
         ],
         achievements: [
-            'Won $25k grand prize',
-            'Featured on EdTech Weekly',
-            '1000+ beta signups in first week'
+            '3rd place among 200+ teams',
+            'Developed working mobile prototype',
+            'Winner of Best UI Design'
         ],
-        icon: Trophy
+        icon: Target
+    },
+    {
+        id: 'unstoppable-hack',
+        title: 'Web3 Energy Marketplace',
+        event: 'Unstoppable Hackathon, LNMIIT',
+        date: '2025',
+        description: 'Built a decentralized energy trading marketplace leveraging blockchain technology for transparent P2P energy exchange.',
+        award: 'Winner',
+        tech: ['Web3', 'Solidity', 'React'],
+        mainImage: '/character-globe.png',
+        gallery: ['/hackathon-win-trophy.png'],
+        learnings: [
+            'Blockchain-based P2P trading',
+            'Smart contract security',
+            'Decentralized identity'
+        ],
+        achievements: [
+            'Won among 200+ teams',
+            'Built a working decentralized energy trading marketplace',
+            'Zero-knowledge proof integration concept'
+        ],
+        icon: Hexagon
     }
 ];
