@@ -1,4 +1,4 @@
-import { Monitor, Layers, Activity, Shield, Globe } from 'lucide-react';
+import { Monitor, Activity, Globe } from 'lucide-react';
 
 export interface ProjectMission {
     id: string;

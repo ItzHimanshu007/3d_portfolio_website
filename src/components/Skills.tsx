@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
-import { Code2, Database, Terminal, Cpu, Layout, Sparkles, Layers } from 'lucide-react';
+import { Code2, Database, Terminal, Cpu, Sparkles, Layers } from 'lucide-react';
 import './Skills.css';
 
 const skillsData = [
