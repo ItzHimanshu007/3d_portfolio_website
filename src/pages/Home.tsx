@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useLocation } from 'react-router-dom';
 import Hero from '../components/Hero';
 import QuickLinks from '../components/QuickLinks';
@@ -15,6 +15,8 @@ import Contact from '../components/Contact';
 import ScrollEffects from '../components/ScrollEffects';
 import ParticleBackground from '../components/ParticleBackground';
 import SectionTransitions from '../components/SectionTransitions';
+import ScrollModel from '../components/ScrollModel';
+
 
 const Home = () => {
     const location = useLocation();
@@ -46,6 +48,9 @@ const Home = () => {
             <ParticleBackground />
             <ScrollEffects />
             <SectionTransitions />
+            <Suspense fallback={null}>
+                <ScrollModel />
+            </Suspense>
             <main id="home">
                 <Hero />
                 <Values />

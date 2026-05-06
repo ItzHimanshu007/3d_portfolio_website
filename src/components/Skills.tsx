@@ -14,13 +14,13 @@ const skillsData = [
         icon: Cpu,
         title: 'Machine Learning & AI',
         desc: 'Building and deploying intelligent systems using state-of-the-art frameworks.',
-        tags: ['Scikit-learn', 'Pandas', 'NumPy', 'TensorFlow', 'Computer Vision']
+        tags: ['Scikit-learn', 'Pandas', 'NumPy', 'Computer Vision', 'TensorFlow']
     },
     {
         icon: Sparkles,
         title: 'Agentic AI',
         desc: 'Designing autonomous workflows and multi-agent systems using LLMs.',
-        tags: ['LLM-based Agents', 'Prompt Engineering', 'Multi-Agent Systems', 'Autonomous Workflows']
+        tags: ['LLM-based Agents', 'Prompt Engineering', 'Autonomous Workflows', 'Multi-Agent Systems']
     },
     {
         icon: Code2,

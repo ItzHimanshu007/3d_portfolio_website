@@ -1,4 +1,4 @@
-import { Trophy, Globe, Award, Sparkles, Cpu, Zap, Target, Hexagon } from 'lucide-react';
+import { Trophy, Globe, Award, Sparkles, Cpu, Zap, Target, Hexagon, Terminal } from 'lucide-react';
 
 export interface Hackathon {
     id: string;
@@ -25,8 +25,11 @@ export const hackathonsData: Hackathon[] = [
         description: 'Built an AI-powered VR adaptive therapy platform for PTSD, phobias, and anxiety using real-time biofeedback.',
         award: 'Winner',
         tech: ['Python', 'TensorFlow', 'Unity'],
-        mainImage: '/character-glasses-phone.png',
-        gallery: ['/hackathon-win-trophy.png', '/hackathon-win-coding.png'],
+        mainImage: '/hackathons/hackstrom win pic 1.jpeg',
+        gallery: [
+            '/hackathons/hackstrom win pic 1.jpeg',
+            '/hackathons/hackstrom win pic2.jpeg'
+        ],
         learnings: [
             'Real-time biofeedback integration',
             'VR exposure therapy design',
@@ -47,8 +50,11 @@ export const hackathonsData: Hackathon[] = [
         description: 'Developed an ML-based urban flood prediction system using geospatial and meteorological data pipelines.',
         award: 'Winner',
         tech: ['Python', 'Geospatial Analysis', 'React.js'],
-        mainImage: '/character-globe.png',
-        gallery: ['/hackathon-win-coding.png', '/hackathon-win-trophy.png'],
+        mainImage: '/hackathons/geospatial win pic 1.jpeg',
+        gallery: [
+            '/hackathons/geospatial win pic 1.jpeg',
+            '/hackathons/geospatial win pic2.jpeg'
+        ],
         learnings: [
             'Geospatial data interpolation',
             'Satellite imagery processing',
@@ -62,28 +68,6 @@ export const hackathonsData: Hackathon[] = [
         icon: Globe
     },
     {
-        id: 'india-innovates-26',
-        title: 'Jal Drishti — Civic Tech',
-        event: 'India Innovates \'26',
-        date: '2026',
-        description: 'Presented civic-tech flood prediction solution to government officials, VCs, and international delegates at Bharat Mandapam, New Delhi.',
-        award: 'Top 10',
-        tech: ['Python', 'Geospatial Analysis', 'React.js'],
-        mainImage: '/character-hero.png',
-        gallery: ['/hackathon-win-standing.png', '/hackathon-win-trophy.png'],
-        learnings: [
-            'High-stakes stakeholder pitching',
-            'Civic-tech policy integration',
-            'Scalable urban risk models'
-        ],
-        achievements: [
-            'Top 10 among 26,000+ participants',
-            'One of India\'s largest civic-tech hackathons',
-            'Presented to government officials and international delegates'
-        ],
-        icon: Award
-    },
-    {
         id: 'ideathon-25',
         title: 'Neuronest Exposure Therapy',
         event: 'IDEA-THON \'25',
@@ -91,8 +75,11 @@ export const hackathonsData: Hackathon[] = [
         description: 'Developed an innovative VR exposure therapy system for PTSD and phobias, focusing on psychological immersion.',
         award: 'Winner',
         tech: ['Python', 'TensorFlow', 'Unity'],
-        mainImage: '/character-thinking.png',
-        gallery: ['/hackathon-win-trophy.png'],
+        mainImage: '/hackathons/ideathon-1.jpg',
+        gallery: [
+            '/hackathons/ideathon-1.jpg',
+            '/hackathons/ideathon-2.jpg'
+        ],
         learnings: [
             'User immersion psychology',
             'Prototype validation methodologies',
@@ -106,6 +93,78 @@ export const hackathonsData: Hackathon[] = [
         icon: Sparkles
     },
     {
+        id: 'unstoppable-hack',
+        title: 'Web3 Energy Marketplace',
+        event: 'Unstoppable Hackathon, LNMIIT',
+        date: '2025',
+        description: 'Built a decentralized energy trading marketplace leveraging blockchain technology for transparent P2P energy exchange.',
+        award: 'Winner',
+        tech: ['Web3', 'Solidity', 'React'],
+        mainImage: '/hackathons/unnstoppanble hackathon win pic1.jpeg',
+        gallery: [
+            '/hackathons/unnstoppanble hackathon win pic1.jpeg',
+            '/hackathons/unstoppable hackathon win pic 2.jpeg'
+        ],
+        learnings: [
+            'Blockchain-based P2P trading',
+            'Smart contract security',
+            'Decentralized identity'
+        ],
+        achievements: [
+            'Won among 200+ teams',
+            'Built a working decentralized energy trading marketplace',
+            'Zero-knowledge proof integration concept'
+        ],
+        icon: Hexagon
+    },
+    {
+        id: 'india-innovates-26',
+        title: 'Jal Drishti — Civic Tech',
+        event: 'India Innovates \'26',
+        date: '2026',
+        description: 'Presented civic-tech flood prediction solution to government officials, VCs, and international delegates at Bharat Mandapam, New Delhi.',
+        award: 'Top 10 Finalist',
+        tech: ['Python', 'Geospatial Analysis', 'React.js'],
+        mainImage: '/hackathons/india innovtes win pic1.jpeg',
+        gallery: ['/hackathons/india innovtes win pic1.jpeg'],
+        learnings: [
+            'High-stakes stakeholder pitching',
+            'Civic-tech policy integration',
+            'Scalable urban risk models'
+        ],
+        achievements: [
+            'Top 10 among 26,000+ participants',
+            'One of India\'s largest civic-tech hackathons',
+            'Presented to government officials and international delegates'
+        ],
+        icon: Award
+    },
+    {
+        id: 'devsummit-26',
+        title: 'DevSummit \'26',
+        event: 'Jagannath University',
+        date: '2026',
+        description: 'Competed in a high-intensity development summit focusing on rapid application building and architecture.',
+        award: 'Runner-Up',
+        tech: ['React', 'Node.js', 'PostgreSQL'],
+        mainImage: '/hackathons/jagganath win pic1.jpeg',
+        gallery: [
+            '/hackathons/jagganath win pic1.jpeg',
+            '/hackathons/jaganath win pic2.jpeg'
+        ],
+        learnings: [
+            'Rapid architecture design',
+            'Full-stack optimization',
+            'Technical pitching'
+        ],
+        achievements: [
+            'Secured Runner-Up position',
+            'Jagannath University Dev Summit',
+            'Recognized for exceptional software architecture'
+        ],
+        icon: Terminal
+    },
+    {
         id: 'hackjklu-5',
         title: 'HackJKLU 5.0',
         event: 'JKLU Hackathon',
@@ -113,8 +172,8 @@ export const hackathonsData: Hackathon[] = [
         description: 'Developed a technical solution for solving urban challenges using real-time data integration.',
         award: '2nd Place',
         tech: ['React', 'Node.js', 'Python'],
-        mainImage: '/character-tablet.png',
-        gallery: ['/hackathon-win-coding.png'],
+        mainImage: '/hackathons/hackjklu win pic1.jpeg',
+        gallery: ['/hackathons/hackjklu win pic1.jpeg'],
         learnings: [
             'Real-time data visualization',
             'Agile hackathon development',
@@ -135,8 +194,8 @@ export const hackathonsData: Hackathon[] = [
         description: 'Built a specialized AI solution for optimizing resource allocation in local ecosystems.',
         award: '2nd Place',
         tech: ['Python', 'ML', 'React'],
-        mainImage: '/character-peace-laptop.png',
-        gallery: ['/hackathon-win-standing.png'],
+        mainImage: '/hackathons/genysis 1.0 win pic2.jpeg',
+        gallery: ['/hackathons/genysis 1.0 win pic2.jpeg'],
         learnings: [
             'Resource optimization algorithms',
             'Local ecosystem analysis',
@@ -157,8 +216,10 @@ export const hackathonsData: Hackathon[] = [
         description: 'Participated in a high-intensity coding challenge focused on rapid product development.',
         award: '3rd Place',
         tech: ['React Native', 'Firebase', 'Express'],
-        mainImage: '/character-drone.png',
-        gallery: ['/hackathon-win-coding.png', '/hackathon-win-trophy.png'],
+        mainImage: '/hackathons/acehack-1.jpg',
+        gallery: [
+            '/hackathons/acehack-1.jpg'
+        ],
         learnings: [
             'Mobile-first development',
             'Backend scalability',
@@ -170,27 +231,5 @@ export const hackathonsData: Hackathon[] = [
             'Winner of Best UI Design'
         ],
         icon: Target
-    },
-    {
-        id: 'unstoppable-hack',
-        title: 'Web3 Energy Marketplace',
-        event: 'Unstoppable Hackathon, LNMIIT',
-        date: '2025',
-        description: 'Built a decentralized energy trading marketplace leveraging blockchain technology for transparent P2P energy exchange.',
-        award: 'Winner',
-        tech: ['Web3', 'Solidity', 'React'],
-        mainImage: '/character-globe.png',
-        gallery: ['/hackathon-win-trophy.png'],
-        learnings: [
-            'Blockchain-based P2P trading',
-            'Smart contract security',
-            'Decentralized identity'
-        ],
-        achievements: [
-            'Won among 200+ teams',
-            'Built a working decentralized energy trading marketplace',
-            'Zero-knowledge proof integration concept'
-        ],
-        icon: Hexagon
     }
 ];

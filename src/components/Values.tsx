@@ -36,7 +36,7 @@ const KineticChar: React.FC<{
     const charX = useTransform(progress, [0, 0.3, 0.7, 1], [offset * 2.5, 0, 0, offset * -2.5]);
     const charZ = useTransform(progress, [0, 0.3, 0.7, 1], [-250, 0, 0, -250]);
     const charRotate = useTransform(progress, [0, 0.3, 0.7, 1], [offset * 1.5, 0, 0, -offset * 1.5]);
-    const charOpacity = useTransform(progress, [0, 0.2, 0.3, 0.7, 0.8, 1], [0, 0.5, 1, 1, 0.5, 0]);
+    const charOpacity = useTransform(progress, [0, 0.1, 0.2, 0.8, 0.9, 1], [0, 0.5, 1, 1, 0.5, 0]);
 
     return (
         <motion.span

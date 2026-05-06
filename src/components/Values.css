@@ -59,6 +59,7 @@
     color: #ff3333;
     line-height: 0.8;
     letter-spacing: -0.02em;
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
     transform-style: preserve-3d;
     will-change: transform, opacity;
 }

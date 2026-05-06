@@ -50,6 +50,15 @@ const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
                 <h3 className="hack-title">{hack.title}</h3>
                 <p className="hack-description">{hack.description}</p>
 
+                <div className="hack-key-achievements">
+                    {hack.achievements.slice(0, 2).map((achievement: string, i: number) => (
+                        <div key={i} className="hack-achievement-item">
+                            <div className="achievement-dot"></div>
+                            <span>{achievement}</span>
+                        </div>
+                    ))}
+                </div>
+
                 <div className="hack-tech-stack">
                     {hack.tech.map((t: string) => (
                         <span key={t} className="hack-tech-tag">{t}</span>
@@ -127,7 +136,7 @@ export default function Hackathons() {
                 </div>
 
                 <div className="hack-grid-premium">
-                    {hackathonsData.slice(0, 4).map((hack, index) => (
+                    {hackathonsData.slice(0, 6).map((hack, index) => (
                         <HackathonCard key={hack.id} hack={hack} index={index} />
                     ))}
                 </div>

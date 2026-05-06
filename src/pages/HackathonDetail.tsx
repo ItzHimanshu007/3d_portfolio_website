@@ -121,20 +121,32 @@ const HackathonDetail = () => {
                                 </button>
                             </div>
                         </div>
-
-                        {/* Gallery Preview */}
-                        <div className="gallery-sidebar-preview">
-                            <h3 className="sidebar-title">Moments</h3>
-                            <div className="gallery-mini-grid">
-                                {hack.gallery.map((img, idx) => (
-                                    <div key={idx} className="mini-gallery-card">
-                                        <img src={img} alt="Moment" />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </div>
+
+                {/* Immersive Gallery Section */}
+                {hack.gallery.length > 0 && (
+                    <section className="hack-moments-full">
+                        <div className="section-label">
+                            <Zap size={18} />
+                            <span>MISSION MOMENTS</span>
+                        </div>
+                        <div className="moments-grid-premium">
+                            {hack.gallery.map((img, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    className="moment-card-large"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: idx * 0.1 }}
+                                >
+                                    <img src={img} alt={`Moment ${idx + 1}`} />
+                                    <div className="moment-overlay"></div>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </section>
+                )}
             </div>
 
             <div className="detail-page-glow"></div>
