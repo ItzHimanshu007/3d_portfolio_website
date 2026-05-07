@@ -9,8 +9,7 @@ const navItems = [
     { name: 'About', href: 'about' },
     { name: 'Skills', href: 'skills' },
     { name: 'Projects', href: 'projects' },
-    { name: 'Hackathons', href: 'hackathons' },
-    { name: 'Experience', href: 'experience' }
+    { name: 'Hackathons', href: 'hackathons' }
 ];
 
 const Navbar: React.FC = () => {
@@ -51,7 +50,7 @@ const Navbar: React.FC = () => {
                     {/* Logo area */}
                     <button onClick={() => handleNavClick('hero')} className="nav-logo-group" style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}>
                         <span className="nav-logo-text">
-                            PORTFOLIO<span className="text-red">.</span>
+                            HIMANSHU<span className="text-red">.</span>
                         </span>
                     </button>
 

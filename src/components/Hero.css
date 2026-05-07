@@ -16,13 +16,27 @@
     position: absolute;
     inset: -10%;
     background-image:
-        radial-gradient(circle at 1px 1px, rgba(255, 51, 51, 0.15) 1px, transparent 0),
-        linear-gradient(rgba(255, 51, 51, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 51, 51, 0.05) 1px, transparent 1px);
+        radial-gradient(circle at 1px 1px, rgba(255, 51, 51, 0.2) 1px, transparent 0),
+        linear-gradient(rgba(255, 51, 51, 0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 51, 51, 0.08) 1px, transparent 1px);
     background-size: 40px 40px, 80px 80px, 80px 80px;
-    opacity: 0.5;
+    opacity: 0.6;
     z-index: 1;
     pointer-events: none;
+}
+
+/* Background Architecture Overlay (Fills space) */
+.hero-grid-depth::before {
+    content: '010101010101010101010101010101010101010101010101';
+    position: absolute;
+    top: 0;
+    left: 20%;
+    font-family: monospace;
+    font-size: 10px;
+    color: rgba(255, 51, 51, 0.1);
+    writing-mode: vertical-rl;
+    height: 100%;
+    letter-spacing: 5px;
 }
 
 .hero-grid-depth::after {
@@ -123,62 +137,96 @@
     width: 100%;
     position: relative;
     z-index: 10;
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 4rem;
+    gap: 0; /* Removing gap to manually control spacing */
 }
 
-/* Badge */
-.cyber-badge-premium {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 20px;
-    background: rgba(255, 51, 51, 0.1);
-    border: 1px solid rgba(255, 51, 51, 0.3);
-    border-radius: 50px;
-    color: #ff3333;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 2px;
-    margin-bottom: 2rem;
+.hero-main-layout {
+    flex: 1;
+    max-width: 800px;
 }
 
-/* Title */
-.hero-cyber-title {
+.hero-visual-center {
+    flex: 0.8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Identity & Summary Group */
+.hero-identity-group {
     display: flex;
     flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 4rem;
 }
 
-.name-prefix {
-    font-family: monospace;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 0.5rem;
-    margin-bottom: 1rem;
+.hero-main-title {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
 }
 
-.main-reveal {
-    font-size: clamp(3rem, 7vw, 6rem);
+.title-first {
+    font-size: clamp(4rem, 10vw, 8.5rem);
     font-weight: 950;
-    line-height: 0.95;
     color: #fff;
-    letter-spacing: -0.04em;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
 }
 
-.main-reveal .text-red {
+.title-last {
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    font-weight: 950;
+    color: transparent;
+    -webkit-text-stroke: 2px rgba(255, 51, 51, 0.9);
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    margin-top: -0.5rem;
+    filter: drop-shadow(0 0 30px rgba(255, 51, 51, 0.25));
+}
+
+.hero-summary-block {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    max-width: 650px;
+}
+
+.summary-accent-line {
+    width: 2px;
+    height: 120px;
+    background: linear-gradient(to bottom, #ff3333 0%, transparent 100%);
+    box-shadow: 0 0 15px rgba(255, 51, 51, 0.5);
+    flex-shrink: 0;
+}
+
+.summary-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.hero-role-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
     color: #ff3333;
-    text-shadow: 0 0 30px rgba(255, 51, 51, 0.3);
+    font-weight: 800;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
 }
 
-/* Description */
-.hero-cyber-desc {
+.hero-bio-text {
     font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.5);
-    line-height: 1.6;
-    max-width: 600px;
-    margin: 2.5rem 0;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.8;
+    margin: 0;
+    font-weight: 400;
 }
 
 /* Buttons */
@@ -266,6 +314,82 @@
     max-width: 500px;
     height: auto;
     filter: drop-shadow(0 0 50px rgba(255, 51, 51, 0.2));
+    z-index: 2;
+}
+
+/* Tactical Callouts */
+.tactical-callout {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    z-index: 5;
+    pointer-events: none;
+}
+
+.tc-1 {
+    top: 20%;
+    left: -15%;
+}
+
+.tc-2 {
+    bottom: 30%;
+    right: -10%;
+    flex-direction: row-reverse;
+}
+
+.callout-line {
+    width: 40px;
+    height: 1px;
+    background: #ff3333;
+    position: relative;
+    box-shadow: 0 0 10px #ff3333;
+}
+
+.callout-line::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: #ff3333;
+    border-radius: 50%;
+    top: -2.5px;
+    right: -3px;
+    box-shadow: 0 0 8px #ff3333;
+}
+
+.tc-2 .callout-line::after {
+    right: auto;
+    left: -3px;
+}
+
+.callout-content {
+    display: flex;
+    flex-direction: column;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 6px 12px;
+    border-left: 2px solid #ff3333;
+    backdrop-filter: blur(5px);
+}
+
+.tc-2 .callout-content {
+    border-left: none;
+    border-right: 2px solid #ff3333;
+    text-align: right;
+}
+
+.callout-label {
+    font-family: monospace;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.4);
+    letter-spacing: 1px;
+}
+
+.callout-value {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: #fff;
+    font-weight: 700;
 }
 
 /* Scroll Anchor */

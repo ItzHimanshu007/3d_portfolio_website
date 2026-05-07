@@ -154,48 +154,39 @@ const Hero: React.FC = () => {
                     className={`hero-main-layout ${isIgniting ? 'igniting' : ''}`}
                     style={{ y, opacity: isIgniting ? 1 : opacity }}
                 >
-                    {/* Badge */}
-                    <motion.div
-                        className="cyber-badge-premium"
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={isLoaded ? { opacity: 1, scale: 1 } : {}}
-                    >
-                        <Sparkles size={14} />
-                        <span>{isIgniting ? 'OVERRIDE INITIATED' : 'PROTOCOL ACTIVE v2.0'}</span>
-                    </motion.div>
-
-                    {/* Main Title with Glitch Effect */}
-                    <div className="title-glitch-wrapper">
+                    <div className="hero-identity-group">
                         <motion.h1
-                            className={`hero-cyber-title ${isIgniting ? 'title-overdrive' : ''}`}
-                            initial={{ opacity: 0, y: 40 }}
+                            className={`hero-main-title ${isIgniting ? 'title-overdrive' : ''}`}
+                            initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="name-prefix">HIMANSHU JASORIYA</span>
-                            <span className="main-reveal">
-                                ARCHITECTING <br />
-                                <span className="text-red">DIGITAL</span>
-                                FUTURES
-                            </span>
+                            <span className="title-first">HIMANSHU</span>
+                            <span className="title-last">JASORIYA</span>
                         </motion.h1>
-                    </div>
 
-                    <motion.p
-                        className="hero-cyber-desc"
-                        initial={{ opacity: 0 }}
-                        animate={isLoaded && !isIgniting ? { opacity: 1 } : { opacity: isIgniting ? 0.2 : 0 }}
-                        transition={{ delay: 0.7 }}
-                    >
-                        Merging bleeding-edge technology with high-end aesthetics
-                        to build immersive digital ecosystems.
-                    </motion.p>
+                        <motion.div 
+                            className="hero-summary-block"
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={isLoaded ? { opacity: 1, x: 0 } : {}}
+                            transition={{ delay: 0.5, duration: 0.8 }}
+                        >
+                            <div className="summary-accent-line" />
+                            <div className="summary-content">
+                                <span className="hero-role-tag">AI/ML ENGINEER & PRODUCT ARCHITECT</span>
+                                <p className="hero-bio-text">
+                                    Merging bleeding-edge technology with high-end aesthetics 
+                                    to build immersive digital ecosystems.
+                                </p>
+                            </div>
+                        </motion.div>
+                    </div>
 
                     <motion.div
                         className="hero-cyber-actions"
                         initial={{ opacity: 0, y: 20 }}
                         animate={isLoaded ? { opacity: 1, y: 0 } : {}}
-                        transition={{ delay: 0.9 }}
+                        transition={{ delay: 0.8 }}
                     >
                         <button
                             className={`cyber-btn primary ${isIgniting ? 'btn-ignited' : ''}`}
@@ -231,6 +222,24 @@ const Hero: React.FC = () => {
                         }}
                     />
                     <div className={`visual-scanner-ring ${isIgniting ? 'ring-overdrive' : ''}`} />
+                    
+                    {/* Floating Tactical Data Callouts */}
+                    <motion.div className="tactical-callout tc-1" style={{ x: useTransform(springX, [-500, 500], [20, -20]) }}>
+                        <div className="callout-line" />
+                        <div className="callout-content">
+                            <span className="callout-label">LAT_COORD</span>
+                            <span className="callout-value">28.6139° N</span>
+                        </div>
+                    </motion.div>
+                    
+                    <motion.div className="tactical-callout tc-2" style={{ x: useTransform(springX, [-500, 500], [-20, 20]) }}>
+                        <div className="callout-line" />
+                        <div className="callout-content">
+                            <span className="callout-label">LONG_COORD</span>
+                            <span className="callout-value">77.2090° E</span>
+                        </div>
+                    </motion.div>
+
                     <motion.img
                         src="/character-hero.png"
                         alt="Cyber Hero"

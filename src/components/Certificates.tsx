@@ -54,7 +54,7 @@ const Certificates: React.FC = () => {
                     </p>
 
                     <div className="cert-mascot-container">
-                        <img src="/mascot-cert.png" alt="Mascot" className="cert-mascot-img" loading="lazy" decoding="async" />
+                        <img src="/character-certificate.png" alt="Mascot" className="cert-mascot-img" loading="lazy" decoding="async" />
                     </div>
                 </motion.div>
 

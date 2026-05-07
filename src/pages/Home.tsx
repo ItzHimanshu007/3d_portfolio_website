@@ -7,7 +7,6 @@ import About from '../components/About';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 import Hackathons from '../components/Hackathons';
-import Experience from '../components/Experience';
 import Education from '../components/Education';
 import Certificates from '../components/Certificates';
 import Testimonials from '../components/Testimonials';
@@ -25,17 +24,32 @@ const Home = () => {
         const state = location.state as { scrollTo?: string } | null;
         if (state?.scrollTo) {
             const target = state.scrollTo;
-            // Delay to allow DOM and Lenis to initialize
+            
+            // Delay to allow DOM, Images, and Lenis to initialize fully
+            // A slightly longer delay (500ms) ensures stable height calculation
             const timer = setTimeout(() => {
                 const element = document.getElementById(target);
                 if (element) {
                     if ((window as any).lenis) {
-                        (window as any).lenis.scrollTo(element, { offset: -50 });
+                        (window as any).lenis.scrollTo(element, { 
+                            offset: -80, // Account for fixed navbar
+                            duration: 1.2,
+                            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
                     } else {
-                        element.scrollIntoView({ behavior: 'smooth' });
+                        const offset = 80;
+                        const bodyRect = document.body.getBoundingClientRect().top;
+                        const elementRect = element.getBoundingClientRect().top;
+                        const elementPosition = elementRect - bodyRect;
+                        const offsetPosition = elementPosition - offset;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
                     }
                 }
-            }, 300);
+            }, 500);
 
             // Clean up state to prevent re-scroll on refresh
             window.history.replaceState({}, document.title);
@@ -58,7 +72,6 @@ const Home = () => {
                 <Skills />
                 <Projects />
                 <Hackathons />
-                <Experience />
                 <Education />
                 <Certificates />
                 <Testimonials />

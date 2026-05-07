@@ -122,15 +122,12 @@ export default function Hackathons() {
                     >
                         <div className="gallery-card-3d tilt-left">
                             <img src="/hackathon-win-standing.png" alt="Win 1" />
-                            <div className="gallery-label">THE TRIUMPH</div>
                         </div>
                         <div className="gallery-card-3d centerpiece">
                             <img src="/hackathon-win-trophy.png" alt="Win 2" />
-                            <div className="gallery-label">CODE VELOCITY</div>
                         </div>
                         <div className="gallery-card-3d tilt-right">
                             <img src="/hackathon-win-coding.png" alt="Win 3" />
-                            <div className="gallery-label">ARCHITECTS OF XR</div>
                         </div>
                     </motion.div>
                 </div>

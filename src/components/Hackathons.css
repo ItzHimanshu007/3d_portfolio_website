@@ -34,7 +34,7 @@
 
 .hackathons-header {
     text-align: center;
-    margin-bottom: 8rem;
+    margin-bottom: 4rem;
     position: relative;
     z-index: 2;
 }
@@ -227,7 +227,7 @@
     display: flex;
     justify-content: center;
     gap: 40px;
-    padding: 40px 0;
+    padding: 20px 0 40px;
 }
 
 .gallery-card-3d {
@@ -248,18 +248,6 @@
     object-fit: cover;
     opacity: 0.7;
     transition: opacity 0.6s ease;
-}
-
-.gallery-label {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    color: #fff;
-    font-weight: 900;
-    font-size: 1.2rem;
-    letter-spacing: 2px;
-    text-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    z-index: 5;
 }
 
 .gallery-card-3d.tilt-left {
