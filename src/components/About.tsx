@@ -71,7 +71,7 @@ const About: React.FC = () => {
                             className="about-resume-btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => window.open('/resume.pdf', '_blank')}
+                            onClick={() => window.open('/resume101.pdf', '_blank')}
                         >
                             <Download size={18} />
                             <span>GET_RESUME</span>
