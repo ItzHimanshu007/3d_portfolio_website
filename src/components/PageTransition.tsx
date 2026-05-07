@@ -64,7 +64,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
     // Shuffle indices for a more "random noise" feel or keep ordered for "wave"
     // Let's create a deterministic random pattern for a cool "data load" effect
     const shuffledIndices = useMemo(() => {
-        return Array.from({ length: totalPixels }, (_, i) => i).sort(() => Math.random() - 0.5);
+        return Array.from({ length: totalPixels }, (_, i) => i);
     }, [totalPixels]);
 
     return (

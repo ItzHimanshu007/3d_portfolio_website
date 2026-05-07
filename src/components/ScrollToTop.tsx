@@ -9,9 +9,10 @@ const ScrollToTop = () => {
         // If we have a target section to scroll to, let the page handle it
         if ((state as any)?.scrollTo) return;
 
-        // Handle Lenis scroll
-        if ((window as any).lenis) {
-            (window as any).lenis.scrollTo(0, { immediate: true });
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const lenis = (window as any).lenis;
+        if (lenis) {
+            lenis.scrollTo(0, { immediate: true });
         }
 
         // Handle native scroll as fallback

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { hackathonsData } from '../data/hackathons';
 import './Hackathons.css';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
     const navigate = useNavigate();
     const cardRef = useRef(null);

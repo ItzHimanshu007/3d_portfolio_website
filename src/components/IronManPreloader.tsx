@@ -6,9 +6,10 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
     const [progress, setProgress] = useState(0);
     const [statusIndex, setStatusIndex] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
+    const [latency, setLatency] = useState("0.00");
     const [coords, setCoords] = useState({ x: 0, y: 0, z: 0 });
 
-    const statusMessages = [
+    const statusMessages = useMemo(() => [
         "BOOTING_MARK_85_OS...",
         "INITIALIZING_NEURAL_UPLINK...",
         "POWERING_ARC_REACTOR_CORE...",
@@ -17,7 +18,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
         "DIVERSION_FOR_AUXILIARY_POWER...",
         "SCANNING_LOCAL_ENVIRONMENT...",
         "SYSTEMS_READY_SIR"
-    ];
+    ], []);
 
     // Generate static random hex data for background
     const hexGrid = useMemo(() => Array.from({ length: 48 }, (_, i) => i), []);
@@ -40,11 +41,12 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
                 z: Math.floor(Math.random() * 999)
             });
 
+            // Random latency update
+            setLatency((Math.random() * 10).toFixed(2));
+
             // Cycle status messages
             const nextStatusIndex = Math.floor(eased * (statusMessages.length - 1));
-            if (nextStatusIndex !== statusIndex) {
-                setStatusIndex(nextStatusIndex);
-            }
+            setStatusIndex(nextStatusIndex);
 
             if (p < 1) {
                 requestAnimationFrame(update);
@@ -55,7 +57,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
         };
 
         requestAnimationFrame(update);
-    }, [onComplete]);
+    }, [onComplete, statusMessages]);
 
     return (
         <AnimatePresence>
@@ -81,7 +83,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
                         {/* Corner Data Streams */}
                         <div className="data-stream top-left-stream">
                             <div className="stream-label">SYS_LATENCY</div>
-                            <div className="stream-value">{(Math.random() * 10).toFixed(2)}ms</div>
+                            <div className="stream-value">{latency}ms</div>
                             <div className="stream-label">CORE_TEMP</div>
                             <div className="stream-value">42.5°C</div>
                         </div>

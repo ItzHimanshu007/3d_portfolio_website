@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, MotionValue } from 'framer-motion';
-import { Mouse, Terminal, Cpu, Activity, Shield, Sparkles } from 'lucide-react';
+import { Mouse, Terminal, Cpu, Activity, Shield } from 'lucide-react';
 import './Hero.css';
 
 // Sub-component for individual geometric shards to maintain clean state
@@ -199,9 +199,14 @@ const Hero: React.FC = () => {
                         <button
                             className="cyber-btn secondary"
                             onClick={() => {
-                                const el = document.getElementById('contact');
-                                if (el) {
-                                    (window as any).lenis ? (window as any).lenis.scrollTo(el, { offset: -50 }) : el.scrollIntoView({ behavior: 'smooth' });
+                                const element = document.getElementById('contact');
+                                if (element) {
+                                    const lenis = (window as any).lenis;
+                                    if (lenis) {
+                                        lenis.scrollTo(element, { offset: -50 });
+                                    } else {
+                                        element.scrollIntoView({ behavior: 'smooth' });
+                                    }
                                 }
                             }}
                         >

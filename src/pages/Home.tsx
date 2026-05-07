@@ -21,6 +21,7 @@ const Home = () => {
     const location = useLocation();
 
     useEffect(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const state = location.state as { scrollTo?: string } | null;
         if (state?.scrollTo) {
             const target = state.scrollTo;
@@ -30,8 +31,10 @@ const Home = () => {
             const timer = setTimeout(() => {
                 const element = document.getElementById(target);
                 if (element) {
-                    if ((window as any).lenis) {
-                        (window as any).lenis.scrollTo(element, { 
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    const lenis = (window as any).lenis;
+                    if (lenis) {
+                        lenis.scrollTo(element, { 
                             offset: -80, // Account for fixed navbar
                             duration: 1.2,
                             easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))

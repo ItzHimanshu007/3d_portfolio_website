@@ -33,7 +33,12 @@ const Navbar: React.FC = () => {
         } else {
             const element = document.getElementById(href);
             if (element) {
-                (window as any).lenis ? (window as any).lenis.scrollTo(element, { offset: -50 }) : element.scrollIntoView({ behavior: 'smooth' });
+                const lenis = (window as any).lenis;
+                if (lenis) {
+                    lenis.scrollTo(element, { offset: -50 });
+                } else {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                }
             }
         }
     };
