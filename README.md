@@ -1,88 +1,83 @@
-# 🌐 **3D Interactive Portfolio**
+# Himanshu Jasoriya: Portfolio
 
-> *Architecting Digital Futures with React, Three.js, and Framer Motion.*
+Personal portfolio of **Himanshu Jasoriya**, AI/ML Engineer & Full-Stack Developer (B.Tech AI & Data Science).
+4× hackathon winner and Top 10 at India Innovates '26 among 26,000+ participants.
 
-![Banner](public/character-hero.webp)
+**Live site:** https://portfolio-himanshu-jasoiya.vercel.app/
 
-<div align="center">
+![Social preview](public/og-preview.png)
 
-[![React](https://img.shields.io/badge/React-18.x-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-5.x-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.x-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+## Highlights
 
-[**Live Demo**](https://portfolio-himanshu-jasoiya.vercel.app/) · [**Report Bug**](#) · [**Request Feature**](#)
+- Cinematic hero with mouse parallax and a scroll-linked 3D (CSS transform) character companion
+- Project case studies with screenshot galleries and a keyboard-accessible lightbox
+- Hackathon archive with a horizontal scroll timeline and real event photos
+- Smooth scrolling (Lenis) and page transitions (Framer Motion) that respect "reduced motion"
+- Responsive from 360px phones to wide desktops; WebP images with responsive `srcset`
+- Contact form via Web3Forms with success/error states
 
-</div>
+## Tech stack
 
----
-
-## 🚀 **Mission Brief**
-
-Welcome to my digital headquarters. This portfolio isn't just a showcase; it's an immersive experience designed to bridge the gap between **high-performance engineering** and **cinematic aesthetics**. 
-
-Built with a focus on **User Experience (UX)** and **micro-interactions**, every scroll, click, and hover tells a story of innovation.
-
-## ✨ **Key Features**
-
-*   **🏆 3D Vinyl Mascot Identity:** A unique, consistent character guide throughout the journey.
-*   **🎥 Cinematic Hero Section:** Parallax effects, glitch animations, and deep visual layering.
-*   **🕹️ Interactive Projects Archive:** A chronological timeline of digital artifacts.
-*   **⚡ Premium Hackathon Gallery:** 3D tilt cards showcasing competitive achievements.
-*   **🎨 Glassmorphism & Neon UI:** Modern, dark-mode aesthetic with vibrant accents.
-*   **📱 Fully Responsive:** Optimized for all devices, from desktop command centers to mobile units.
-
-## 🛠️ **Tech Stack & Arsenal**
-
-| Domain | Technologies |
+| Area | Tools |
 | :--- | :--- |
-| **Core** | React 18, TypeScript, Vite |
-| **Animation** | Framer Motion, GSAP (Concepts) |
-| **Styling** | CSS Modules, Tailwind CSS |
-| **3D Elements** | Three.js (Concepts), Spline (Assets) |
-| **Icons** | Lucide React |
+| Framework | React 19, TypeScript, Vite 7 |
+| Routing | React Router 7 (`BrowserRouter`) |
+| Animation | Framer Motion, Lenis smooth scroll |
+| Styling | Plain CSS per component |
+| Icons | Lucide React |
+| Hosting | Vercel (+ Vercel Analytics) |
 
-## 📦 **Installation & Deployment**
-
-Initialize the project locally to explore the code:
+## Getting started
 
 ```bash
-# 1. Clone the repository
 git clone https://github.com/ItzHimanshu007/3d_portfolio_website.git
-
-# 2. Navigate to the mission directory
 cd 3d_portfolio_website
-
-# 3. Install dependencies
 npm install
-
-# 4. Ignite the development server
-npm run dev
+npm run dev      # start the dev server
+npm run lint     # ESLint
+npm run build    # type-check + production build
+npm run preview  # serve the production build locally
 ```
 
-## 📂 **Project Structure**
+CI (GitHub Actions) runs lint and build on every push to `main` and on pull requests.
+
+## Editing content
+
+Most content lives in plain data files, so you rarely need to touch components:
+
+| What | File |
+| :--- | :--- |
+| Name, role, summary, availability, email, phone, social links, résumé path, site URL | `src/config/site.ts` |
+| Projects (copy, tech, screenshots, repo/live links, status) | `src/data/projects.ts` |
+| Hackathons (results, photos, which 3 are featured, related project) | `src/data/hackathons.ts` |
+| Experience & leadership | `src/data/experience.ts` |
+| Certificates (section hidden while empty) | `src/data/certificates.ts` |
+| Testimonials (section hidden while empty) | `src/data/testimonials.ts` |
+| Education | `src/components/Education.tsx` |
+| Skills | `src/components/Skills.tsx` |
+
+Buttons for repo/demo/certificate links only render when a real URL is set.
+
+**Images:** screenshots and photos are WebP in `public/projects` and `public/hackathons`, each as `name.webp`
+(max 1600px wide) plus `name-800.webp`. Add both sizes for new images.
+
+**Domain:** if the site URL changes, update `src/config/site.ts`, the canonical/Open Graph tags in `index.html`,
+`public/robots.txt` and `public/sitemap.xml`.
+
+## Project structure
 
 ```
 src/
-├── components/   # Reusable UI modules (Hero, Navbar, etc.)
-├── pages/        # Route views (Home, Archive, Details)
-├── data/         # Static content and configuration
-└── assets/       # Images and media resources
+├── components/   # Page sections and shared UI (Navbar, Hero, Footer, Lightbox, ...)
+├── pages/        # Routes: Home, Archive, HackathonArchive, ProjectDetail, HackathonDetail, NotFound
+├── data/         # Projects, hackathons, experience, certificates, testimonials
+├── config/       # site.ts: identity and links
+├── hooks/        # useSectionNavigation
+└── utils/        # scrolling, images, Lenis instance, scroll-companion timing
 ```
 
-## 🤝 **Connect with Me**
+## Contact
 
-Ready to build something extraordinary?
-
-*   **LinkedIn:** [Himanshu Jasoriya](https://www.linkedin.com/in/himanshu-jasoriya/)
-*   **GitHub:** [ItzHimanshu007](https://github.com/ItzHimanshu007)
-*   **Email:** [Contact via Portfolio](#contact)
-
----
-
-<div align="center">
-
-*Crafted with 💻 and ☕ by Himanshu Jasoriya. © 2025*
-
-</div>
+- **Email:** [hjasoriya007@gmail.com](mailto:hjasoriya007@gmail.com)
+- **LinkedIn:** [Himanshu Jasoriya](https://www.linkedin.com/in/himanshu-jasoriya/)
+- **GitHub:** [ItzHimanshu007](https://github.com/ItzHimanshu007)

@@ -62,7 +62,7 @@ const TimelineItem = ({ project, index, mouseX, mouseY }: { project: ProjectMiss
                         </div>
 
                         <div className="card-content">
-                            <h3 className="card-title">{project.title}</h3>
+                            <h2 className="card-title">{project.title}</h2>
                             <p className="card-subtitle">{project.subtitle}</p>
                             <p className="card-description">{project.description}</p>
 
@@ -118,14 +118,14 @@ const Archive = () => {
     });
 
     return (
-        <div className="archive-container" ref={containerRef}>
+        <main className="archive-container" ref={containerRef}>
             <div className="archive-header">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="header-content"
                 >
-                    <span className="archive-label">MISSION LOGS</span>
+                    <span className="archive-label">ALL PROJECTS</span>
                     <h1 className="archive-title">Project Archive</h1>
                     <p className="archive-description">
                         A chronological collection of digital artifacts, prototypes, and full-scale deployments.
@@ -157,10 +157,10 @@ const Archive = () => {
             <div className="archive-footer-simple">
                 <div className="footer-line" />
                 <button className="back-home-btn" onClick={() => navigate('/', { state: { scrollTo: 'projects' } })}>
-                    RETURN TO HEADQUARTERS
+                    BACK TO HOME
                 </button>
             </div>
-        </div>
+        </main>
     );
 };
 

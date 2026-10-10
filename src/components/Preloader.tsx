@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import './IronManPreloader.css';
+import './Preloader.css';
 
-const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
+const Preloader = ({ onComplete }: { onComplete: () => void }) => {
     const [progress, setProgress] = useState(0);
     const [statusIndex, setStatusIndex] = useState(0);
     const [isComplete, setIsComplete] = useState(false);
@@ -10,14 +10,12 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
     const [coords, setCoords] = useState({ x: 0, y: 0, z: 0 });
 
     const statusMessages = useMemo(() => [
-        "BOOTING_MARK_85_OS...",
-        "INITIALIZING_NEURAL_UPLINK...",
-        "POWERING_ARC_REACTOR_CORE...",
-        "STABILIZING_THERMAL_LEVELS...",
-        "CALIBRATING_HUD_INTERFACE...",
-        "DIVERSION_FOR_AUXILIARY_POWER...",
-        "SCANNING_LOCAL_ENVIRONMENT...",
-        "SYSTEMS_READY_SIR"
+        "LOADING_PORTFOLIO...",
+        "FETCHING_PROJECTS...",
+        "COMPILING_HACKATHON_WINS...",
+        "TRAINING_MODELS...",
+        "RENDERING_INTERFACE...",
+        "READY"
     ], []);
 
     // Generate static random hex data for background
@@ -76,7 +74,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
         <AnimatePresence>
             {!isComplete && (
                 <motion.div
-                    className="ironman-preloader"
+                    className="site-preloader"
                     role="status"
                     aria-label="Loading portfolio"
                     exit={{ opacity: 0, scale: 1.05 }}
@@ -148,7 +146,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
 
                         {/* Status Panel */}
                         <div className="status-panel">
-                            <div className="loading-title">ANALYZING_SYSTEM_INTEGRITY</div>
+                            <div className="loading-title">LOADING_PORTFOLIO</div>
                             <div className="loading-progress">
                                 <span className="value">{progress}</span>
                                 <span className="unit">%</span>
@@ -158,7 +156,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
                                 key={statusIndex}
                                 initial={{ opacity: 0, y: 5 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="jarvis-console"
+                                className="preloader-console"
                             >
                                 {">"} {statusMessages[statusIndex]}
                             </motion.div>
@@ -184,4 +182,4 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
     );
 };
 
-export default IronManPreloader;
+export default Preloader;

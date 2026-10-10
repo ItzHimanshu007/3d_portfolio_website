@@ -1,125 +1,78 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React from 'react';
+import { motion, useMotionTemplate, useMotionValue, useMotionValueEvent, useScroll } from 'framer-motion';
+import { popEnd, popProgress, popStart } from '../utils/scrollCompanion';
 import './ScrollModel.css';
 
 /**
- * ScrollModel - Creates a "3D pop-out" effect using the character PNG
- * with CSS 3D transforms. No WebGL needed.
- * 
- * The character PNG fades from the hero section and reappears as a 
- * floating, rotating, scroll-linked companion on the right side.
+ * ScrollModel - Creates a "3D pop-out" effect using the character image with CSS 3D transforms.
+ * The hero image fades out (see Hero) as this floating, scroll-linked companion appears on the right,
+ * then the companion fades away before the About section.
+ *
+ * Everything is driven by motion values, so scrolling never re-renders React.
  */
 const ScrollModel: React.FC = () => {
-  const [modelOpacity, setModelOpacity] = useState(0);
-  const [pngOpacity, setPngOpacity] = useState(1);
-  const [rotateY, setRotateY] = useState(0);
-  const [rotateX, setRotateX] = useState(0);
-  const [scaleVal, setScaleVal] = useState(0.5);
-  const [isActive, setIsActive] = useState(false);
-  const rafRef = useRef<number>(0);
+  const { scrollY } = useScroll();
+  const opacity = useMotionValue(0);
+  const scale = useMotionValue(0.5);
+  const rotateY = useMotionValue(0);
+  const rotateX = useMotionValue(0);
+  const visibility = useMotionValue<'visible' | 'hidden'>('hidden');
+  const transform = useMotionTemplate`perspective(800px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scale})`;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+  const update = (y: number) => {
+    const vh = window.innerHeight;
+    const aboutSection = document.getElementById('about');
+    if (!aboutSection) return;
 
-      rafRef.current = requestAnimationFrame(() => {
-        const scrollY = window.scrollY;
-        const vh = window.innerHeight;
+    const aboutTop = aboutSection.getBoundingClientRect().top + y;
+    const start = popStart(vh);
+    const end = popEnd(vh);
+    const fadeStart = aboutTop - vh * 0.8;
+    const fadeEnd = aboutTop - vh * 0.15;
+    const spin = ((y - start) / (vh * 1.5)) * 360;
 
-        const aboutSection = document.getElementById('about');
-        if (!aboutSection) return;
-
-        const aboutTop = aboutSection.getBoundingClientRect().top + scrollY;
-
-        const popStart = vh * 0.12;
-        const popEnd = vh * 0.5;
-        const fadeStart = aboutTop - vh * 0.8;
-        const fadeEnd = aboutTop - vh * 0.15;
-
-        if (scrollY < popStart) {
-          // Hero PNG fully visible
-          setPngOpacity(1);
-          setModelOpacity(0);
-          setIsActive(false);
-          setRotateY(0);
-          setRotateX(0);
-          setScaleVal(0.5);
-        } else if (scrollY < popEnd) {
-          // POP-OUT TRANSITION
-          const t = (scrollY - popStart) / (popEnd - popStart);
-          const eased = t * t * (3 - 2 * t); // smoothstep
-
-          setIsActive(true);
-          setPngOpacity(1 - eased);
-          setModelOpacity(eased);
-          setScaleVal(0.5 + eased * 0.5);
-
-          // Start rotating
-          const scrollDelta = (scrollY - popStart) / (vh * 1.5);
-          setRotateY(scrollDelta * 360);
-          setRotateX(Math.sin(eased * Math.PI) * 10);
-        } else if (scrollY < fadeStart) {
-          // CRUISING - floating, rotating with scroll
-          setIsActive(true);
-          setPngOpacity(0);
-          setModelOpacity(1);
-          setScaleVal(1);
-
-          const scrollDelta = (scrollY - popStart) / (vh * 1.5);
-          setRotateY(scrollDelta * 360);
-
-          // Gentle X oscillation
-          const travelProgress = (scrollY - popEnd) / (fadeStart - popEnd);
-          setRotateX(Math.sin(travelProgress * Math.PI * 2) * 8);
-        } else if (scrollY < fadeEnd) {
-          // FADE OUT before About
-          const t = (scrollY - fadeStart) / (fadeEnd - fadeStart);
-          const eased = t * t;
-
-          setIsActive(true);
-          setPngOpacity(0);
-          setModelOpacity(1 - eased);
-          setScaleVal(1 - eased * 0.3);
-
-          const scrollDelta = (scrollY - popStart) / (vh * 1.5);
-          setRotateY(scrollDelta * 360);
-          setRotateX(0);
-        } else {
-          // Hidden
-          setIsActive(false);
-          setPngOpacity(0);
-          setModelOpacity(0);
-          setScaleVal(0.5);
-          setRotateY(0);
-          setRotateX(0);
-        }
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  // Control hero PNG opacity
-  useEffect(() => {
-    const heroImg = document.querySelector('.cyber-character-img') as HTMLElement;
-    if (heroImg) {
-      heroImg.style.opacity = String(pngOpacity);
+    if (y < start || y >= fadeEnd) {
+      // Before the pop-out, or past the About section: hidden
+      visibility.set('hidden');
+      opacity.set(0);
+      scale.set(0.5);
+      rotateY.set(0);
+      rotateX.set(0);
+    } else if (y < end) {
+      // Pop-out transition
+      const eased = popProgress(y, vh);
+      visibility.set('visible');
+      opacity.set(eased);
+      scale.set(0.5 + eased * 0.5);
+      rotateY.set(spin);
+      rotateX.set(Math.sin(eased * Math.PI) * 10);
+    } else if (y < fadeStart) {
+      // Cruising: floating and rotating with scroll
+      const travel = (y - end) / (fadeStart - end);
+      visibility.set('visible');
+      opacity.set(1);
+      scale.set(1);
+      rotateY.set(spin);
+      rotateX.set(Math.sin(travel * Math.PI * 2) * 8);
+    } else {
+      // Fade out before About
+      const t = (y - fadeStart) / (fadeEnd - fadeStart);
+      const eased = t * t;
+      visibility.set('visible');
+      opacity.set(1 - eased);
+      scale.set(1 - eased * 0.3);
+      rotateY.set(spin);
+      rotateX.set(0);
     }
-  }, [pngOpacity]);
+  };
+
+  useMotionValueEvent(scrollY, 'change', update);
 
   return (
-    <div
+    <motion.div
       aria-hidden="true"
       className="scroll-model-container"
-      style={{
-        opacity: modelOpacity,
-        visibility: isActive ? 'visible' : 'hidden',
-      }}
+      style={{ opacity, visibility }}
     >
       {/* Holographic scan line */}
       <div className="holo-scanline" />
@@ -130,20 +83,19 @@ const ScrollModel: React.FC = () => {
 
       {/* 3D-Transformed Character Image */}
       <div className="model-3d-stage">
-        <div
-          className="model-3d-pivot"
-          style={{
-            transform: `perspective(800px) rotateY(${rotateY}deg) rotateX(${rotateX}deg) scale(${scaleVal})`,
-          }}
-        >
+        <motion.div className="model-3d-pivot" style={{ transform }}>
           <img
             src="/character-hero.webp"
+            width={583}
+            height={1024}
             alt=""
             className="model-3d-image"
+            loading="lazy"
+            decoding="async"
           />
           {/* Reflection / depth layer */}
           <div className="model-depth-shadow" />
-        </div>
+        </motion.div>
       </div>
 
       {/* Glow */}
@@ -160,7 +112,7 @@ const ScrollModel: React.FC = () => {
       <div className="model-bracket tr" />
       <div className="model-bracket bl" />
       <div className="model-bracket br" />
-    </div>
+    </motion.div>
   );
 };
 

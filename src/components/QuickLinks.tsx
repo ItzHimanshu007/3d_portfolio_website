@@ -134,7 +134,7 @@ const QuickLinks = () => {
                                 </div>
 
                                 <div className="card-footer-premium">
-                                    <span className="visit-text">Navigate Now</span>
+                                    <span className="visit-text">Go to section</span>
                                     <motion.div
                                         className="arrow-box"
                                         whileHover={{ x: 5 }}

@@ -144,7 +144,7 @@ export default function Education() {
                         viewport={{ once: true }}
                     >
                         <GraduationCap size={16} />
-                        <span>Ascending Knowledge Path</span>
+                        <span>Education</span>
                     </motion.div>
                     <motion.h2
                         className="premium-main-title"

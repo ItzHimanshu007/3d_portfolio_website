@@ -1,104 +1,117 @@
-/* Kinetic 3D Values Styles */
+/* Values ("How I Work") */
 .values-kinetic-section {
     position: relative;
     background: #000;
-    min-height: 400vh;
-    /* Re-increased for more reading time */
-    padding: 20vh 0;
-    overflow: visible;
+    padding: 140px 0;
+    overflow: hidden;
 }
 
+/* Decorative layers stay inside the section (absolute, not fixed) */
 .kinetic-background-grid {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    background-image: radial-gradient(circle at 1px 1px, rgba(255, 51, 51, 0.05) 1px, transparent 0);
+    background-image: radial-gradient(circle at 1px 1px, rgba(255, 51, 51, 0.06) 1px, transparent 0);
     background-size: 40px 40px;
-    z-index: 0;
     pointer-events: none;
 }
 
 .outer-glow-vignette {
-    position: fixed;
+    position: absolute;
     inset: 0;
-    background: radial-gradient(circle at center, transparent 20%, rgba(0, 0, 0, 0.8) 100%);
-    z-index: 1;
+    background: radial-gradient(circle at center, rgba(255, 51, 51, 0.06) 0%, transparent 45%, rgba(0, 0, 0, 0.8) 100%);
     pointer-events: none;
 }
 
-.kinetic-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 80vh;
-    /* Increased spacing for better pacing */
-    perspective: 1500px;
+.values-container {
     position: relative;
-    z-index: 5;
+    z-index: 1;
 }
 
-.value-kinetic-block {
+.values-header {
+    margin-bottom: 60px;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.value-card {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 60vh;
-    text-align: center;
+    gap: 1.25rem;
+    padding: 32px 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.value-card:hover {
+    border-color: rgba(255, 51, 51, 0.4);
+    background: rgba(255, 51, 51, 0.04);
 }
 
 /* 3D Typography */
 .kinetic-title-wrapper {
     display: flex;
-    gap: 0;
-    transform-style: preserve-3d;
-    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    perspective: 600px;
 }
 
 .kinetic-char {
     display: inline-block;
-    font-size: clamp(4rem, 15vw, 12rem);
-    font-weight: 950;
+    font-size: clamp(1.35rem, 1.8vw, 1.9rem);
+    font-weight: 900;
     color: #ff3333;
-    line-height: 0.8;
-    letter-spacing: -0.02em;
-    text-shadow: 0 0 20px rgba(255, 51, 51, 0.4);
-    transform-style: preserve-3d;
-    will-change: transform, opacity;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-shadow: 0 0 20px rgba(255, 51, 51, 0.35);
 }
 
-/* Badge & Desc */
 .value-badge-kinetic {
-    font-family: monospace;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.4);
-    letter-spacing: 5px;
-    margin-bottom: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-.value-desc-kinetic {
-    max-width: 500px;
-}
-
 .desc-content {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.6);
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.7;
+    flex: 1;
 }
 
 .desc-progress-line {
+    display: block;
     height: 2px;
+    width: 48px;
     background: #ff3333;
-    width: 60px;
-    margin: 0 auto;
-    transform-origin: center;
 }
 
-@media (max-width: 768px) {
-    .kinetic-char {
-        font-size: 4rem;
+/* Leave the right-hand column free for the floating scroll companion (ScrollModel, shown above 1024px) */
+@media (min-width: 1025px) {
+    .values-kinetic-section .values-container {
+        padding-right: 360px;
     }
 
-    .kinetic-stack {
-        gap: 40vh;
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
+    .values-kinetic-section .values-container {
+        padding-right: 300px;
+    }
+}
+
+@media (max-width: 640px) {
+    .values-kinetic-section {
+        padding: 100px 0;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
     }
 }

@@ -10,7 +10,7 @@ export const SITE = {
     location: 'Jaipur, Rajasthan, India',
     email: 'hjasoriya007@gmail.com',
     phone: '+91 6375884386',
-    resumeUrl: '/resume101.pdf',
+    resumeUrl: '/Himanshu-Jasoriya-Resume.pdf',
     socials: {
         linkedin: 'https://www.linkedin.com/in/himanshu-jasoriya/',
         github: 'https://github.com/ItzHimanshu007',

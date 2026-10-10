@@ -163,9 +163,9 @@ export default function Projects() {
                                                 to={`/project/${project.id}`}
                                                 className="project-link-btn"
                                                 whileHover={{ gap: '12px' }}
-                                                aria-label={`Explore ${project.title} case study`}
+                                                aria-label={`View ${project.title} case study`}
                                             >
-                                                <span>Exploration</span>
+                                                <span>View Case Study</span>
                                                 <ChevronRight size={18} />
                                             </MotionLink>
                                             {externalUrl && (

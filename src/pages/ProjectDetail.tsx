@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Github, ExternalLink, Calendar, Tag, Target, Lightbulb, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Calendar, Tag, Target, Lightbulb, ShieldCheck, Maximize2 } from 'lucide-react';
 import { projectsData } from '../data/projects';
 import { responsiveSrcSet, thumbnail } from '../utils/images';
 import NotFound from './NotFound';
+import Lightbox from '../components/Lightbox';
 import './ProjectDetail.css';
 
 const ProjectDetail: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const navigate = useNavigate();
     const project = projectsData.find(p => p.id === id);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -28,6 +30,8 @@ const ProjectDetail: React.FC = () => {
     }
 
     const { repo, live } = project.links;
+    const status = project.status ?? (live ? 'Live demo' : undefined);
+    const galleryImages = project.gallery.map((src, idx) => ({ src, alt: `${project.title} screenshot ${idx + 1}` }));
 
     return (
         <div className="project-detail-page">
@@ -54,12 +58,14 @@ const ProjectDetail: React.FC = () => {
                 <div className="header-nav">
                     <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} className="back-link">
                         <ArrowLeft size={18} />
-                        <span>Return</span>
+                        <span>Back to projects</span>
                     </button>
-                    <div className="mission-status">
-                        <span className="pulse-dot"></span>
-                        MISSION_ESTABLISHED
-                    </div>
+                    {status && (
+                        <div className="mission-status">
+                            <span className="pulse-dot"></span>
+                            {status.toUpperCase()}
+                        </div>
+                    )}
                 </div>
 
                 <div className="header-content">
@@ -81,11 +87,11 @@ const ProjectDetail: React.FC = () => {
                     >
                         <div className="meta-item">
                             <Calendar size={16} />
-                            <span>DEPLOYED: {project.year}</span>
+                            <span>YEAR: {project.year}</span>
                         </div>
                         <div className="meta-item">
                             <Tag size={16} />
-                            <span>PHASE: COMPLETED</span>
+                            <span>{project.category.toUpperCase()}</span>
                         </div>
                     </motion.div>
                 </div>
@@ -95,7 +101,7 @@ const ProjectDetail: React.FC = () => {
                 <section className="briefing-section">
                     <div className="section-label">
                         <Target size={20} />
-                        <span>TACTICAL BRIEFING</span>
+                        <h2 className="section-label-text">PROJECT OVERVIEW</h2>
                     </div>
                     <div className="briefing-grid">
                         <div className="brief-box main">
@@ -117,7 +123,7 @@ const ProjectDetail: React.FC = () => {
 
                 <section className="tech-deployment">
                     <div className="section-label">
-                        <span>TECH_STACK_DEPLOYED</span>
+                        <h2 className="section-label-text">TECH STACK</h2>
                     </div>
                     <div className="tech-tags-large">
                         {project.tech.map((t, idx) => (
@@ -136,44 +142,48 @@ const ProjectDetail: React.FC = () => {
 
                 <section className="visual-recon">
                     <div className="section-label">
-                        <span>VISUAL_RECONNAISSANCE</span>
+                        <h2 className="section-label-text">SCREENSHOTS</h2>
                     </div>
                     <div className="gallery-grid">
-                        {project.gallery.map((img, idx) => (
-                            <motion.div
-                                key={idx}
+                        {galleryImages.map((img, idx) => (
+                            <motion.button
+                                key={img.src}
+                                type="button"
                                 className="gallery-item"
+                                onClick={() => setLightboxIndex(idx)}
+                                aria-label={`Enlarge ${img.alt}`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                             >
                                 <img
-                                    src={thumbnail(img)}
-                                    srcSet={responsiveSrcSet(img)}
+                                    src={thumbnail(img.src)}
+                                    srcSet={responsiveSrcSet(img.src)}
                                     sizes="(max-width: 900px) 100vw, 50vw"
-                                    alt={`${project.title} screenshot ${idx + 1}`}
+                                    alt={img.alt}
                                     loading="lazy"
                                     decoding="async"
                                 />
-                            </motion.div>
+                                <span className="gallery-zoom-hint" aria-hidden="true"><Maximize2 size={18} /></span>
+                            </motion.button>
                         ))}
                     </div>
                 </section>
 
                 {(repo || live) && (
                     <section className="mission-actions">
-                        <h3>ESTABLISH EXTERNAL LINK?</h3>
+                        <h2>SEE IT IN ACTION</h2>
                         <div className="action-btns">
                             {repo && (
                                 <a href={repo} target="_blank" rel="noopener noreferrer" className="action-btn github">
                                     <Github size={20} />
-                                    <span>SOURCE_CODE</span>
+                                    <span>Source Code</span>
                                 </a>
                             )}
                             {live && (
                                 <a href={live} target="_blank" rel="noopener noreferrer" className="action-btn live">
                                     <ExternalLink size={20} />
-                                    <span>LIVE_OPERATION</span>
+                                    <span>Live Demo</span>
                                 </a>
                             )}
                         </div>
@@ -181,12 +191,19 @@ const ProjectDetail: React.FC = () => {
                 )}
             </main>
 
-            <footer className="detail-footer">
+            <div className="detail-footer">
                 <button onClick={() => navigate('/', { state: { scrollTo: 'projects' } })} className="footer-nav-btn">
                     <ArrowLeft size={16} />
-                    EXPLORE OTHER MISSIONS
+                    Explore other projects
                 </button>
-            </footer>
+            </div>
+
+            <Lightbox
+                images={galleryImages}
+                index={lightboxIndex}
+                onClose={() => setLightboxIndex(null)}
+                onIndexChange={setLightboxIndex}
+            />
         </div>
     );
 };

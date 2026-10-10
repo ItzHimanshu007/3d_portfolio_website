@@ -18,6 +18,9 @@ export interface ProjectMission {
     gallery: string[];
     IconComponent: LucideIcon;
     color: string;
+    // Shown as a pill on the project page, e.g. 'Live', 'Prototype', 'In development'.
+    // Defaults to 'Live demo' when a live link exists.
+    status?: string;
     // Only add real URLs: buttons are rendered only for links that exist.
     links: {
         repo?: string;

@@ -7,7 +7,8 @@
 .scroll-model-container {
   position: fixed;
   right: 3vw;
-  bottom: 5vh;
+  /* clear of the back-to-top button (bottom: 30px, 50px tall) */
+  bottom: 100px;
   width: 300px;
   height: 400px;
   z-index: 999;
@@ -34,7 +35,6 @@
   justify-content: center;
   transform-style: preserve-3d;
   will-change: transform;
-  transition: transform 0.05s linear;
 }
 
 .model-3d-image {
@@ -207,7 +207,7 @@
     width: 250px;
     height: 340px;
     right: 2vw;
-    bottom: 3vh;
+    bottom: 90px;
   }
 }
 

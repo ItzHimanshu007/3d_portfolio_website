@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Trophy, Calendar, ArrowRight, ArrowLeft } from 'lucide-react';
@@ -15,7 +15,7 @@ const MissionCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
             viewport={{ once: false, amount: 0.5 }}
             transition={{ duration: 0.6 }}
         >
-            <div className="mission-number">0{index + 1}</div>
+            <div className="mission-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</div>
 
             <Link to={`/hackathon/${hack.id}`} className="mission-card-premium">
                 <div className="mission-image-wrapper">
@@ -43,7 +43,7 @@ const MissionCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
                         </div>
                     </div>
 
-                    <h3 className="mission-title-premium">{hack.title}</h3>
+                    <h2 className="mission-title-premium">{hack.title}</h2>
                     <p className="mission-description-brief">{hack.description}</p>
 
                     <div className="mission-toolkit">
@@ -54,7 +54,7 @@ const MissionCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
                     </div>
 
                     <div className="mission-action-footer">
-                        <div className="action-label">ACCESS_DEEP_DIVE</div>
+                        <div className="action-label">VIEW DETAILS</div>
                         <div className="action-icon-circle">
                             <ArrowRight size={18} />
                         </div>
@@ -71,7 +71,7 @@ const MissionCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
 
 const HackathonArchive = () => {
     const navigate = useNavigate();
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
 
     const { scrollYProgress } = useScroll({
@@ -79,12 +79,32 @@ const HackathonArchive = () => {
         offset: ["start start", "end end"]
     });
 
-    // Calculate x based on track width
-    const x = useTransform(scrollYProgress, [0, 1], ["1%", "-85%"]);
+    // Horizontal travel = how far the track overflows the viewport. The wrapper is made exactly that much
+    // taller than the viewport, so vertical scrolling maps 1:1 onto the track and always reaches the end.
+    const scrollRangeRef = useRef(0);
+    const [wrapperHeight, setWrapperHeight] = useState<number | undefined>(undefined);
+    const x = useTransform(scrollYProgress, (progress) => -progress * scrollRangeRef.current);
+
+    useLayoutEffect(() => {
+        const track = trackRef.current;
+        if (!track) return;
+        const measure = () => {
+            scrollRangeRef.current = Math.max(0, track.scrollWidth - window.innerWidth);
+            setWrapperHeight(scrollRangeRef.current + window.innerHeight);
+        };
+        measure();
+        const observer = new ResizeObserver(measure);
+        observer.observe(track);
+        window.addEventListener('resize', measure);
+        return () => {
+            observer.disconnect();
+            window.removeEventListener('resize', measure);
+        };
+    }, []);
 
 
     return (
-        <div className="creative-archive-wrapper" ref={containerRef}>
+        <main className="creative-archive-wrapper" ref={containerRef} style={{ height: wrapperHeight }}>
 
             <div className="sticky-horizontal-container">
                 <motion.div
@@ -102,20 +122,20 @@ const HackathonArchive = () => {
                         >
                             <div className="cyber-label-group">
                                 <div className="red-square"></div>
-                                <span className="label-text">DATABASE_ARCHIVE_SECURED</span>
+                                <span className="label-text">ALL HACKATHONS</span>
                             </div>
                             <h1 className="archive-hero-title">
-                                MISSION <br /><span>HISTORY</span>
+                                HACKATHON <br /><span>HISTORY</span>
                             </h1>
                             <p className="archive-hero-desc">
-                                Deployment records of competitive engineering protocols,
-                                rapid innovation sprints, and high-velocity success.
+                                Every hackathon I've competed in: what we built, how we placed,
+                                and what I learned along the way.
                             </p>
                             <div className="scroll-indicator-mission">
                                 <div className="mouse-icon">
                                     <div className="wheel"></div>
                                 </div>
-                                <span>SCROLL_TO_EXPLORE</span>
+                                <span>SCROLL TO EXPLORE</span>
                             </div>
                         </motion.div>
                     </div>
@@ -130,13 +150,13 @@ const HackathonArchive = () => {
                     {/* Outro Slide */}
                     <div className="outro-mission-slide">
                         <div className="outro-content-centered">
-                            <h2 className="outro-title">ALL_MISSIONS_RETRIEVED</h2>
+                            <h2 className="outro-title">THAT'S ALL FOR NOW</h2>
                             <button
                                 className="return-hq-btn-premium"
                                 onClick={() => navigate('/', { state: { scrollTo: 'hackathons' } })}
                             >
                                 <ArrowLeft size={18} />
-                                <span>RETURN_TO_BASE</span>
+                                <span>BACK TO HOME</span>
                             </button>
                         </div>
                     </div>
@@ -150,13 +170,13 @@ const HackathonArchive = () => {
             />
 
             {/* Global HUD Overlays */}
-            <div className="archive-global-overlays">
-                <div className="corner-data-box tl">SYS_READY: v.07.24</div>
-                <div className="corner-data-box tr">CONNECTION: ENCRYPTED</div>
-                <div className="corner-data-box bl">LATENCY: 12ms</div>
-                <div className="corner-data-box br">SYNC_STATUS: STABLE</div>
+            <div className="archive-global-overlays" aria-hidden="true">
+                <div className="corner-data-box tl">HACKATHONS: {hackathonsData.length}</div>
+                <div className="corner-data-box tr">WINS: {hackathonsData.filter(h => h.award === 'Winner').length}</div>
+                <div className="corner-data-box bl">TOP 10 · INDIA INNOVATES '26</div>
+                <div className="corner-data-box br">BASE: JAIPUR, IN</div>
             </div>
-        </div>
+        </main>
     );
 };
 

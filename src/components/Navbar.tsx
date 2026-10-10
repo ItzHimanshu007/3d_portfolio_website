@@ -1,37 +1,53 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { scrollToSection } from '../utils/scroll';
+import { useLocation } from 'react-router-dom';
 import { getLenis } from '../utils/lenis';
+import { useSectionNavigation } from '../hooks/useSectionNavigation';
 import './Navbar.css';
 
+// Desktop skips "Home" (the logo does that) and "Contact" (the "Let's Talk" button does that).
 const navItems = [
-    { name: 'Home', href: 'hero' },
     { name: 'About', href: 'about' },
     { name: 'Experience', href: 'experience' },
     { name: 'Skills', href: 'skills' },
     { name: 'Projects', href: 'projects' },
-    { name: 'Hackathons', href: 'hackathons' }
+    { name: 'Hackathons', href: 'hackathons' },
+    { name: 'Education', href: 'education' }
 ];
 
-const mobileNavItems = [...navItems, { name: 'Contact', href: 'contact' }];
+const mobileNavItems = [{ name: 'Home', href: 'hero' }, ...navItems, { name: 'Contact', href: 'contact' }];
+const trackedSections = mobileNavItems.map((item) => item.href);
+
+// The section whose top has passed 40% of the viewport is the "current" one.
+const findActiveSection = () => {
+    const marker = window.innerHeight * 0.4;
+    let active = '';
+    for (const id of trackedSections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= marker) active = id;
+    }
+    return active;
+};
 
 const Navbar: React.FC = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('');
     const { scrollY } = useScroll();
-    const navigate = useNavigate();
-    const location = useLocation();
+    const { pathname } = useLocation();
+    const goToSection = useSectionNavigation();
     const toggleRef = useRef<HTMLButtonElement>(null);
     const firstLinkRef = useRef<HTMLButtonElement>(null);
+    const isHome = pathname === '/';
 
     useEffect(() => {
         const unsubscribe = scrollY.on('change', (latest) => {
             setIsScrolled(latest > 50);
+            if (isHome) setActiveSection(findActiveSection());
         });
         return () => unsubscribe();
-    }, [scrollY]);
+    }, [scrollY, isHome]);
 
     // While the mobile menu is open: lock page scroll, move focus into the menu, close on Escape.
     useEffect(() => {
@@ -63,12 +79,10 @@ const Navbar: React.FC = () => {
             document.body.style.overflow = '';
         }
         setMobileMenuOpen(false);
-        if (location.pathname !== '/') {
-            navigate('/', { state: { scrollTo: href } });
-        } else {
-            scrollToSection(href);
-        }
+        goToSection(href);
     };
+
+    const currentSection = isHome ? activeSection : '';
 
     return (
         <>
@@ -93,7 +107,8 @@ const Navbar: React.FC = () => {
                             <li key={item.name}>
                                 <button
                                     onClick={() => handleNavClick(item.href)}
-                                    className="nav-link-item"
+                                    className={`nav-link-item ${currentSection === item.href ? 'active' : ''}`}
+                                    aria-current={currentSection === item.href ? 'true' : undefined}
                                     style={{ background: 'transparent', border: 'none', cursor: 'pointer' }}
                                 >
                                     <span className="nav-link-text">{item.name}</span>
@@ -155,7 +170,8 @@ const Navbar: React.FC = () => {
                                     <motion.button
                                         key={item.name}
                                         ref={idx === 0 ? firstLinkRef : undefined}
-                                        className="mobile-nav-link"
+                                        className={`mobile-nav-link ${currentSection === item.href ? 'active' : ''}`}
+                                        aria-current={currentSection === item.href ? 'true' : undefined}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ delay: 0.1 + idx * 0.05 }}

@@ -1,8 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, MotionValue } from 'framer-motion';
-import { Mouse, ArrowDown, Cpu, Activity, Shield } from 'lucide-react';
+import { Mouse, ArrowDown, MapPin, Activity, Trophy } from 'lucide-react';
 import { SITE } from '../config/site';
 import { scrollToSection } from '../utils/scroll';
+import { COMPANION_MEDIA_QUERY, popProgress } from '../utils/scrollCompanion';
 import './Hero.css';
 
 // Sub-component for individual geometric shards to maintain clean state
@@ -69,6 +70,19 @@ const Hero: React.FC = () => {
     const bgY = useTransform(springY, [-500, 500], [20, -20]);
     const hudX = useTransform(springX, [-500, 500], [-30, 30]);
     const hudY = useTransform(springY, [-500, 500], [-30, 30]);
+    const hudXInverse = useTransform(springX, [-500, 500], [30, -30]);
+    const hudYInverse = useTransform(springY, [-500, 500], [30, -30]);
+    const glowX = useTransform(springX, [-500, 500], [-150, 150]);
+    const glowY = useTransform(springY, [-500, 500], [-150, 150]);
+    const calloutLeftX = bgX;
+    const calloutRightX = useTransform(springX, [-500, 500], [-20, 20]);
+
+    // On wide screens the hero image hands over to the floating ScrollModel companion as you scroll
+    const companionEnabled = useRef(window.matchMedia(COMPANION_MEDIA_QUERY).matches);
+    const { scrollY: pageScrollY } = useScroll();
+    const heroImageOpacity = useTransform(pageScrollY, (latest) =>
+        companionEnabled.current ? 1 - popProgress(latest, window.innerHeight) : 1
+    );
 
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -96,6 +110,13 @@ const Hero: React.FC = () => {
     ];
 
     useEffect(() => {
+        const query = window.matchMedia(COMPANION_MEDIA_QUERY);
+        const onChange = (e: MediaQueryListEvent) => { companionEnabled.current = e.matches; };
+        query.addEventListener('change', onChange);
+        return () => query.removeEventListener('change', onChange);
+    }, []);
+
+    useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             mouseX.set(e.clientX - window.innerWidth / 2);
             mouseY.set(e.clientY - window.innerHeight / 2);
@@ -121,24 +142,24 @@ const Hero: React.FC = () => {
             {/* 2. Cyber HUD Brackets */}
             <div className="hud-brackets-container">
                 <motion.div className="hud-corner top-left" style={{ x: hudX, y: hudY }} />
-                <motion.div className="hud-corner top-right" style={{ x: useTransform(springX, [-500, 500], [30, -30]), y: hudY }} />
-                <motion.div className="hud-corner bottom-left" style={{ x: hudX, y: useTransform(springY, [-500, 500], [30, -30]) }} />
-                <motion.div className="hud-corner bottom-right" style={{ x: useTransform(springX, [-500, 500], [30, -30]), y: useTransform(springY, [-500, 500], [30, -30]) }} />
+                <motion.div className="hud-corner top-right" style={{ x: hudXInverse, y: hudY }} />
+                <motion.div className="hud-corner bottom-left" style={{ x: hudX, y: hudYInverse }} />
+                <motion.div className="hud-corner bottom-right" style={{ x: hudXInverse, y: hudYInverse }} />
             </div>
 
             {/* 3. Floating Data Readouts */}
-            <div className="hud-data-overlays">
+            <div className="hud-data-overlays" aria-hidden="true">
                 <motion.div className="data-box system-status" initial={{ opacity: 0, x: -50 }} animate={isLoaded ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1 }}>
                     <Activity size={12} className="text-red" />
-                    <span>SYSTEM: OPTIMIZED</span>
+                    <span>STATUS: OPEN TO WORK</span>
                 </motion.div>
                 <motion.div className="data-box core-temp" initial={{ opacity: 0, x: 50 }} animate={isLoaded ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1.2 }}>
-                    <Cpu size={12} className="text-red" />
-                    <span>CORE: 32°C</span>
+                    <MapPin size={12} className="text-red" />
+                    <span>BASE: JAIPUR, IN</span>
                 </motion.div>
                 <motion.div className="data-box shield-status" initial={{ opacity: 0, y: 50 }} animate={isLoaded ? { opacity: 1, y: 0 } : {}} transition={{ delay: 1.4 }}>
-                    <Shield size={12} className="text-red" />
-                    <span>SECURE CONTEXT</span>
+                    <Trophy size={12} className="text-red" />
+                    <span>4× HACKATHON WINNER</span>
                 </motion.div>
             </div>
 
@@ -193,7 +214,7 @@ const Hero: React.FC = () => {
                             className="cyber-btn secondary"
                             onClick={() => scrollToSection('contact')}
                         >
-                            <span>CONTACT_NODE</span>
+                            <span>CONTACT ME</span>
                         </button>
                     </motion.div>
                 </motion.div>
@@ -204,40 +225,43 @@ const Hero: React.FC = () => {
                 >
                     <motion.div
                         className="hero-interactive-glow"
-                        style={{
-                            x: useTransform(springX, [-500, 500], [-150, 150]),
-                            y: useTransform(springY, [-500, 500], [-150, 150]),
-                        }}
+                        style={{ x: glowX, y: glowY }}
                     />
                     <div className="visual-scanner-ring" />
                     
                     {/* Floating Tactical Data Callouts */}
-                    <motion.div className="tactical-callout tc-1" style={{ x: useTransform(springX, [-500, 500], [20, -20]) }}>
+                    <motion.div className="tactical-callout tc-1" style={{ x: calloutLeftX }} aria-hidden="true">
                         <div className="callout-line" />
                         <div className="callout-content">
                             <span className="callout-label">LAT_COORD</span>
-                            <span className="callout-value">28.6139° N</span>
+                            <span className="callout-value">26.9124° N</span>
                         </div>
                     </motion.div>
                     
-                    <motion.div className="tactical-callout tc-2" style={{ x: useTransform(springX, [-500, 500], [-20, 20]) }}>
+                    <motion.div className="tactical-callout tc-2" style={{ x: calloutRightX }} aria-hidden="true">
                         <div className="callout-line" />
                         <div className="callout-content">
                             <span className="callout-label">LONG_COORD</span>
-                            <span className="callout-value">77.2090° E</span>
+                            <span className="callout-value">75.7873° E</span>
                         </div>
                     </motion.div>
 
-                    <motion.img
-                        src="/character-hero.webp"
-                        width={583}
-                        height={1024}
-                        alt="Himanshu's 3D avatar"
-                        className="cyber-character-img"
+                    <motion.div
+                        className="cyber-character-wrap"
                         initial={{ opacity: 0, scale: 0.8, rotateY: 20 }}
                         animate={isLoaded ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
                         transition={{ duration: 1.2, type: "spring" }}
-                    />
+                    >
+                        <motion.img
+                            src="/character-hero.webp"
+                            width={583}
+                            height={1024}
+                            alt="Himanshu's 3D avatar"
+                            className="cyber-character-img"
+                            fetchPriority="high"
+                            style={{ opacity: heroImageOpacity }}
+                        />
+                    </motion.div>
                 </motion.div>
             </div>
 
@@ -255,6 +279,7 @@ const Hero: React.FC = () => {
 
             {/* Scroll Anchor */}
             <motion.div
+                aria-hidden="true"
                 className="cyber-scroll-anchor"
                 animate={{ y: [0, 10, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}

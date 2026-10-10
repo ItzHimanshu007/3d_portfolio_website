@@ -105,7 +105,7 @@ const Skills: React.FC = () => {
                 >
                     <div className="premium-badge">
                         <Sparkles size={16} />
-                        <span>Command Center</span>
+                        <span>Skills</span>
                     </div>
                     <h2 className="premium-main-title">
                         My Creative <br /><span>Tech Stack</span>

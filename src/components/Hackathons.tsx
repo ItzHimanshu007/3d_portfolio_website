@@ -3,9 +3,19 @@ import { motion, useInView } from 'framer-motion';
 import { Trophy, Calendar, Sparkles, BookOpen, Quote } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { hackathonsData, type Hackathon } from '../data/hackathons';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
 import './Hackathons.css';
 
 const MotionLink = motion.create(Link);
+
+const featuredHackathons = hackathonsData.filter((h) => h.featured);
+const isPodium = (award: string) => /2nd|3rd|runner/i.test(award);
+const stats = [
+    { value: hackathonsData.length, label: 'Hackathons' },
+    { value: hackathonsData.filter((h) => h.award === 'Winner').length, label: 'Wins' },
+    { value: hackathonsData.filter((h) => isPodium(h.award)).length, label: 'Podium finishes' },
+    { value: 'Top 10', label: "India Innovates '26" }
+];
 
 const HackathonCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
     const cardRef = useRef(null);
@@ -23,11 +33,21 @@ const HackathonCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
                 delay: index * 0.15,
                 ease: [0.16, 1, 0.3, 1]
             }}
-            whileHover={{ y: -15, rotateY: index % 2 === 0 ? 5 : -5 }}
-            style={{ perspective: 1000 }}
+            whileHover={{ y: -10 }}
         >
             <div className="hack-card-glass"></div>
             <div className="hack-card-glow"></div>
+
+            <div className="hack-card-photo">
+                <img
+                    src={thumbnail(hack.mainImage)}
+                    srcSet={responsiveSrcSet(hack.mainImage)}
+                    sizes="(max-width: 900px) 100vw, 33vw"
+                    alt={`Team photo from ${hack.event}`}
+                    loading="lazy"
+                    decoding="async"
+                />
+            </div>
 
             <div className="hack-card-header">
                 <div className="hack-icon-wrapper">
@@ -71,12 +91,12 @@ const HackathonCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
                 <MotionLink
                     to={`/hackathon/${hack.id}`}
                     className="hack-link-btn-premium"
-                    aria-label={`Deep dive: ${hack.title} at ${hack.event}`}
+                    aria-label={`View details: ${hack.title} at ${hack.event}`}
                     whileHover={{ scale: 1.05, backgroundColor: '#e01e1e', color: '#fff' }}
                     whileTap={{ scale: 0.95 }}
                 >
                     <BookOpen size={16} />
-                    <span>DEEP DIVE MISSION</span>
+                    <span>VIEW DETAILS</span>
                 </MotionLink>
             </div>
         </motion.div>
@@ -103,38 +123,33 @@ export default function Hackathons() {
                 >
                     <div className="premium-badge">
                         <Sparkles size={16} />
-                        <span>Elite Competitive Engineering</span>
+                        <span>Hackathons</span>
                     </div>
                     <h2 className="premium-main-title">
                         Winning <br /><span>The Future</span>
                     </h2>
                     <p className="premium-desc">
-                        A gallery of digital warfare victory, technical supremacy, and rapid innovation.
+                        Building working products under pressure, with real teams and real judges.
                     </p>
                 </motion.div>
 
-                {/* Immersive Gallery Section */}
-                <div className="hackathon-creative-gallery">
-                    <motion.div
-                        className="gallery-track"
-                        initial={{ opacity: 0, x: 100 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 1, ease: 'easeOut' }}
-                    >
-                        <div className="gallery-card-3d tilt-left">
-                            <img src="/hackathon-win-standing.webp" width={583} height={1024} alt="" loading="lazy" decoding="async" />
+                <motion.dl
+                    className="hack-stats-row"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
+                    {stats.map((stat) => (
+                        <div key={stat.label} className="hack-stat">
+                            <dt className="hack-stat-label">{stat.label}</dt>
+                            <dd className="hack-stat-value">{stat.value}</dd>
                         </div>
-                        <div className="gallery-card-3d centerpiece">
-                            <img src="/hackathon-win-trophy.webp" width={583} height={1024} alt="" loading="lazy" decoding="async" />
-                        </div>
-                        <div className="gallery-card-3d tilt-right">
-                            <img src="/hackathon-win-coding.webp" width={682} height={1024} alt="" loading="lazy" decoding="async" />
-                        </div>
-                    </motion.div>
-                </div>
+                    ))}
+                </motion.dl>
 
                 <div className="hack-grid-premium">
-                    {hackathonsData.slice(0, 6).map((hack, index) => (
+                    {featuredHackathons.map((hack, index) => (
                         <HackathonCard key={hack.id} hack={hack} index={index} />
                     ))}
                 </div>
@@ -145,18 +160,18 @@ export default function Hackathons() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ delay: 0.8 }}
+                    transition={{ delay: 0.3 }}
                     style={{ marginTop: '0px' }}
                 >
                     <div className="cta-divider"></div>
-                    <p>Want to see the full mission history?</p>
+                    <p>See all {hackathonsData.length} hackathons, with photos and what I learned from each.</p>
                     <MotionLink
                         to="/hackathons-archive"
                         className="premium-view-all"
                         whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 51, 51, 0.6)' }}
                         whileTap={{ scale: 0.95 }}
                     >
-                        Browse Archive
+                        Browse All Hackathons
                         <span className="btn-glow"></span>
                     </MotionLink>
                 </motion.div>
@@ -171,7 +186,7 @@ export default function Hackathons() {
                         <img src="/character-shouting.webp" width={682} height={1024} alt="" className="peeking-toy-premium" loading="lazy" decoding="async" />
                         <div className="creative-chat-bubble">
                             <Quote size={12} className="quote-icon-chat" />
-                            <span>"We don't just participate. We dominate."</span>
+                            <span>"Build fast, test with real users, ship real impact."</span>
                         </div>
                     </div>
                 </motion.div>

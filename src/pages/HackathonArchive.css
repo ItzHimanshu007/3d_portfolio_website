@@ -114,7 +114,7 @@
 
 .archive-hero-title {
     font-size: clamp(4rem, 12vw, 10rem);
-    font-weight: 950;
+    font-weight: 900;
     line-height: 0.9;
     letter-spacing: -0.05em;
     margin-bottom: 2.5rem;
@@ -151,7 +151,7 @@
     top: -40px;
     left: -20px;
     font-size: 6rem;
-    font-weight: 950;
+    font-weight: 900;
     color: rgba(255, 255, 255, 0.03);
     z-index: -1;
     pointer-events: none;
@@ -381,11 +381,17 @@
     pointer-events: none;
 }
 
+@media (max-width: 768px) {
+    .archive-global-overlays {
+        display: none;
+    }
+}
+
 .corner-data-box {
     position: absolute;
     font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
-    color: rgba(255, 51, 51, 0.4);
+    color: rgba(255, 90, 90, 0.85);
     letter-spacing: 2px;
 }
 
@@ -416,7 +422,7 @@
     flex-direction: column;
     align-items: center;
     gap: 15px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.6);
     font-size: 0.7rem;
     letter-spacing: 3px;
 }

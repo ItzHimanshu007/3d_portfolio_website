@@ -7,7 +7,8 @@ import BackToTop from './components/BackToTop';
 import PageTransition from './components/PageTransition';
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
-import IronManPreloader from './components/IronManPreloader';
+import Preloader from './components/Preloader';
+import Footer from './components/Footer';
 import { Analytics } from '@vercel/analytics/react';
 import './App.css';
 
@@ -57,16 +58,18 @@ const AnimatedRoutes = () => {
   const location = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={page(<Home />)} />
-        <Route path="/archive" element={page(<Archive />)} />
-        <Route path="/hackathons-archive" element={page(<HackathonArchive />)} />
-        <Route path="/project/:id" element={page(<ProjectDetail />)} />
-        <Route path="/hackathon/:id" element={page(<HackathonDetail />)} />
-        <Route path="*" element={page(<NotFound />)} />
-      </Routes>
-    </AnimatePresence>
+    <ErrorBoundary resetKey={location.pathname}>
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={page(<Home />)} />
+          <Route path="/archive" element={page(<Archive />)} />
+          <Route path="/hackathons-archive" element={page(<HackathonArchive />)} />
+          <Route path="/project/:id" element={page(<ProjectDetail />)} />
+          <Route path="/hackathon/:id" element={page(<HackathonDetail />)} />
+          <Route path="*" element={page(<NotFound />)} />
+        </Routes>
+      </AnimatePresence>
+    </ErrorBoundary>
   );
 };
 
@@ -99,7 +102,7 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
       <AnimatePresence>
-        {isLoading && <IronManPreloader onComplete={handlePreloaderComplete} />}
+        {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
       </AnimatePresence>
 
       {!isLoading && (
@@ -108,11 +111,10 @@ function App() {
           <ScrollToTop />
           <SkipLink />
           <Layout>
-            <ErrorBoundary>
-              <Navbar />
-              <AnimatedRoutes />
-              <BackToTop />
-            </ErrorBoundary>
+            <Navbar />
+            <AnimatedRoutes />
+            <Footer />
+            <BackToTop />
           </Layout>
         </Router>
       )}

@@ -17,12 +17,15 @@ export interface Hackathon {
     certificateUrl?: string;
     // id of the related entry in projectsData, for a "view case study" link
     projectId?: string;
+    // Shown on the home page (keep it to 3); everything appears in the archive
+    featured?: boolean;
     icon: LucideIcon;
 }
 
 export const hackathonsData: Hackathon[] = [
     {
         id: 'hackstorm-25',
+        featured: true,
         projectId: 'neuronest',
         title: 'Neuronest VR Therapy',
         event: 'HACKSTORM \'25',
@@ -49,6 +52,7 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'geospatial-hack-26',
+        featured: true,
         projectId: 'jal-drishti',
         title: 'Jal Drishti Flood Engine',
         event: 'Geospatial Intelligence Hack \'26',
@@ -127,6 +131,7 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'india-innovates-26',
+        featured: true,
         projectId: 'jal-drishti',
         title: 'Jal Drishti — Civic Tech',
         event: 'India Innovates \'26',

@@ -1,4 +1,4 @@
-.ironman-preloader {
+.site-preloader {
     position: fixed;
     top: 0;
     left: 0;
@@ -47,7 +47,7 @@
 /* Data Streams */
 .data-stream {
     position: absolute;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Space Mono', monospace;
     font-size: 0.7rem;
     color: #ff3333;
     opacity: 0.6;
@@ -196,8 +196,8 @@
     opacity: 0.5;
 }
 
-.jarvis-console {
-    font-family: 'JetBrains Mono', monospace;
+.preloader-console {
+    font-family: 'Space Mono', monospace;
     font-size: 0.75rem;
     color: #ff3333;
     background: rgba(255, 51, 51, 0.1);

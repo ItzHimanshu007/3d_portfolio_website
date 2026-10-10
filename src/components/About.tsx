@@ -10,7 +10,7 @@ const About: React.FC = () => {
 
     const skills = [
         { icon: Code2, title: 'Full-Stack Dev', color: '#ff3333' },
-        { icon: Award, title: 'AI/ML Expert', color: '#ff3333' },
+        { icon: Award, title: 'AI/ML Engineering', color: '#ff3333' },
         { icon: Zap, title: 'Fast Learner', color: '#ff3333' }
     ];
 
@@ -71,14 +71,13 @@ const About: React.FC = () => {
 
                         <motion.a
                             href={SITE.resumeUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            download
                             className="about-resume-btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
                             <Download size={18} />
-                            <span>GET_RESUME</span>
+                            <span>DOWNLOAD RÉSUMÉ</span>
                         </motion.a>
 
                         <div className="about-stats-grid">

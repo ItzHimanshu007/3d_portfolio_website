@@ -1,121 +1,91 @@
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
+import { Compass } from 'lucide-react';
 import './Values.css';
 
 const valuesData = [
     {
         title: 'INNOVATION',
-        desc: 'Redefining the digital landscape through disruptive technologies.',
+        desc: 'Turning hackathon prototypes into working products, from VR exposure therapy to flood prediction.',
         badge: '01 / R&D'
     },
     {
         title: 'PRECISION',
-        desc: 'Meticulous engineering meeting flawless aesthetic standards.',
+        desc: 'Careful engineering: reliable data pipelines, race-condition-safe systems, and clean interfaces.',
         badge: '02 / DEV'
     },
     {
         title: 'PASSION',
-        desc: 'Soul-infused code that creates deeper emotional connections.',
-        badge: '03 / ART'
+        desc: 'Building technology for real problems in mental health, civic resilience, and healthcare access.',
+        badge: '03 / IMPACT'
     },
     {
         title: 'FUTURE',
-        desc: 'Architecting today for the challenges of tomorrow.',
-        badge: '04 / EVO'
+        desc: 'Always learning, currently going deep on agentic AI, geospatial ML, and modern full-stack tooling.',
+        badge: '04 / GROWTH'
     }
 ];
 
-const KineticChar: React.FC<{
-    char: string;
-    i: number;
-    total: number;
-    progress: MotionValue<number>;
-}> = ({ char, i, total, progress }) => {
-    const offset = (i - total / 2) * 15;
-    // Characters assemble earlier and stay assembled longer
-    const charX = useTransform(progress, [0, 0.3, 0.7, 1], [offset * 2.5, 0, 0, offset * -2.5]);
-    const charZ = useTransform(progress, [0, 0.3, 0.7, 1], [-250, 0, 0, -250]);
-    const charRotate = useTransform(progress, [0, 0.3, 0.7, 1], [offset * 1.5, 0, 0, -offset * 1.5]);
-    const charOpacity = useTransform(progress, [0, 0.1, 0.2, 0.8, 0.9, 1], [0, 0.5, 1, 1, 0.5, 0]);
-
-    return (
-        <motion.span
-            aria-hidden="true"
-            className="kinetic-char"
-            style={{
-                x: charX,
-                z: charZ,
-                rotateY: charRotate,
-                opacity: charOpacity,
-            }}
-        >
-            {char}
-        </motion.span>
-    );
+const titleVariants: Variants = {
+    hidden: {},
+    visible: { transition: { staggerChildren: 0.04 } }
 };
 
-const KineticTitle: React.FC<{ title: string; progress: MotionValue<number> }> = ({ title, progress }) => {
-    return (
-        <div className="kinetic-title-wrapper" role="heading" aria-level={2} aria-label={title}>
-            {title.split('').map((char, i) => (
-                <KineticChar
-                    key={i}
-                    char={char}
-                    i={i}
-                    total={title.length}
-                    progress={progress}
-                />
-            ))}
-        </div>
-    );
-};
-
-const ValueBlock: React.FC<{ value: typeof valuesData[0] }> = ({ value }) => {
-    const blockRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({
-        target: blockRef,
-        offset: ["start end", "end start"]
-    });
-
-    const descY = useTransform(scrollYProgress, [0.3, 0.4], [20, 0]); // Slide in as heading assembles
-    const descOpacity = useTransform(scrollYProgress, [0.3, 0.4, 0.7, 0.8], [0, 1, 1, 0]); // Hold opacity
-    const lineScale = useTransform(scrollYProgress, [0.3, 0.4], [0, 1]); // Grow line with text
-
-    return (
-        <div ref={blockRef} className="value-kinetic-block">
-            <motion.div
-                className="value-badge-kinetic"
-                style={{ opacity: descOpacity }}
-            >
-                {value.badge}
-            </motion.div>
-
-            <KineticTitle title={value.title} progress={scrollYProgress} />
-
-            <motion.div
-                className="value-desc-kinetic"
-                style={{ y: descY, opacity: descOpacity }}
-            >
-                <div className="desc-content">{value.desc}</div>
-                <motion.div
-                    className="desc-progress-line"
-                    style={{ scaleX: lineScale }}
-                />
-            </motion.div>
-        </div>
-    );
+const charVariants: Variants = {
+    hidden: { opacity: 0, y: 24, rotateX: -60 },
+    visible: { opacity: 1, y: 0, rotateX: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
 };
 
 export default function Values() {
     return (
         <section className="values-kinetic-section" id="philosophy">
-            <div className="kinetic-background-grid"></div>
-            <div className="outer-glow-vignette"></div>
+            <div className="kinetic-background-grid" aria-hidden="true"></div>
+            <div className="outer-glow-vignette" aria-hidden="true"></div>
 
-            <div className="container">
-                <div className="kinetic-stack">
-                    {valuesData.map((v) => (
-                        <ValueBlock key={v.title} value={v} />
+            <div className="container values-container">
+                <motion.div
+                    className="values-header"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.7 }}
+                >
+                    <div className="premium-badge">
+                        <Compass size={16} />
+                        <span>How I Work</span>
+                    </div>
+                    <h2 className="premium-main-title">
+                        What Drives <br /><span>My Work</span>
+                    </h2>
+                </motion.div>
+
+                <div className="values-grid">
+                    {valuesData.map((value, idx) => (
+                        <motion.article
+                            key={value.title}
+                            className="value-card"
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, amount: 0.4 }}
+                            transition={{ duration: 0.6, delay: idx * 0.1 }}
+                        >
+                            <span className="value-badge-kinetic">{value.badge}</span>
+                            <motion.h3
+                                className="kinetic-title-wrapper"
+                                aria-label={value.title}
+                                variants={titleVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.6 }}
+                            >
+                                {value.title.split('').map((char, i) => (
+                                    <motion.span key={i} className="kinetic-char" variants={charVariants} aria-hidden="true">
+                                        {char}
+                                    </motion.span>
+                                ))}
+                            </motion.h3>
+                            <p className="desc-content">{value.desc}</p>
+                            <span className="desc-progress-line" aria-hidden="true" />
+                        </motion.article>
                     ))}
                 </div>
             </div>

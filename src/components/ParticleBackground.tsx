@@ -38,7 +38,7 @@ const ParticleBackground = () => {
 
         // Spatial grid for O(n) connection checks instead of O(n²)
         const cellSize = connectionDistance;
-        let grid: Map<string, number[]> = new Map();
+        const grid: Map<string, number[]> = new Map();
 
         const getCellKey = (col: number, row: number) => `${col},${row}`;
 

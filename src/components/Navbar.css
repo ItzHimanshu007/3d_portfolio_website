@@ -103,9 +103,14 @@
     color: #fff;
 }
 
-.nav-link-item:hover .nav-link-dot {
+.nav-link-item:hover .nav-link-dot,
+.nav-link-item.active .nav-link-dot {
     opacity: 1;
     transform: translateY(0);
+}
+
+.nav-link-item.active {
+    color: #fff;
 }
 
 /* CTA & Actions */
@@ -182,8 +187,9 @@
     transition: color 0.3s ease;
 }
 
-.mobile-nav-link:hover {
-    color: #ff0000;
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
+    color: #ff4d4d;
 }
 
 /* Responsive */

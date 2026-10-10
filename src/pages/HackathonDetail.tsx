@@ -1,18 +1,20 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, ArrowRight, Trophy, Target, Lightbulb, Zap, Rocket, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Trophy, Target, Lightbulb, Zap, Rocket, ExternalLink, ShieldCheck, Camera, Maximize2 } from 'lucide-react';
 import { hackathonsData } from '../data/hackathons';
 import { projectsData } from '../data/projects';
 import { responsiveSrcSet, thumbnail } from '../utils/images';
 import NotFound from './NotFound';
+import Lightbox from '../components/Lightbox';
 import './HackathonDetail.css';
 
 const HackathonDetail = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const hack = hackathonsData.find(h => h.id === id);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLElement>(null);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -34,13 +36,14 @@ const HackathonDetail = () => {
     }
 
     const relatedProject = projectsData.find(p => p.id === hack.projectId);
+    const photos = hack.gallery.map((src, idx) => ({ src, alt: `${hack.event}: photo ${idx + 1}` }));
     const hasActions = Boolean(hack.link || hack.certificateUrl || relatedProject);
 
     return (
-        <div className="hackathon-detail-page" ref={containerRef}>
+        <main className="hackathon-detail-page" ref={containerRef}>
             <button className="back-btn-premium" onClick={() => navigate('/', { state: { scrollTo: 'hackathons' } })}>
                 <ArrowLeft size={20} />
-                <span>BACK TO MISSION</span>
+                <span>BACK TO HACKATHONS</span>
             </button>
 
             {/* Hero Section */}
@@ -78,7 +81,7 @@ const HackathonDetail = () => {
                         <section className="detail-section">
                             <div className="section-label">
                                 <Target size={18} />
-                                <span>PROBLEM STATEMENT</span>
+                                <h2 className="section-label-text">WHAT WE BUILT</h2>
                             </div>
                             <p className="section-text">{hack.description}</p>
                         </section>
@@ -86,7 +89,7 @@ const HackathonDetail = () => {
                         <section className="detail-section">
                             <div className="section-label">
                                 <Lightbulb size={18} />
-                                <span>THE SOLUTION</span>
+                                <h2 className="section-label-text">KEY LEARNINGS</h2>
                             </div>
                             <div className="learnings-list">
                                 {hack.learnings.map((learning, idx) => (
@@ -107,7 +110,7 @@ const HackathonDetail = () => {
                         <section className="detail-section">
                             <div className="section-label">
                                 <Zap size={18} />
-                                <span>KEY ACHIEVEMENTS</span>
+                                <h2 className="section-label-text">KEY ACHIEVEMENTS</h2>
                             </div>
                             <div className="achievements-grid">
                                 {hack.achievements.map((achievement, idx) => (
@@ -164,28 +167,32 @@ const HackathonDetail = () => {
                 {hack.gallery.length > 0 && (
                     <section className="hack-moments-full">
                         <div className="section-label">
-                            <Zap size={18} />
-                            <span>MISSION MOMENTS</span>
+                            <Camera size={18} />
+                            <h2 className="section-label-text">PHOTOS</h2>
                         </div>
                         <div className="moments-grid-premium">
-                            {hack.gallery.map((img, idx) => (
-                                <motion.div
-                                    key={idx}
+                            {photos.map((photo, idx) => (
+                                <motion.button
+                                    key={photo.src}
+                                    type="button"
                                     className="moment-card-large"
+                                    onClick={() => setLightboxIndex(idx)}
+                                    aria-label={`Enlarge ${photo.alt}`}
                                     initial={{ opacity: 0, y: 30 }}
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
                                 >
                                     <img
-                                        src={thumbnail(img)}
-                                        srcSet={responsiveSrcSet(img)}
+                                        src={thumbnail(photo.src)}
+                                        srcSet={responsiveSrcSet(photo.src)}
                                         sizes="(max-width: 900px) 100vw, 50vw"
-                                        alt={`${hack.event}: photo ${idx + 1}`}
+                                        alt={photo.alt}
                                         loading="lazy"
                                         decoding="async"
                                     />
                                     <div className="moment-overlay"></div>
-                                </motion.div>
+                                    <span className="gallery-zoom-hint" aria-hidden="true"><Maximize2 size={18} /></span>
+                                </motion.button>
                             ))}
                         </div>
                     </section>
@@ -193,7 +200,14 @@ const HackathonDetail = () => {
             </div>
 
             <div className="detail-page-glow"></div>
-        </div>
+
+            <Lightbox
+                images={photos}
+                index={lightboxIndex}
+                onClose={() => setLightboxIndex(null)}
+                onIndexChange={setLightboxIndex}
+            />
+        </main>
     );
 };
 
