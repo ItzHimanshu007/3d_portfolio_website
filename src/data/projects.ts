@@ -1,4 +1,4 @@
-import { Monitor, Activity, Globe, Zap, Layers } from 'lucide-react';
+import { Monitor, Activity, Globe, Zap, Layers, type LucideIcon } from 'lucide-react';
 
 export interface ProjectMission {
     id: string;
@@ -16,10 +16,11 @@ export interface ProjectMission {
     futureScope: string[];
     image: string;
     gallery: string[];
-    IconComponent: any;
+    IconComponent: LucideIcon;
     color: string;
+    // Only add real URLs: buttons are rendered only for links that exist.
     links: {
-        github?: string;
+        repo?: string;
         live?: string;
     };
 }
@@ -55,17 +56,16 @@ export const projectsData: ProjectMission[] = [
             'Carbon credit tokenization',
             'Smart city infrastructure'
         ],
-        image: '/projects/sungridprotocol_img1 11.42.52 PM.png',
+        image: '/projects/sungrid-1.webp',
         gallery: [
-            '/projects/sungridprotocol_img1 11.42.52 PM.png',
-            '/projects/sungridprotocol_img2 11.42.52 PM.png',
-            '/projects/sungridprotocol_img3 11.42.52 PM.png',
-            '/projects/sungridprotocol_img4 11.42.52 PM.png'
+            '/projects/sungrid-1.webp',
+            '/projects/sungrid-2.webp',
+            '/projects/sungrid-3.webp',
+            '/projects/sungrid-4.webp'
         ],
         IconComponent: Zap,
         color: '#ff3333',
         links: {
-            github: 'https://github.com/ItzHimanshu007',
             live: 'https://sungrid-mz6jsm8jr-aditya-gautams-projects-496c032b.vercel.app'
         }
     },
@@ -73,130 +73,116 @@ export const projectsData: ProjectMission[] = [
         id: 'medinexus',
         year: '2025',
         title: 'MediNexus',
-        subtitle: 'AI-Powered Smart Healthcare & Medical Intelligence Ecosystem',
+        subtitle: 'Multi-Tenant Hospital Management Platform',
         category: 'Health Tech',
-        description: 'An advanced healthcare technology platform integrating AI, cloud computing, and medical data analytics for a connected healthcare network.',
-        briefing: 'MediNexus is a multi-tenant healthcare intelligence platform designed to unify medical records and patient monitoring.\n\n• CENTRALIZED EHR: Secure cloud-native storage for prescriptions, medical reports, and comprehensive patient history.\n• AI DIAGNOSIS ENGINE: Evaluates symptoms against medical datasets to provide preliminary health insights.\n• REMOTE MONITORING: Real-time tracking of vitals like heart rate and BP, integrated with emergency alert systems.\n• DOCTOR CONNECTIVITY: Seamlessly bridges the gap between hospitals and patients through a unified digital interface.',
-        challenge: 'Modern healthcare suffers from fragmented medical records, hospital overcrowding, and delayed diagnoses. Patients in rural areas often lack access to specialized guidance, while doctors struggle with managing patient history without centralized, real-time data.',
-        solution: 'Developed an intelligent ecosystem offering AI symptom analysis, remote health monitoring (Vitals, Sleep, Activity), and a smart medicine recommendation engine.',
-        tech: ['React / React Native', 'Node.js', 'FastAPI', 'Python', 'TensorFlow', 'PostgreSQL', 'Firebase', 'Real-time Analytics'],
+        description: 'A multi-tenant healthcare SaaS for patients, doctors, and admins with EHR management, appointment scheduling, billing, and inventory tracking.',
+        briefing: 'MediNexus modernizes hospital operations through a unified, role-based platform that handles everything from patient records to concurrent appointment booking.\n\n• ROLE-BASED PORTALS: Separate patient, doctor, and admin experiences secured by Supabase Auth with granular permissions.\n• HEALTH PASSPORT: Unified patient records that follow the patient across hospitals, with cross-hospital access control and referrals.\n• CONCURRENT SCHEDULING: Appointment booking with slot locking that prevents double-booking under multi-user load.\n• OPERATIONS SUITE: EHR management, billing, and inventory tracking in one place.',
+        challenge: 'Building a concurrent appointment booking system with slot locking and race-condition prevention while keeping performance stable under multi-user load.',
+        solution: 'Implemented Supabase Auth for role-based access control, PostgreSQL indexing for query optimization, and a Health Passport system for unified patient records across hospitals.',
+        tech: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'PostgreSQL', 'Supabase'],
         features: [
-            'AI Symptom Analysis',
-            'Digital Medical Records',
-            'Smart Medicine Recommendation',
-            'Remote Health Monitoring',
-            'Healthcare Analytics Dashboard'
+            'Role-Based Access Control',
+            'Health Passport (Unified Records)',
+            'Appointment Scheduling with Slot Locking',
+            'EHR, Billing & Inventory Management',
+            'Referral System'
         ],
         impact: [
-            'Improve healthcare accessibility 🌍',
-            'Reduce diagnosis delays ⏱️',
-            'Simplify medical data management 📂',
-            'Support remote healthcare 🏥'
+            'Unified patient records across hospitals',
+            'Reliable scheduling without double-booked slots',
+            'One platform for patients, doctors & admins'
         ],
         futureScope: [
-            'AI virtual doctors',
             'Smart wearable integration',
-            'Blockchain-based medical records',
-            'Predictive epidemic analytics'
+            'Analytics dashboards for hospital operations'
         ],
-        image: '/projects/medinexus-1.png',
+        image: '/projects/medinexus-1.webp',
         gallery: [
-            '/projects/medinexus-1.png',
-            '/projects/medinexus-2.png'
+            '/projects/medinexus-1.webp',
+            '/projects/medinexus-2.webp'
         ],
         IconComponent: Activity,
         color: '#ff3333',
         links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
+            live: 'https://client-xi-blond-54.vercel.app/'
         }
     },
     {
         id: 'jal-drishti',
         year: '2025',
         title: 'Jal Drishti',
-        subtitle: 'AI-Powered Smart Water Intelligence & Conservation System',
+        subtitle: 'Urban Flood Prediction Engine',
         category: 'Civic Tech',
-        description: 'An intelligent water monitoring and conservation platform designed to solve modern water management challenges using AI, IoT, and real-time analytics.',
-        briefing: 'Jal Drishti is an AI-powered water management platform focused on data-driven conservation and quality monitoring.\n\n• DIGITAL INFRASTRUCTURE TWIN: Real-time IoT monitoring of water pressure, flow rates, and reservoir levels.\n• PREDICTIVE LEAK DETECTION: AI models identify flow anomalies to stop water wastage before it escalates.\n• QUALITY ASSURANCE: Constant monitoring of pH, TDS, and turbidity to ensure safe water distribution.\n• AGRICULTURAL EFFICIENCY: AI-optimized irrigation cycles based on soil moisture and weather data forecasting.',
-        challenge: 'Global water scarcity is exacerbated by inefficient infrastructure, undetected pipeline leaks, and a lack of real-time quality monitoring. Millions of liters are lost daily due to manual inspection dependencies and outdated management systems.',
-        solution: 'Developed an AI+IoT ecosystem capable of instant leak detection, contamination monitoring (pH, TDS, Turbidity), and predictive demand forecasting.',
-        tech: ['AI/ML (Anomaly Detection)', 'IoT Sensors', 'Cloud Computing', 'FastAPI', 'Python', 'Data Analytics', 'GSM/WiFi Modules'],
+        description: 'A flood prediction system that combines satellite imagery, GIS layers, and meteorological data for real-time urban flood risk assessment.',
+        briefing: 'Jal Drishti gives city planners and citizens actionable, real-time flood-risk intelligence using geospatial AI. It won the Geospatial Intelligence Hack \'26 and reached the Top 10 at India Innovates \'26.\n\n• FLOOD RISK MAPS: Grid-level risk heatmaps over satellite terrain, with flood type, impact zone, and model confidence.\n• RAINFALL SCENARIOS: Adjust the rainfall input to see how flood risk spreads across an area.\n• SAFE ROUTES: Suggests routes to nearby safe zones.\n• RESOURCE ALLOCATION: Prioritizes relief resources for the highest-risk areas.',
+        challenge: 'Integrating heterogeneous geospatial data sources (satellite imagery, GIS layers, and live meteorological feeds) into a unified, low-latency prediction pipeline.',
+        solution: 'Developed a scalable data pipeline using spatial interpolation and geospatial analytics, with an XGBoost model scoring flood risk and a React.js frontend for real-time risk visualization.',
+        tech: ['Python', 'XGBoost', 'Geospatial Analysis', 'Satellite & GIS Data', 'React.js'],
         features: [
-            'Smart Water Monitoring',
-            'AI Leak Detection',
-            'Water Quality Analysis',
-            'Smart Irrigation System',
-            'Predictive Analytics'
+            'Flood Risk Heatmaps',
+            'Rainfall Scenario Simulation',
+            'Safe Route Suggestions',
+            'Resource Allocation Planning'
         ],
         impact: [
-            'Reduce water wastage 💧',
-            'Improve water conservation 🌍',
-            'Prevent pipeline losses 🚰',
-            'Enhance agricultural efficiency 🌾'
+            'Earlier flood warnings for vulnerable areas 🌊',
+            'Data-driven evacuation planning 🚨',
+            'Better allocation of relief resources 🏘️'
         ],
         futureScope: [
-            'AI autonomous water management',
-            'Satellite-based water analytics',
-            'Blockchain-based water data transparency'
+            'Live sensor and weather feed integration',
+            'City-wide deployment with local authorities'
         ],
-        image: '/projects/jaldrishti-1.png',
+        image: '/projects/jaldrishti-1.webp',
         gallery: [
-            '/projects/jaldrishti-1.png',
-            '/projects/jaldrishti-2.png',
-            '/projects/jaldrishti-3.png'
+            '/projects/jaldrishti-1.webp',
+            '/projects/jaldrishti-2.webp',
+            '/projects/jaldrishti-3.webp'
         ],
         IconComponent: Globe,
         color: '#ff3333',
         links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
+            repo: 'https://github.com/ItzHimanshu007/jaldhristhi_jklu',
+            live: 'https://jaldhristhi-mission-control-6emdfpu7s.vercel.app/'
         }
     },
     {
         id: 'neuronest',
         year: '2024',
         title: 'Neuronest',
-        subtitle: 'AI + VR Powered Mental Wellness Ecosystem',
+        subtitle: 'Adaptive VR Exposure Therapy System',
         category: 'Health Tech',
-        description: 'An advanced mental wellness platform combining AI, VR, and emotional analytics to create personalized and emotionally adaptive digital therapy.',
-        briefing: 'Neuronest is an AI + VR mental wellness sanctuary designed to provide accessible, emotionally adaptive therapy.\n\n• EMPATHETIC AI COMPANION: Conversational assistant capable of understanding sentiment and providing emotional support.\n• VR IMMERSION: Calm virtual environments (Zen forests, beaches) that respond to the user\'s emotional state.\n• BEHAVIORAL INTELLIGENCE: Real-time mood and stress analytics to track wellness progress over time.\n• PERSONALIZED WELLNESS: Recommendation engine for meditation, focus sessions, and sleep therapy based on emotional data.',
-        challenge: 'Rising workplace burnout and academic pressure are colliding with high therapy costs, long wait times, and social stigma. Many individuals avoid seeking help because traditional systems lack personalization and feel uncomfortable for discussing sensitive emotions openly.',
-        solution: 'Developed an intelligent ecosystem featuring empathetic AI assistants for emotional conversations, real-time sentiment analysis, and immersive VR therapy environments (Zen forests, mountain peaks).',
-        tech: ['React / React Native', 'Node.js', 'FastAPI', 'Three.js', 'Unity Engine', 'TensorFlow', 'Python', 'Sentiment Analysis'],
+        description: 'An AI + VR exposure therapy platform for PTSD, phobias, and anxiety disorders that personalizes each session using biofeedback (GSR and HRV signals).',
+        briefing: 'Neuronest bridges traditional therapy and emerging technology with immersive VR environments that adapt in real time to patient biofeedback. It won HACKSTORM \'25 and IDEA-THON \'25.\n\n• VR EXPOSURE SCENES: Graded scenarios such as high-rise buildings, suspension bridges, and mountain cliffs for acrophobia treatment.\n• BIOFEEDBACK ADAPTATION: GSR and HRV signals adjust session intensity in real time.\n• PATIENT & THERAPIST DASHBOARDS: Patients track sessions, goals, and progress; therapists monitor and guide treatment.\n• CLINICAL VALIDATION: Validated with mental health professionals, with a pilot deployment being explored.',
+        challenge: 'Synchronizing real-time biometric signals (GSR, HRV) with dynamic VR therapy environments while maintaining clinical reliability and low latency.',
+        solution: 'Developed an adaptive, biofeedback-driven system that uses GSR and HRV signals to personalize therapy in real time, validated with mental health professionals.',
+        tech: ['Python', 'TensorFlow', 'Unity', 'WebRTC'],
         features: [
-            'AI Emotional Assistant',
-            'VR Therapy Environments',
-            'Mood & Emotion Analytics',
-            'Guided Wellness Programs',
-            'Smart Distress Detection'
+            'VR Exposure Therapy Scenes',
+            'GSR & HRV Biofeedback',
+            'Adaptive Session Intensity',
+            'Patient & Therapist Dashboards'
         ],
         impact: [
-            'Reduce mental health stigma 🧠',
-            'Improve emotional awareness 🌍',
-            'Make therapy more accessible 💙',
-            'Support students & professionals 🎓'
+            'More accessible exposure therapy 💙',
+            'Personalized, data-driven sessions 🧠',
+            'Progress tracking for therapists 📈'
         ],
         futureScope: [
-            'AI therapist avatars',
-            'Brain-computer interface integration',
-            'Smart wearable integration',
-            'Multiplayer mindfulness spaces'
+            'Clinical pilot deployment',
+            'Additional phobia and PTSD scenarios'
         ],
-        image: '/projects/neuronest-1.png',
+        image: '/projects/neuronest-1.webp',
         gallery: [
-            '/projects/neuronest-1.png',
-            '/projects/neuronest-2.png',
-            '/projects/neuronest-3.png',
-            '/projects/neuronest-4.png',
-            '/projects/neuronest-5.png'
+            '/projects/neuronest-1.webp',
+            '/projects/neuronest-2.webp',
+            '/projects/neuronest-3.webp',
+            '/projects/neuronest-4.webp',
+            '/projects/neuronest-5.webp'
         ],
         IconComponent: Monitor,
         color: '#ff3333',
-        links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
-        }
+        links: {}
     },
     {
         id: 'civic-pulse',
@@ -225,18 +211,15 @@ export const projectsData: ProjectMission[] = [
             'Server-side rendering support',
             'Automated E2E testing'
         ],
-        image: '/projects/civicpulse-3.png',
+        image: '/projects/civicpulse-3.webp',
         gallery: [
-            '/projects/civicpulse-1.png',
-            '/projects/civicpulse-2.png',
-            '/projects/civicpulse-3.png',
-            '/projects/civicpulse-4.png'
+            '/projects/civicpulse-1.webp',
+            '/projects/civicpulse-2.webp',
+            '/projects/civicpulse-3.webp',
+            '/projects/civicpulse-4.webp'
         ],
         IconComponent: Layers,
         color: '#ff3333',
-        links: {
-            github: 'https://github.com/ItzHimanshu007',
-            live: '#'
-        }
+        links: {}
     }
 ];

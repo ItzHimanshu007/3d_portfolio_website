@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portfolio-himanshu-jasoiya.vercel.app/sitemap.xml

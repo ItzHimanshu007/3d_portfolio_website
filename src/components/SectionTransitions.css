@@ -1,12 +1,11 @@
+/* Opacity only: a transform here would trap position: fixed children and skew scroll-target measurements */
 .section-reveal {
     opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 1.5s ease-out, transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: opacity 1.5s ease-out;
 }
 
 .section-revealed {
     opacity: 1;
-    transform: translateY(0);
 }
 
 .transition-line {

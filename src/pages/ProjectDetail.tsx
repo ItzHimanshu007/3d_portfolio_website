@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Github, ExternalLink, Calendar, Tag, Target, Lightbulb, ShieldCheck } from 'lucide-react';
 import { projectsData } from '../data/projects';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
+import NotFound from './NotFound';
 import './ProjectDetail.css';
 
 const ProjectDetail: React.FC = () => {
@@ -16,13 +18,16 @@ const ProjectDetail: React.FC = () => {
 
     if (!project) {
         return (
-            <div className="not-found-container">
-                <h2>MISSION_ID_INVALID</h2>
-                <p>The requested mission data could not be retrieved from the encrypted database.</p>
-                <button onClick={() => navigate('/archive')}>RETURN TO ARCHIVE</button>
-            </div>
+            <NotFound
+                title="Project not found"
+                message="This project doesn't exist or has been renamed."
+                backTo="/archive"
+                backLabel="Browse all projects"
+            />
         );
     }
+
+    const { repo, live } = project.links;
 
     return (
         <div className="project-detail-page">
@@ -35,7 +40,14 @@ const ProjectDetail: React.FC = () => {
             >
                 {/* Background Image - Same as Hackathon Detail */}
                 <div className="hero-visual-depth">
-                    <img src={project.gallery[0]} alt={project.title} className="hero-main-img" />
+                    <img
+                        src={project.gallery[0]}
+                        srcSet={responsiveSrcSet(project.gallery[0])}
+                        sizes="100vw"
+                        alt=""
+                        className="hero-main-img"
+                        fetchPriority="high"
+                    />
                     <div className="hero-overlay-gradient"></div>
                 </div>
 
@@ -135,29 +147,38 @@ const ProjectDetail: React.FC = () => {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                             >
-                                <img src={img} alt={`${project.title} screenshot ${idx + 1}`} />
+                                <img
+                                    src={thumbnail(img)}
+                                    srcSet={responsiveSrcSet(img)}
+                                    sizes="(max-width: 900px) 100vw, 50vw"
+                                    alt={`${project.title} screenshot ${idx + 1}`}
+                                    loading="lazy"
+                                    decoding="async"
+                                />
                             </motion.div>
                         ))}
                     </div>
                 </section>
 
-                <section className="mission-actions">
-                    <h3>ESTABLISH EXTERNAL LINK?</h3>
-                    <div className="action-btns">
-                        {project.links.github && (
-                            <a href={project.links.github} target="_blank" rel="noopener noreferrer" className="action-btn github">
-                                <Github size={20} />
-                                <span>SOURCE_CODE</span>
-                            </a>
-                        )}
-                        {project.links.live && (
-                            <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="action-btn live">
-                                <ExternalLink size={20} />
-                                <span>LIVE_OPERATION</span>
-                            </a>
-                        )}
-                    </div>
-                </section>
+                {(repo || live) && (
+                    <section className="mission-actions">
+                        <h3>ESTABLISH EXTERNAL LINK?</h3>
+                        <div className="action-btns">
+                            {repo && (
+                                <a href={repo} target="_blank" rel="noopener noreferrer" className="action-btn github">
+                                    <Github size={20} />
+                                    <span>SOURCE_CODE</span>
+                                </a>
+                            )}
+                            {live && (
+                                <a href={live} target="_blank" rel="noopener noreferrer" className="action-btn live">
+                                    <ExternalLink size={20} />
+                                    <span>LIVE_OPERATION</span>
+                                </a>
+                            )}
+                        </div>
+                    </section>
+                )}
             </main>
 
             <footer className="detail-footer">

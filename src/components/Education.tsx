@@ -14,7 +14,7 @@ const educationData = [
         grade: 'CGPA: 9.2/10',
         courses: ['Artificial Intelligence', 'Data Science', 'Machine Learning', 'Neural Networks'],
         icon: <Zap size={24} />,
-        image: '/character-college.png'
+        image: '/character-college.webp'
     },
     {
         id: 2,
@@ -26,7 +26,7 @@ const educationData = [
         grade: 'Excellence',
         courses: ['Physics', 'Chemistry', 'Mathematics', 'Computer Science'],
         icon: <Book size={24} />,
-        image: '/character-high-school.png'
+        image: '/character-high-school.webp'
     },
     {
         id: 3,
@@ -38,7 +38,7 @@ const educationData = [
         grade: 'Distinction',
         courses: ['Science', 'Mathematics', 'English', 'Social Science'],
         icon: <Library size={24} />,
-        image: '/character-middle-school.png'
+        image: '/character-middle-school.webp'
     }
 ];
 
@@ -96,7 +96,7 @@ const KnowledgeMilestone = ({ edu, index }: { edu: typeof educationData[0], inde
                     animate={isInView ? { opacity: 1, scale: 1, x: 0 } : {}}
                     transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                    <img src={edu.image} alt="Student Mascot" className="milestone-mascot-img" />
+                    <img src={edu.image} width={682} height={1024} alt="" className="milestone-mascot-img" loading="lazy" decoding="async" />
                     <div className="mascot-platform-glow"></div>
                 </motion.div>
             </motion.div>

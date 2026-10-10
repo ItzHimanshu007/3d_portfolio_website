@@ -1,7 +1,10 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Mail, Phone, MapPin, Linkedin, Github, Twitter, Sparkles, Send } from 'lucide-react';
+import { SITE } from '../config/site';
 import './Contact.css';
+
+type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
 
 const Contact: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -11,55 +14,64 @@ const Contact: React.FC = () => {
         email: '',
         message: ''
     });
-    const [isSubmitting, setIsSubmitting] = React.useState(false);
-    const [submitted, setSubmitted] = React.useState(false);
+    const [status, setStatus] = React.useState<FormStatus>('idle');
 
     const contactInfo = [
-        { icon: Mail, label: 'Email', value: 'hjasoriya007@gmail.com', link: 'mailto:hjasoriya007@gmail.com' },
-        { icon: Phone, label: 'Phone', value: '+91 6375884386', link: 'tel:+916375884386' },
-        { icon: MapPin, label: 'Location', value: 'Jaipur, Rajasthan, India', link: null }
+        { icon: Mail, label: 'Email', value: SITE.email, link: `mailto:${SITE.email}` },
+        { icon: Phone, label: 'Phone', value: SITE.phone, link: `tel:${SITE.phone.replace(/\s/g, '')}` },
+        { icon: MapPin, label: 'Location', value: SITE.location, link: null }
     ];
 
     const socialLinks = [
-        { icon: Linkedin, name: 'LinkedIn', url: 'https://www.linkedin.com/in/himanshu-jasoriya-23b77331a' },
-        { icon: Github, name: 'GitHub', url: 'https://github.com/ItzHimanshu007' },
-        { icon: Twitter, name: 'Twitter', url: 'https://x.com/itzhimanshu_07' }
+        { icon: Linkedin, name: 'LinkedIn', url: SITE.socials.linkedin },
+        { icon: Github, name: 'GitHub', url: SITE.socials.github },
+        { icon: Twitter, name: 'X (Twitter)', url: SITE.socials.twitter }
     ];
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormState(prev => ({ ...prev, [name]: value }));
+        if (status === 'error') setStatus('idle');
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        setIsSubmitting(true);
+        setStatus('submitting');
 
         try {
-            const formData = new FormData(e.target as HTMLFormElement);
-            // Using Web3Forms - simple and reliable for static sites
-            formData.append("access_key", "d5145b4c-9786-4f7f-8c34-8c888e2c0e2a"); // Public demo key or replace with real one
+            const formData = new FormData(e.currentTarget);
+            // Web3Forms: simple form backend for static sites
+            formData.append('access_key', SITE.web3formsKey);
+            formData.append('subject', `Portfolio message from ${formState.name}`);
 
-            const response = await fetch("https://api.web3forms.com/submit", {
-                method: "POST",
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
                 body: formData
             });
+            const data = await response.json().catch(() => null);
 
-            const data = await response.json();
-
-            if (data.success) {
-                setSubmitted(true);
+            if (response.ok && data?.success) {
+                setStatus('success');
                 setFormState({ name: '', email: '', message: '' });
-                setTimeout(() => setSubmitted(false), 5000);
+                setTimeout(() => setStatus('idle'), 6000);
             } else {
-                console.error("Submission Error", data);
+                console.error('Contact form submission failed', data);
+                setStatus('error');
             }
         } catch (error) {
-            console.error("Transmission Failed", error);
-        } finally {
-            setIsSubmitting(false);
+            console.error('Contact form submission failed', error);
+            setStatus('error');
         }
     };
+
+    const mailtoFallback = `mailto:${SITE.email}?subject=${encodeURIComponent(`Portfolio message from ${formState.name || 'a visitor'}`)}&body=${encodeURIComponent(formState.message)}`;
+
+    const buttonLabel = {
+        idle: 'Send Message',
+        submitting: 'Sending…',
+        success: 'Message Sent',
+        error: 'Try Again',
+    }[status];
 
     return (
         <section className="contact-premium-section" ref={sectionRef} id="contact">
@@ -74,7 +86,7 @@ const Contact: React.FC = () => {
                     >
                         <div className="premium-badge">
                             <Sparkles size={16} />
-                            <span>Let's Create Together</span>
+                            <span>Get in Touch</span>
                         </div>
 
                         <h2 className="premium-main-title">
@@ -82,15 +94,15 @@ const Contact: React.FC = () => {
                         </h2>
 
                         <p className="contact-desc-premium">
-                            Have a vision you want to bring to life? I'm always open to discussing
-                            innovative projects and creative partnerships.
+                            Hiring for an internship, or have a project in mind? I'm always open to discussing
+                            new opportunities and collaborations.
                         </p>
 
                         <div className="contact-methods-premium">
-                            {contactInfo.map((info, idx) => {
+                            {contactInfo.map((info) => {
                                 const Icon = info.icon;
                                 return (
-                                    <div key={idx} className="method-item-premium">
+                                    <div key={info.label} className="method-item-premium">
                                         <div className="method-icon">
                                             <Icon size={20} />
                                         </div>
@@ -117,70 +129,85 @@ const Contact: React.FC = () => {
                     >
                         <form className="contact-form-cyber" onSubmit={handleSubmit}>
                             {/* Honeypot for spam protection */}
-                            <input type="checkbox" name="botcheck" className="sr-only" style={{ display: "none" }} />
+                            <input type="checkbox" name="botcheck" className="sr-only" style={{ display: "none" }} tabIndex={-1} aria-hidden="true" />
 
                             <div className="form-group-cyber">
-                                <label htmlFor="name">IDENTIFIER_NAME</label>
+                                <label htmlFor="name">Name</label>
                                 <input
                                     id="name"
                                     type="text"
                                     name="name"
+                                    autoComplete="name"
                                     value={formState.name}
                                     onChange={handleInputChange}
-                                    placeholder="Enter your name"
+                                    placeholder="Your name"
                                     required
                                 />
                             </div>
                             <div className="form-group-cyber">
-                                <label htmlFor="email">CONTACT_NODE_EMAIL</label>
+                                <label htmlFor="email">Email</label>
                                 <input
                                     id="email"
                                     type="email"
                                     name="email"
+                                    autoComplete="email"
                                     value={formState.email}
                                     onChange={handleInputChange}
-                                    placeholder="your@email.com"
+                                    placeholder="you@company.com"
                                     required
                                 />
                             </div>
                             <div className="form-group-cyber">
-                                <label htmlFor="message">TRANSMISSION_DATA</label>
+                                <label htmlFor="message">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     value={formState.message}
                                     onChange={handleInputChange}
-                                    placeholder="What's your vision?"
+                                    placeholder="Tell me about the role or project"
                                     rows={4}
                                     required
                                 />
                             </div>
                             <motion.button
                                 type="submit"
-                                className={`cyber-contact-btn ${submitted ? 'success' : ''}`}
-                                disabled={isSubmitting}
+                                className={`cyber-contact-btn ${status === 'success' ? 'success' : ''}`}
+                                disabled={status === 'submitting'}
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
                             >
-                                <Send size={18} />
-                                <span>{isSubmitting ? 'ENCRYPTING...' : submitted ? 'TRANSMITTED' : 'EXECUTE_SEND'}</span>
+                                <Send size={18} aria-hidden="true" />
+                                <span>{buttonLabel}</span>
                             </motion.button>
+
+                            <div className="contact-form-status" role="status" aria-live="polite">
+                                {status === 'success' && (
+                                    <p className="form-status-success">Thanks! Your message was sent. I'll get back to you soon.</p>
+                                )}
+                                {status === 'error' && (
+                                    <p className="form-status-error">
+                                        Sorry, your message couldn't be sent. Please try again, or{' '}
+                                        <a href={mailtoFallback}>email me directly at {SITE.email}</a>.
+                                    </p>
+                                )}
+                            </div>
                         </form>
 
                         <div className="social-connect-premium">
                             <div className="social-grid-premium">
-                                {socialLinks.map((social, idx) => {
+                                {socialLinks.map((social) => {
                                     const Icon = social.icon;
                                     return (
                                         <motion.a
-                                            key={idx}
+                                            key={social.name}
                                             href={social.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="social-btn-premium"
-                                            whileHover={{ y: -5, backgroundColor: '#ff3333', color: '#fff' }}
+                                            aria-label={`${social.name} (opens in new tab)`}
+                                            whileHover={{ y: -5, backgroundColor: '#e01e1e', color: '#fff' }}
                                         >
-                                            <Icon size={18} />
+                                            <Icon size={18} aria-hidden="true" />
                                         </motion.a>
                                     );
                                 })}
@@ -188,7 +215,7 @@ const Contact: React.FC = () => {
                         </div>
 
                         <div className="contact-mascot-peek">
-                            <img src="/character-glasses-phone.png" alt="Contact Mascot" />
+                            <img src="/character-glasses-phone.webp" width={512} height={804} alt="" loading="lazy" decoding="async" />
                         </div>
                     </motion.div>
                 </div>

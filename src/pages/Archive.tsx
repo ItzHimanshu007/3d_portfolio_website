@@ -1,11 +1,11 @@
 import { useRef } from 'react';
-import { motion, useScroll, useSpring, useTransform, useMotionValue } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { projectsData } from '../data/projects';
+import { motion, useScroll, useSpring, useTransform, useMotionValue, type MotionValue } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
+import { projectsData, type ProjectMission } from '../data/projects';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
 import './Archive.css';
 
-const TimelineItem = ({ project, index, mouseX, mouseY }: { project: any, index: number, mouseX: any, mouseY: any }) => {
-    const navigate = useNavigate();
+const TimelineItem = ({ project, index, mouseX, mouseY }: { project: ProjectMission, index: number, mouseX: MotionValue<number>, mouseY: MotionValue<number> }) => {
     const isLeft = index % 2 === 0;
     const itemRef = useRef(null);
 
@@ -46,9 +46,17 @@ const TimelineItem = ({ project, index, mouseX, mouseY }: { project: any, index:
                         duration: 0.8
                     }}
                 >
-                    <div className="project-card-premium" onClick={() => navigate(`/project/${project.id}`)}>
+                    <Link to={`/project/${project.id}`} className="project-card-premium">
                         <div className="card-image-container">
-                            <img src={project.image} alt={project.title} className="card-image" />
+                            <img
+                                src={thumbnail(project.image)}
+                                srcSet={responsiveSrcSet(project.image)}
+                                sizes="(max-width: 900px) 100vw, 45vw"
+                                alt={`${project.title} screenshot`}
+                                className="card-image"
+                                loading={index === 0 ? 'eager' : 'lazy'}
+                                decoding="async"
+                            />
                             <div className="card-overlay" />
                             <div className="card-category">{project.category}</div>
                         </div>
@@ -59,12 +67,12 @@ const TimelineItem = ({ project, index, mouseX, mouseY }: { project: any, index:
                             <p className="card-description">{project.description}</p>
 
                             <div className="card-tech-stack">
-                                {project.tech.slice(0, 3).map((t: string) => (
+                                {project.tech.slice(0, 3).map((t) => (
                                     <span key={t} className="tech-tag">{t}</span>
                                 ))}
                             </div>
                         </div>
-                    </div>
+                    </Link>
                 </motion.div>
 
                 {/* Character Mascot */}
@@ -84,7 +92,7 @@ const TimelineItem = ({ project, index, mouseX, mouseY }: { project: any, index:
                         ease: "easeInOut"
                     }}
                 >
-                    <img src="/character-vinyl.png" alt="Mascot" className="toy-image" />
+                    <img src="/character-vinyl.webp" width={583} height={1024} alt="" className="toy-image" loading="lazy" decoding="async" />
                     <div className="toy-shadow" />
                 </motion.div>
             </div>

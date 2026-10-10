@@ -2,7 +2,7 @@
 
 > *Architecting Digital Futures with React, Three.js, and Framer Motion.*
 
-![Banner](public/character-hero.png)
+![Banner](public/character-hero.webp)
 
 <div align="center">
 
@@ -12,7 +12,7 @@
 [![Framer Motion](https://img.shields.io/badge/Framer_Motion-10.x-0055FF?style=for-the-badge&logo=framer&logoColor=white)](https://www.framer.com/motion/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-[**Live Demo**](#) · [**Report Bug**](#) · [**Request Feature**](#)
+[**Live Demo**](https://portfolio-himanshu-jasoiya.vercel.app/) · [**Report Bug**](#) · [**Request Feature**](#)
 
 </div>
 
@@ -75,7 +75,7 @@ src/
 
 Ready to build something extraordinary?
 
-*   **LinkedIn:** [Himanshu Jasoriya](https://www.linkedin.com/in/himanshu-jasoriya-1548a0215/)
+*   **LinkedIn:** [Himanshu Jasoriya](https://www.linkedin.com/in/himanshu-jasoriya/)
 *   **GitHub:** [ItzHimanshu007](https://github.com/ItzHimanshu007)
 *   **Email:** [Contact via Portfolio](#contact)
 

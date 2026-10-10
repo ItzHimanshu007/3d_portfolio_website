@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
                 <div className="container footer-container">
                     <div className="footer-info">
                         <motion.img
-                            src="/character-vinyl.png"
+                            src="/character-vinyl.webp"
                             alt="Character Icon"
                             className="footer-character"
                             animate={{ rotate: [0, 5, -5, 0] }}

@@ -114,6 +114,7 @@ const ScrollModel: React.FC = () => {
 
   return (
     <div
+      aria-hidden="true"
       className="scroll-model-container"
       style={{
         opacity: modelOpacity,
@@ -136,8 +137,8 @@ const ScrollModel: React.FC = () => {
           }}
         >
           <img
-            src="/character-hero.png"
-            alt="3D Character"
+            src="/character-hero.webp"
+            alt=""
             className="model-3d-image"
           />
           {/* Reflection / depth layer */}

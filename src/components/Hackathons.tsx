@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Trophy, Calendar, Sparkles, BookOpen, Quote } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { hackathonsData } from '../data/hackathons';
+import { Link } from 'react-router-dom';
+import { hackathonsData, type Hackathon } from '../data/hackathons';
 import './Hackathons.css';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
-    const navigate = useNavigate();
+const MotionLink = motion.create(Link);
+
+const HackathonCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
     const cardRef = useRef(null);
     const isInView = useInView(cardRef, { once: true, amount: 0.2 });
     const Icon = hack.icon;
@@ -52,7 +52,7 @@ const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
                 <p className="hack-description">{hack.description}</p>
 
                 <div className="hack-key-achievements">
-                    {hack.achievements.slice(0, 2).map((achievement: string, i: number) => (
+                    {hack.achievements.slice(0, 2).map((achievement, i) => (
                         <div key={i} className="hack-achievement-item">
                             <div className="achievement-dot"></div>
                             <span>{achievement}</span>
@@ -61,29 +61,29 @@ const HackathonCard = ({ hack, index }: { hack: any, index: number }) => {
                 </div>
 
                 <div className="hack-tech-stack">
-                    {hack.tech.map((t: string) => (
+                    {hack.tech.map((t) => (
                         <span key={t} className="hack-tech-tag">{t}</span>
                     ))}
                 </div>
             </div>
 
             <div className="hack-card-footer">
-                <motion.button
+                <MotionLink
+                    to={`/hackathon/${hack.id}`}
                     className="hack-link-btn-premium"
-                    whileHover={{ scale: 1.05, backgroundColor: '#ff3333', color: '#fff' }}
+                    aria-label={`Deep dive: ${hack.title} at ${hack.event}`}
+                    whileHover={{ scale: 1.05, backgroundColor: '#e01e1e', color: '#fff' }}
                     whileTap={{ scale: 0.95 }}
-                    onClick={() => navigate(`/hackathon/${hack.id}`)}
                 >
                     <BookOpen size={16} />
                     <span>DEEP DIVE MISSION</span>
-                </motion.button>
+                </MotionLink>
             </div>
         </motion.div>
     );
 };
 
 export default function Hackathons() {
-    const navigate = useNavigate();
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
 
@@ -122,13 +122,13 @@ export default function Hackathons() {
                         transition={{ duration: 1, ease: 'easeOut' }}
                     >
                         <div className="gallery-card-3d tilt-left">
-                            <img src="/hackathon-win-standing.png" alt="Win 1" />
+                            <img src="/hackathon-win-standing.webp" width={583} height={1024} alt="" loading="lazy" decoding="async" />
                         </div>
                         <div className="gallery-card-3d centerpiece">
-                            <img src="/hackathon-win-trophy.png" alt="Win 2" />
+                            <img src="/hackathon-win-trophy.webp" width={583} height={1024} alt="" loading="lazy" decoding="async" />
                         </div>
                         <div className="gallery-card-3d tilt-right">
-                            <img src="/hackathon-win-coding.png" alt="Win 3" />
+                            <img src="/hackathon-win-coding.webp" width={682} height={1024} alt="" loading="lazy" decoding="async" />
                         </div>
                     </motion.div>
                 </div>
@@ -150,15 +150,15 @@ export default function Hackathons() {
                 >
                     <div className="cta-divider"></div>
                     <p>Want to see the full mission history?</p>
-                    <motion.button
+                    <MotionLink
+                        to="/hackathons-archive"
                         className="premium-view-all"
                         whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 51, 51, 0.6)' }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => navigate('/hackathons-archive')}
                     >
                         Browse Archive
-                        <div className="btn-glow"></div>
-                    </motion.button>
+                        <span className="btn-glow"></span>
+                    </MotionLink>
                 </motion.div>
 
                 <motion.div
@@ -168,7 +168,7 @@ export default function Hackathons() {
                     transition={{ delay: 0.8, duration: 1 }}
                 >
                     <div className="creative-mascot-group">
-                        <img src="/character-shouting.png" alt="Mascot" className="peeking-toy-premium" />
+                        <img src="/character-shouting.webp" width={682} height={1024} alt="" className="peeking-toy-premium" loading="lazy" decoding="async" />
                         <div className="creative-chat-bubble">
                             <Quote size={12} className="quote-icon-chat" />
                             <span>"We don't just participate. We dominate."</span>

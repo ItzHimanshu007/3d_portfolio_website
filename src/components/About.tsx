@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import { MapPin, Code2, Award, Zap, Sparkles, Download } from 'lucide-react';
+import { SITE } from '../config/site';
 import './About.css';
 
 const About: React.FC = () => {
@@ -58,24 +59,27 @@ const About: React.FC = () => {
 
                         <div className="about-location-badge">
                             <MapPin size={18} />
-                            <span>Jaipur, Rajasthan, India</span>
+                            <span>{SITE.location}</span>
                         </div>
 
                         <p className="about-bio-premium">
-                            I am a <span className="highlight-red">Freelance Full-Stack & AI/ML Developer</span> and the <span className="highlight-red">Founder of Neuronest</span>,
-                            an innovative AI + VR mental health therapy platform. My mission is to build intelligent solutions
+                            I am an <span className="highlight-red">{SITE.role}</span> pursuing a B.Tech in AI & Data Science,
+                            and the <span className="highlight-red">Founder of Neuronest</span>, an AI + VR exposure therapy platform.
+                            I take on freelance projects and I'm open to internships. My mission is to build intelligent solutions
                             that matter.
                         </p>
 
-                        <motion.button
+                        <motion.a
+                            href={SITE.resumeUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="about-resume-btn"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
-                            onClick={() => window.open('/resume101.pdf', '_blank')}
                         >
                             <Download size={18} />
                             <span>GET_RESUME</span>
-                        </motion.button>
+                        </motion.a>
 
                         <div className="about-stats-grid">
                             {skills.map((skill, idx) => {
@@ -120,8 +124,12 @@ const About: React.FC = () => {
                             </div>
 
                             <motion.img
-                                src="/character-thinking.png"
-                                alt="About Character"
+                                src="/character-thinking.webp"
+                                width={536}
+                                height={764}
+                                alt=""
+                                loading="lazy"
+                                decoding="async"
                                 className="main-character-img"
                                 style={{ translateZ: "50px" }}
                             />

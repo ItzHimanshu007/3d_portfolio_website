@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getLenis } from '../utils/lenis';
 
 const ScrollToTop = () => {
     const location = useLocation();
@@ -7,13 +8,9 @@ const ScrollToTop = () => {
 
     useEffect(() => {
         // If we have a target section to scroll to, let the page handle it
-        if ((state as any)?.scrollTo) return;
+        if ((state as { scrollTo?: string } | null)?.scrollTo) return;
 
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const lenis = (window as any).lenis;
-        if (lenis) {
-            lenis.scrollTo(0, { immediate: true });
-        }
+        getLenis()?.scrollTo(0, { immediate: true });
 
         // Handle native scroll as fallback
         window.scrollTo(0, 0);

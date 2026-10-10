@@ -40,6 +40,7 @@ const KineticChar: React.FC<{
 
     return (
         <motion.span
+            aria-hidden="true"
             className="kinetic-char"
             style={{
                 x: charX,
@@ -55,7 +56,7 @@ const KineticChar: React.FC<{
 
 const KineticTitle: React.FC<{ title: string; progress: MotionValue<number> }> = ({ title, progress }) => {
     return (
-        <div className="kinetic-title-wrapper">
+        <div className="kinetic-title-wrapper" role="heading" aria-level={2} aria-label={title}>
             {title.split('').map((char, i) => (
                 <KineticChar
                     key={i}

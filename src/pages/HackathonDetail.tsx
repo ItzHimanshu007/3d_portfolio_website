@@ -1,8 +1,11 @@
 import { useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowLeft, Trophy, Target, Lightbulb, Zap, Rocket, ExternalLink, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Trophy, Target, Lightbulb, Zap, Rocket, ExternalLink, ShieldCheck } from 'lucide-react';
 import { hackathonsData } from '../data/hackathons';
+import { projectsData } from '../data/projects';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
+import NotFound from './NotFound';
 import './HackathonDetail.css';
 
 const HackathonDetail = () => {
@@ -19,7 +22,19 @@ const HackathonDetail = () => {
     const headerScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
     const headerOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
 
-    if (!hack) return <div>Hackathon not found</div>;
+    if (!hack) {
+        return (
+            <NotFound
+                title="Hackathon not found"
+                message="This hackathon entry doesn't exist or has been renamed."
+                backTo="/hackathons-archive"
+                backLabel="Browse all hackathons"
+            />
+        );
+    }
+
+    const relatedProject = projectsData.find(p => p.id === hack.projectId);
+    const hasActions = Boolean(hack.link || hack.certificateUrl || relatedProject);
 
     return (
         <div className="hackathon-detail-page" ref={containerRef}>
@@ -43,7 +58,14 @@ const HackathonDetail = () => {
                 </motion.div>
 
                 <div className="hero-visual-depth">
-                    <img src={hack.mainImage} alt={hack.title} className="hero-main-img" />
+                    <img
+                        src={hack.mainImage}
+                        srcSet={responsiveSrcSet(hack.mainImage)}
+                        sizes="100vw"
+                        alt=""
+                        className="hero-main-img"
+                        fetchPriority="high"
+                    />
                     <div className="hero-overlay-gradient"></div>
                 </div>
             </section>
@@ -108,18 +130,32 @@ const HackathonDetail = () => {
                                 ))}
                             </div>
 
-                            <div className="sidebar-divider"></div>
+                            {hasActions && (
+                                <>
+                                    <div className="sidebar-divider"></div>
 
-                            <div className="sidebar-actions">
-                                <button className="action-btn-primary" onClick={() => window.open(hack.link, '_blank')}>
-                                    <span>PROJECT DEMO</span>
-                                    <Rocket size={18} />
-                                </button>
-                                <button className="action-btn-secondary" onClick={() => window.open('https://www.linkedin.com/in/himanshu-jasoriya-1548a0215/', '_blank')}>
-                                    <span>VIEW CERTIFICATE</span>
-                                    <ExternalLink size={16} />
-                                </button>
-                            </div>
+                                    <div className="sidebar-actions">
+                                        {relatedProject && (
+                                            <Link to={`/project/${relatedProject.id}`} className="action-btn-primary">
+                                                <span>VIEW PROJECT CASE STUDY</span>
+                                                <ArrowRight size={18} />
+                                            </Link>
+                                        )}
+                                        {hack.link && (
+                                            <a href={hack.link} target="_blank" rel="noopener noreferrer" className="action-btn-primary">
+                                                <span>PROJECT DEMO</span>
+                                                <Rocket size={18} />
+                                            </a>
+                                        )}
+                                        {hack.certificateUrl && (
+                                            <a href={hack.certificateUrl} target="_blank" rel="noopener noreferrer" className="action-btn-secondary">
+                                                <span>VIEW CERTIFICATE</span>
+                                                <ExternalLink size={16} />
+                                            </a>
+                                        )}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>
@@ -140,7 +176,14 @@ const HackathonDetail = () => {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     transition={{ delay: idx * 0.1 }}
                                 >
-                                    <img src={img} alt={`Moment ${idx + 1}`} />
+                                    <img
+                                        src={thumbnail(img)}
+                                        srcSet={responsiveSrcSet(img)}
+                                        sizes="(max-width: 900px) 100vw, 50vw"
+                                        alt={`${hack.event}: photo ${idx + 1}`}
+                                        loading="lazy"
+                                        decoding="async"
+                                    />
                                     <div className="moment-overlay"></div>
                                 </motion.div>
                             ))}

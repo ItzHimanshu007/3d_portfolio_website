@@ -118,7 +118,7 @@ const Skills: React.FC = () => {
                         animate={isInView ? { opacity: 1, x: 0 } : {}}
                         transition={{ duration: 1, delay: 0.5 }}
                     >
-                        <img src="/character-peace-laptop.png" alt="Skills Mascot" className="skills-mascot-img" />
+                        <img src="/character-peace-laptop.webp" width={550} height={790} alt="" className="skills-mascot-img" loading="lazy" decoding="async" />
                         <div className="skills-badge-float">
                             <span>READY TO BUILD</span>
                         </div>

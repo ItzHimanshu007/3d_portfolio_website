@@ -1,4 +1,4 @@
-import { Trophy, Globe, Award, Sparkles, Cpu, Zap, Target, Hexagon, Terminal } from 'lucide-react';
+import { Trophy, Globe, Award, Sparkles, Cpu, Zap, Target, Hexagon, Terminal, type LucideIcon } from 'lucide-react';
 
 export interface Hackathon {
     id: string;
@@ -12,23 +12,28 @@ export interface Hackathon {
     gallery: string[];
     learnings: string[];
     achievements: string[];
+    // Optional links: buttons are rendered only when these are set.
     link?: string;
-    icon: any;
+    certificateUrl?: string;
+    // id of the related entry in projectsData, for a "view case study" link
+    projectId?: string;
+    icon: LucideIcon;
 }
 
 export const hackathonsData: Hackathon[] = [
     {
         id: 'hackstorm-25',
+        projectId: 'neuronest',
         title: 'Neuronest VR Therapy',
         event: 'HACKSTORM \'25',
         date: '2025',
         description: 'Built an AI-powered VR adaptive therapy platform for PTSD, phobias, and anxiety using real-time biofeedback.',
         award: 'Winner',
         tech: ['Python', 'TensorFlow', 'Unity'],
-        mainImage: '/hackathons/hackstrom win pic 1.jpeg',
+        mainImage: '/hackathons/hackstorm-1.webp',
         gallery: [
-            '/hackathons/hackstrom win pic 1.jpeg',
-            '/hackathons/hackstrom win pic2.jpeg'
+            '/hackathons/hackstorm-1.webp',
+            '/hackathons/hackstorm-2.webp'
         ],
         learnings: [
             'Real-time biofeedback integration',
@@ -44,16 +49,17 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'geospatial-hack-26',
+        projectId: 'jal-drishti',
         title: 'Jal Drishti Flood Engine',
         event: 'Geospatial Intelligence Hack \'26',
         date: '2026',
         description: 'Developed an ML-based urban flood prediction system using geospatial and meteorological data pipelines.',
         award: 'Winner',
         tech: ['Python', 'Geospatial Analysis', 'React.js'],
-        mainImage: '/hackathons/geospatial win pic 1.jpeg',
+        mainImage: '/hackathons/geospatial-1.webp',
         gallery: [
-            '/hackathons/geospatial win pic 1.jpeg',
-            '/hackathons/geospatial win pic2.jpeg'
+            '/hackathons/geospatial-1.webp',
+            '/hackathons/geospatial-2.webp'
         ],
         learnings: [
             'Geospatial data interpolation',
@@ -69,16 +75,17 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'ideathon-25',
+        projectId: 'neuronest',
         title: 'Neuronest Exposure Therapy',
         event: 'IDEA-THON \'25',
         date: '2025',
         description: 'Developed an innovative VR exposure therapy system for PTSD and phobias, focusing on psychological immersion.',
         award: 'Winner',
         tech: ['Python', 'TensorFlow', 'Unity'],
-        mainImage: '/hackathons/ideathon-1.jpg',
+        mainImage: '/hackathons/ideathon-1.webp',
         gallery: [
-            '/hackathons/ideathon-1.jpg',
-            '/hackathons/ideathon-2.jpg'
+            '/hackathons/ideathon-1.webp',
+            '/hackathons/ideathon-2.webp'
         ],
         learnings: [
             'User immersion psychology',
@@ -94,16 +101,17 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'unstoppable-hack',
+        projectId: 'sungrid-protocol',
         title: 'Web3 Energy Marketplace',
         event: 'Unstoppable Hackathon, LNMIIT',
         date: '2025',
         description: 'Built a decentralized energy trading marketplace leveraging blockchain technology for transparent P2P energy exchange.',
         award: 'Winner',
         tech: ['Web3', 'Solidity', 'React'],
-        mainImage: '/hackathons/unnstoppanble hackathon win pic1.jpeg',
+        mainImage: '/hackathons/unstoppable-1.webp',
         gallery: [
-            '/hackathons/unnstoppanble hackathon win pic1.jpeg',
-            '/hackathons/unstoppable hackathon win pic 2.jpeg'
+            '/hackathons/unstoppable-1.webp',
+            '/hackathons/unstoppable-2.webp'
         ],
         learnings: [
             'Blockchain-based P2P trading',
@@ -119,14 +127,15 @@ export const hackathonsData: Hackathon[] = [
     },
     {
         id: 'india-innovates-26',
+        projectId: 'jal-drishti',
         title: 'Jal Drishti — Civic Tech',
         event: 'India Innovates \'26',
         date: '2026',
         description: 'Presented civic-tech flood prediction solution to government officials, VCs, and international delegates at Bharat Mandapam, New Delhi.',
         award: 'Top 10 Finalist',
         tech: ['Python', 'Geospatial Analysis', 'React.js'],
-        mainImage: '/hackathons/india innovtes win pic1.jpeg',
-        gallery: ['/hackathons/india innovtes win pic1.jpeg'],
+        mainImage: '/hackathons/india-innovates-1.webp',
+        gallery: ['/hackathons/india-innovates-1.webp'],
         learnings: [
             'High-stakes stakeholder pitching',
             'Civic-tech policy integration',
@@ -147,10 +156,10 @@ export const hackathonsData: Hackathon[] = [
         description: 'Competed in a high-intensity development summit focusing on rapid application building and architecture.',
         award: 'Runner-Up',
         tech: ['React', 'Node.js', 'PostgreSQL'],
-        mainImage: '/hackathons/jagganath win pic1.jpeg',
+        mainImage: '/hackathons/devsummit-1.webp',
         gallery: [
-            '/hackathons/jagganath win pic1.jpeg',
-            '/hackathons/jaganath win pic2.jpeg'
+            '/hackathons/devsummit-1.webp',
+            '/hackathons/devsummit-2.webp'
         ],
         learnings: [
             'Rapid architecture design',
@@ -172,8 +181,8 @@ export const hackathonsData: Hackathon[] = [
         description: 'Developed a technical solution for solving urban challenges using real-time data integration.',
         award: '2nd Place',
         tech: ['React', 'Node.js', 'Python'],
-        mainImage: '/hackathons/hackjklu win pic1.jpeg',
-        gallery: ['/hackathons/hackjklu win pic1.jpeg'],
+        mainImage: '/hackathons/hackjklu-1.webp',
+        gallery: ['/hackathons/hackjklu-1.webp'],
         learnings: [
             'Real-time data visualization',
             'Agile hackathon development',
@@ -194,8 +203,8 @@ export const hackathonsData: Hackathon[] = [
         description: 'Built a specialized AI solution for optimizing resource allocation in local ecosystems.',
         award: '2nd Place',
         tech: ['Python', 'ML', 'React'],
-        mainImage: '/hackathons/genysis 1.0 win pic2.jpeg',
-        gallery: ['/hackathons/genysis 1.0 win pic2.jpeg'],
+        mainImage: '/hackathons/genisys-1.webp',
+        gallery: ['/hackathons/genisys-1.webp'],
         learnings: [
             'Resource optimization algorithms',
             'Local ecosystem analysis',
@@ -216,9 +225,9 @@ export const hackathonsData: Hackathon[] = [
         description: 'Participated in a high-intensity coding challenge focused on rapid product development.',
         award: '3rd Place',
         tech: ['React Native', 'Firebase', 'Express'],
-        mainImage: '/hackathons/acehack-1.jpg',
+        mainImage: '/hackathons/acehack-1.webp',
         gallery: [
-            '/hackathons/acehack-1.jpg'
+            '/hackathons/acehack-1.webp'
         ],
         learnings: [
             'Mobile-first development',

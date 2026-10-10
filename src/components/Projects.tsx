@@ -1,16 +1,17 @@
 import { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { ExternalLink, Sparkles, ChevronRight } from 'lucide-react';
+import { ExternalLink, Github, Sparkles, ChevronRight } from 'lucide-react';
 import './Projects.css';
 
 import { projectsData } from '../data/projects';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
 
 const featuredProjects = projectsData.slice(0, 4);
+const MotionLink = motion.create(Link);
 
 export default function Projects() {
-    const navigate = useNavigate();
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.1 });
     const [hoveredId, setHoveredId] = useState<string | null>(null);
@@ -54,7 +55,7 @@ export default function Projects() {
                 >
                     <div className="premium-badge">
                         <Sparkles size={16} />
-                        <span>Portfolios Featured Work</span>
+                        <span>Featured Work</span>
                     </div>
                     <h2 className="premium-main-title">Crafting Digital <br /><span>Excellence</span></h2>
                     <p className="premium-desc">
@@ -73,6 +74,7 @@ export default function Projects() {
                     {featuredProjects.map((project) => {
                         const Icon = project.IconComponent;
                         const isHovered = hoveredId === project.id;
+                        const externalUrl = project.links.live ?? project.links.repo;
 
                         return (
                             <motion.div
@@ -94,8 +96,10 @@ export default function Projects() {
                                     <div className="project-media">
                                         <div className="image-wrapper">
                                             <motion.img
-                                                src={project.image}
-                                                alt={project.title}
+                                                src={thumbnail(project.image)}
+                                                srcSet={responsiveSrcSet(project.image)}
+                                                sizes="(max-width: 900px) 100vw, 50vw"
+                                                alt={`${project.title} screenshot`}
                                                 loading="lazy"
                                                 decoding="async"
                                                 animate={{
@@ -129,11 +133,11 @@ export default function Projects() {
                                             <motion.div
                                                 className="project-type-tag"
                                                 animate={{
-                                                    backgroundColor: isHovered ? '#ff3333' : 'rgba(255, 51, 51, 0.1)',
+                                                    backgroundColor: isHovered ? '#e01e1e' : 'rgba(255, 51, 51, 0.1)',
                                                     color: isHovered ? '#fff' : '#ff3333'
                                                 }}
                                             >
-                                                {project.subtitle.split(' ')[0]}
+                                                {project.category}
                                             </motion.div>
                                         </div>
 
@@ -155,21 +159,27 @@ export default function Projects() {
                                         </div>
 
                                         <div className="project-footer-actions">
-                                            <motion.button
+                                            <MotionLink
+                                                to={`/project/${project.id}`}
                                                 className="project-link-btn"
                                                 whileHover={{ gap: '12px' }}
-                                                onClick={() => navigate(`/project/${project.id}`)}
+                                                aria-label={`Explore ${project.title} case study`}
                                             >
                                                 <span>Exploration</span>
                                                 <ChevronRight size={18} />
-                                            </motion.button>
-                                            <motion.button
-                                                className="project-icon-btn"
-                                                whileHover={{ scale: 1.1, backgroundColor: '#ff3333', color: '#fff' }}
-                                                onClick={() => project.links.github && window.open(project.links.github, '_blank')}
-                                            >
-                                                <ExternalLink size={18} />
-                                            </motion.button>
+                                            </MotionLink>
+                                            {externalUrl && (
+                                                <motion.a
+                                                    href={externalUrl}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="project-icon-btn"
+                                                    aria-label={project.links.live ? `${project.title} live demo (opens in new tab)` : `${project.title} source code (opens in new tab)`}
+                                                    whileHover={{ scale: 1.1, backgroundColor: '#e01e1e', color: '#fff' }}
+                                                >
+                                                    {project.links.live ? <ExternalLink size={18} /> : <Github size={18} />}
+                                                </motion.a>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
@@ -188,15 +198,15 @@ export default function Projects() {
                 >
                     <div className="cta-divider"></div>
                     <p>Curious to see more of my creative workspace?</p>
-                    <motion.button
+                    <MotionLink
+                        to="/archive"
                         className="premium-view-all"
                         whileHover={{ scale: 1.05, boxShadow: '0 0 30px rgba(255, 51, 51, 0.6)' }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => navigate('/archive')}
                     >
                         Browse Archive
-                        <div className="btn-glow"></div>
-                    </motion.button>
+                        <span className="btn-glow"></span>
+                    </MotionLink>
                 </motion.div>
             </div>
 

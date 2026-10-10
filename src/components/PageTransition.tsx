@@ -1,16 +1,14 @@
 import React, { useMemo } from 'react';
 import { motion, type Variants } from 'framer-motion';
 
+// Opacity-only on purpose: a transform or filter on this wrapper (even `blur(0px)` / `scale(1)`)
+// becomes the containing block for every `position: fixed` element on the page.
 const containerVariants: Variants = {
     initial: {
         opacity: 0,
-        scale: 0.98,
-        filter: 'blur(10px)',
     },
     enter: {
         opacity: 1,
-        scale: 1,
-        filter: 'blur(0px)',
         transition: {
             duration: 0.6,
             ease: [0.22, 1, 0.36, 1],
@@ -19,8 +17,6 @@ const containerVariants: Variants = {
     },
     exit: {
         opacity: 0,
-        scale: 1.02,
-        filter: 'blur(10px)',
         transition: {
             duration: 0.4,
             ease: "easeInOut"
@@ -71,6 +67,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
         <div style={{ position: 'relative', width: '100%', minHeight: '100vh' }}>
             {/* The Mosaic Overlay */}
             <div
+                aria-hidden="true"
                 style={{
                     position: 'fixed',
                     top: 0,
@@ -102,13 +99,15 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children }) => {
                 ))}
             </div>
 
-            {/* Page Content */}
+            {/* Page Content (target of the "Skip to main content" link) */}
             <motion.div
+                id="main-content"
+                tabIndex={-1}
                 variants={containerVariants}
                 initial="initial"
                 animate="enter"
                 exit="exit"
-                style={{ width: '100%' }}
+                style={{ width: '100%', outline: 'none' }}
             >
                 {children}
             </motion.div>

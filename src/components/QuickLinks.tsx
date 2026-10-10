@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
 import { Code, User, Mail, ArrowRight, Sparkles } from 'lucide-react';
+import { scrollToSection } from '../utils/scroll';
 import './QuickLinks.css';
 
 const links = [
@@ -10,7 +11,9 @@ const links = [
         subtitle: 'View detailed work',
         icon: Code,
         href: '#projects',
-        image: '/character-peace-laptop.png',
+        image: '/character-peace-laptop.webp',
+        imageWidth: 550,
+        imageHeight: 790,
         scale: 1.2
     },
     {
@@ -19,7 +22,9 @@ const links = [
         subtitle: 'Know my story',
         icon: User,
         href: '#about',
-        image: '/character-thinking.png',
+        image: '/character-thinking.webp',
+        imageWidth: 536,
+        imageHeight: 764,
         scale: 1.3
     },
     {
@@ -28,7 +33,9 @@ const links = [
         subtitle: 'Drop a message',
         icon: Mail,
         href: '#contact',
-        image: '/character-glasses-phone.png',
+        image: '/character-glasses-phone.webp',
+        imageWidth: 512,
+        imageHeight: 804,
         scale: 1.3
     }
 ];
@@ -75,6 +82,10 @@ const QuickLinks = () => {
                             <motion.a
                                 key={link.id}
                                 href={link.href}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    scrollToSection(link.id);
+                                }}
                                 className="premium-link-card"
                                 initial={{ opacity: 0, y: 60 }}
                                 animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -101,7 +112,11 @@ const QuickLinks = () => {
                                 <div className="card-media-premium">
                                     <motion.img
                                         src={link.image}
-                                        alt={link.title}
+                                        width={link.imageWidth}
+                                        height={link.imageHeight}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
                                         className="card-character-asset"
                                         style={{ scale: link.scale }}
                                         animate={{
@@ -133,7 +148,7 @@ const QuickLinks = () => {
                 </motion.div>
             </div>
 
-            <div className="bg-text-watermark">NAVIGATION</div>
+            <div className="bg-text-watermark" aria-hidden="true" data-text="NAVIGATION" />
         </section>
     );
 };

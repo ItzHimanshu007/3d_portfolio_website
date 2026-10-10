@@ -1,13 +1,12 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Trophy, Calendar, ArrowRight, ArrowLeft } from 'lucide-react';
-import { hackathonsData } from '../data/hackathons';
+import { hackathonsData, type Hackathon } from '../data/hackathons';
+import { responsiveSrcSet, thumbnail } from '../utils/images';
 import './HackathonArchive.css';
 
-const MissionCard = ({ hack, index }: { hack: any, index: number }) => {
-    const navigate = useNavigate();
-
+const MissionCard = ({ hack, index }: { hack: Hackathon, index: number }) => {
     return (
         <motion.div
             className="mission-slide"
@@ -18,9 +17,16 @@ const MissionCard = ({ hack, index }: { hack: any, index: number }) => {
         >
             <div className="mission-number">0{index + 1}</div>
 
-            <div className="mission-card-premium" onClick={() => navigate(`/hackathon/${hack.id}`)}>
+            <Link to={`/hackathon/${hack.id}`} className="mission-card-premium">
                 <div className="mission-image-wrapper">
-                    <img src={hack.mainImage} alt={hack.title} />
+                    <img
+                        src={thumbnail(hack.mainImage)}
+                        srcSet={responsiveSrcSet(hack.mainImage)}
+                        sizes="(max-width: 768px) 90vw, 500px"
+                        alt={`${hack.title} at ${hack.event}`}
+                        loading="lazy"
+                        decoding="async"
+                    />
                     <div className="mission-image-overlay"></div>
                     <div className="mission-award-badge">
                         <Trophy size={14} />
@@ -41,7 +47,7 @@ const MissionCard = ({ hack, index }: { hack: any, index: number }) => {
                     <p className="mission-description-brief">{hack.description}</p>
 
                     <div className="mission-toolkit">
-                        {hack.tech.slice(0, 3).map((t: string) => (
+                        {hack.tech.slice(0, 3).map((t) => (
                             <span key={t} className="tool-pill">{t}</span>
                         ))}
                         {hack.tech.length > 3 && <span className="tool-pill">+{hack.tech.length - 3}</span>}
@@ -58,7 +64,7 @@ const MissionCard = ({ hack, index }: { hack: any, index: number }) => {
                 {/* Cyber Brackets */}
                 <div className="mission-bracket top-l"></div>
                 <div className="mission-bracket bottom-r"></div>
-            </div>
+            </Link>
         </motion.div>
     );
 };

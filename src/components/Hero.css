@@ -249,13 +249,13 @@
 }
 
 .cyber-btn.primary {
-    background: #ff3333;
+    background: #e01e1e;
     color: #fff;
     border: none;
 }
 
 .cyber-btn.primary:hover {
-    background: #cc0000;
+    background: #c41010;
     box-shadow: 0 0 30px rgba(255, 51, 51, 0.4);
 }
 
@@ -449,154 +449,125 @@
     }
 }
 
-/* Alpha-Strike Ignition Overdrive */
-.hero-main-layout.igniting {
-    pointer-events: none;
-}
-
-.title-overdrive {
-    animation: titleDistort 0.2s infinite;
-    text-shadow: 0 0 50px #ff3333, 0 0 100px #ff3333;
-}
-
-@keyframes titleDistort {
-    0% {
-        transform: skew(0deg);
-        filter: hue-rotate(0deg);
-    }
-
-    20% {
-        transform: skew(10deg);
-        filter: hue-rotate(90deg);
-    }
-
-    40% {
-        transform: skew(-10deg);
-        filter: hue-rotate(180deg);
-    }
-
-    60% {
-        transform: skew(5deg);
-        filter: hue-rotate(270deg);
-    }
-
-    80% {
-        transform: skew(-5deg);
-        filter: hue-rotate(360deg);
-    }
-
-    100% {
-        transform: skew(0deg);
-    }
-}
-
-.glow-overdrive {
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 51, 51, 0.4) 50%, transparent 100%) !important;
-    transform: scale(2) !important;
-    filter: blur(100px) !important;
-}
-
-.ring-overdrive {
-    border-color: #fff !important;
-    border-width: 4px !important;
-    animation: rotate 0.5s linear infinite !important;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
-}
-
-.btn-ignited {
-    background: #fff !important;
-    color: #000 !important;
-    transform: scale(1.1);
-    box-shadow: 0 0 50px #fff;
-}
-
-/* Alpha-Strike Overlay */
-.alpha-strike-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    background: rgba(255, 0, 0, 0.1);
-    backdrop-filter: contrast(150%) brightness(120%);
-    pointer-events: none;
-    display: flex;
+/* Availability badge */
+.hero-availability {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    overflow: hidden;
+    gap: 10px;
+    align-self: flex-start;
+    padding: 6px 14px;
+    border: 1px solid rgba(74, 222, 128, 0.35);
+    border-radius: 50px;
+    background: rgba(74, 222, 128, 0.08);
+    color: #d1fae5;
+    font-size: 0.85rem;
+    font-weight: 500;
 }
 
-.alpha-strike-overlay::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
-        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-    background-size: 100% 2px, 3px 100%;
-    z-index: 2;
-}
-
-.decryption-sequence {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    font-family: monospace;
-    color: #ff3333;
-    font-size: 1.5rem;
-    font-weight: 900;
-    text-shadow: 0 0 10px #ff3333;
-}
-
-.glitch-line {
-    animation: glitchText 0.1s infinite;
-}
-
-@keyframes glitchText {
-    0% {
-        transform: translateX(0);
-    }
-
-    25% {
-        transform: translateX(-5px);
-    }
-
-    50% {
-        transform: translateX(5px);
-    }
-
-    75% {
-        transform: translateX(-2px);
-    }
-
-    100% {
-        transform: translateX(2px);
-    }
+.availability-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4ade80;
+    box-shadow: 0 0 8px #4ade80;
 }
 
 /* Responsive */
 @media (max-width: 1024px) {
+    .hero-cyber-section {
+        padding: 110px 1.5rem 5rem;
+    }
+
     .hero-content-container {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         text-align: center;
+        gap: 2.5rem;
     }
 
     .hero-main-layout {
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: 100%;
+    }
+
+    .hero-identity-group {
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .hero-summary-block {
+        justify-content: center;
+    }
+
+    .summary-accent-line {
+        display: none;
+    }
+
+    .summary-content {
+        align-items: center;
+    }
+
+    .hero-availability {
+        align-self: center;
     }
 
     .hero-cyber-actions {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .hero-visual-center {
-        order: -1;
+        width: 100%;
+        max-width: 320px;
     }
 
-    .hud-data-overlays {
+    .hud-data-overlays,
+    .tactical-callout,
+    .geometric-echo-shard {
         display: none;
     }
+}
 
-    .geometric-echo-shard {
+@media (max-width: 600px) {
+    .title-first,
+    .title-last {
+        font-size: clamp(2.6rem, 14vw, 4rem);
+    }
+
+    .title-last {
+        -webkit-text-stroke-width: 1.5px;
+        margin-top: 0;
+    }
+
+    .hero-role-tag {
+        font-size: 0.8rem;
+        letter-spacing: 0.12rem;
+        line-height: 1.6;
+    }
+
+    .hero-bio-text {
+        font-size: 1.05rem;
+        line-height: 1.7;
+    }
+
+    .hero-cyber-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 12px;
+    }
+
+    .cyber-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero-visual-center {
+        max-width: 240px;
+    }
+
+    .cyber-scroll-anchor {
         display: none;
     }
 }

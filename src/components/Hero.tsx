@@ -1,6 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring, useMotionValue, useVelocity, MotionValue } from 'framer-motion';
-import { Mouse, Terminal, Cpu, Activity, Shield } from 'lucide-react';
+import { Mouse, ArrowDown, Cpu, Activity, Shield } from 'lucide-react';
+import { SITE } from '../config/site';
+import { scrollToSection } from '../utils/scroll';
 import './Hero.css';
 
 // Sub-component for individual geometric shards to maintain clean state
@@ -69,15 +71,6 @@ const Hero: React.FC = () => {
     const hudY = useTransform(springY, [-500, 500], [-30, 30]);
 
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isIgniting, setIsIgniting] = useState(false);
-
-    const handleExecuteProject = () => {
-        setIsIgniting(true);
-        // Cinematic ignition sequence duration - social/visual effect only
-        setTimeout(() => {
-            setIsIgniting(false);
-        }, 3000);
-    };
 
     // Staggered Springs for Geometric Echoes
     const echo1X = useSpring(rawMouseX, { damping: 20, stiffness: 400 });
@@ -137,31 +130,31 @@ const Hero: React.FC = () => {
             <div className="hud-data-overlays">
                 <motion.div className="data-box system-status" initial={{ opacity: 0, x: -50 }} animate={isLoaded ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1 }}>
                     <Activity size={12} className="text-red" />
-                    <span>SYSTEM: {isIgniting ? 'OVERDRIVE' : 'OPTIMIZED'}</span>
+                    <span>SYSTEM: OPTIMIZED</span>
                 </motion.div>
                 <motion.div className="data-box core-temp" initial={{ opacity: 0, x: 50 }} animate={isLoaded ? { opacity: 1, x: 0 } : {}} transition={{ delay: 1.2 }}>
                     <Cpu size={12} className="text-red" />
-                    <span>CORE: {isIgniting ? '98°C' : '32°C'}</span>
+                    <span>CORE: 32°C</span>
                 </motion.div>
                 <motion.div className="data-box shield-status" initial={{ opacity: 0, y: 50 }} animate={isLoaded ? { opacity: 1, y: 0 } : {}} transition={{ delay: 1.4 }}>
                     <Shield size={12} className="text-red" />
-                    <span>{isIgniting ? 'BREACH DETECTED' : 'SECURE CONTEXT'}</span>
+                    <span>SECURE CONTEXT</span>
                 </motion.div>
             </div>
 
             <div className="hero-content-container">
                 <motion.div
-                    className={`hero-main-layout ${isIgniting ? 'igniting' : ''}`}
-                    style={{ y, opacity: isIgniting ? 1 : opacity }}
+                    className="hero-main-layout"
+                    style={{ y, opacity }}
                 >
                     <div className="hero-identity-group">
                         <motion.h1
-                            className={`hero-main-title ${isIgniting ? 'title-overdrive' : ''}`}
+                            className="hero-main-title"
                             initial={{ opacity: 0, y: 30 }}
                             animate={isLoaded ? { opacity: 1, y: 0 } : {}}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="title-first">HIMANSHU</span>
+                            <span className="title-first">HIMANSHU</span>{' '}
                             <span className="title-last">JASORIYA</span>
                         </motion.h1>
 
@@ -173,11 +166,12 @@ const Hero: React.FC = () => {
                         >
                             <div className="summary-accent-line" />
                             <div className="summary-content">
-                                <span className="hero-role-tag">AI/ML ENGINEER & PRODUCT ARCHITECT</span>
-                                <p className="hero-bio-text">
-                                    Merging bleeding-edge technology with high-end aesthetics 
-                                    to build immersive digital ecosystems.
-                                </p>
+                                <span className="hero-availability">
+                                    <span className="availability-dot" aria-hidden="true" />
+                                    {SITE.availability}
+                                </span>
+                                <span className="hero-role-tag">{SITE.role}</span>
+                                <p className="hero-bio-text">{SITE.summary}</p>
                             </div>
                         </motion.div>
                     </div>
@@ -189,26 +183,15 @@ const Hero: React.FC = () => {
                         transition={{ delay: 0.8 }}
                     >
                         <button
-                            className={`cyber-btn primary ${isIgniting ? 'btn-ignited' : ''}`}
-                            onClick={handleExecuteProject}
-                            disabled={isIgniting}
+                            className="cyber-btn primary"
+                            onClick={() => scrollToSection('projects')}
                         >
-                            <Terminal size={18} />
-                            <span>{isIgniting ? 'INTERNALIZING...' : 'EXECUTE PROJECTS'}</span>
+                            <ArrowDown size={18} />
+                            <span>VIEW PROJECTS</span>
                         </button>
                         <button
                             className="cyber-btn secondary"
-                            onClick={() => {
-                                const element = document.getElementById('contact');
-                                if (element) {
-                                    const lenis = (window as any).lenis;
-                                    if (lenis) {
-                                        lenis.scrollTo(element, { offset: -50 });
-                                    } else {
-                                        element.scrollIntoView({ behavior: 'smooth' });
-                                    }
-                                }
-                            }}
+                            onClick={() => scrollToSection('contact')}
                         >
                             <span>CONTACT_NODE</span>
                         </button>
@@ -220,13 +203,13 @@ const Hero: React.FC = () => {
                     style={{ y: charYOffset }}
                 >
                     <motion.div
-                        className={`hero-interactive-glow ${isIgniting ? 'glow-overdrive' : ''}`}
+                        className="hero-interactive-glow"
                         style={{
                             x: useTransform(springX, [-500, 500], [-150, 150]),
                             y: useTransform(springY, [-500, 500], [-150, 150]),
                         }}
                     />
-                    <div className={`visual-scanner-ring ${isIgniting ? 'ring-overdrive' : ''}`} />
+                    <div className="visual-scanner-ring" />
                     
                     {/* Floating Tactical Data Callouts */}
                     <motion.div className="tactical-callout tc-1" style={{ x: useTransform(springX, [-500, 500], [20, -20]) }}>
@@ -246,31 +229,17 @@ const Hero: React.FC = () => {
                     </motion.div>
 
                     <motion.img
-                        src="/character-hero.png"
-                        alt="Cyber Hero"
+                        src="/character-hero.webp"
+                        width={583}
+                        height={1024}
+                        alt="Himanshu's 3D avatar"
                         className="cyber-character-img"
                         initial={{ opacity: 0, scale: 0.8, rotateY: 20 }}
-                        animate={isLoaded ? { opacity: 1, scale: isIgniting ? 1.1 : 1, rotateY: 0 } : {}}
+                        animate={isLoaded ? { opacity: 1, scale: 1, rotateY: 0 } : {}}
                         transition={{ duration: 1.2, type: "spring" }}
                     />
                 </motion.div>
             </div>
-
-            {/* Alpha-Strike Ignition Overlay */}
-            {isIgniting && (
-                <motion.div
-                    className="alpha-strike-overlay"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                >
-                    <div className="decryption-sequence">
-                        <div className="glitch-line">DECRYPTING_CORE...</div>
-                        <div className="glitch-line">PROJECT_DATA_XFER_INIT...</div>
-                        <div className="glitch-line">ALPHA_STRIKE_CONFIRMED...</div>
-                    </div>
-                </motion.div>
-            )}
 
             {/* Geometric Particle Echoes */}
             {isLoaded && echoes.map((echo, index) => (

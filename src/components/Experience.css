@@ -1,0 +1,117 @@
+.experience-section {
+    position: relative;
+    padding: 140px 0;
+    background: #000;
+}
+
+.experience-header {
+    margin-bottom: 60px;
+}
+
+.experience-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.experience-card {
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid #ff3333;
+    border-radius: 16px;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.experience-card:hover {
+    background: rgba(255, 51, 51, 0.05);
+    border-color: rgba(255, 51, 51, 0.4);
+}
+
+.experience-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.experience-role {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.experience-org {
+    margin-top: 4px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ff3333;
+}
+
+.experience-period {
+    flex-shrink: 0;
+    padding: 4px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: #c4c4c4;
+    white-space: nowrap;
+}
+
+.experience-period.current {
+    border-color: rgba(255, 51, 51, 0.5);
+    color: #fff;
+}
+
+.experience-desc {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #c4c4c4;
+}
+
+.experience-highlights {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.experience-highlights li {
+    position: relative;
+    padding-left: 18px;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #b3b3b3;
+}
+
+.experience-highlights li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #ff3333;
+}
+
+@media (max-width: 900px) {
+    .experience-section {
+        padding: 100px 0;
+    }
+
+    .experience-list {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-card {
+        padding: 24px;
+    }
+
+    .experience-card-top {
+        flex-direction: column;
+    }
+}

@@ -228,6 +228,11 @@
     letter-spacing: 0.5em;
 }
 
+/* Decorative word rendered from CSS so it isn't treated as page text */
+.bg-text-watermark::before {
+    content: attr(data-text);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .quick-links-premium-section {

@@ -4,7 +4,6 @@
     background: #000;
     position: relative;
     overflow: hidden;
-    scroll-margin-top: 100px;
 }
 
 .section-glow-top {
@@ -210,7 +209,7 @@
 
 .project-description-premium {
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.68);
     line-height: 1.7;
     margin-bottom: 2rem;
 }
@@ -294,8 +293,9 @@
 
 .premium-view-all {
     position: relative;
+    display: inline-block;
     padding: 1.2rem 3.5rem;
-    background: #ff3333;
+    background: #e01e1e;
     color: #fff;
     font-size: 1.1rem;
     font-weight: 700;

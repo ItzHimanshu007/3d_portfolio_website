@@ -75,7 +75,7 @@
 }
 
 .about-resume-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 12px;
     padding: 14px 28px;

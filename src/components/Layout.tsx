@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Lenis from 'lenis';
-import '../types/global.d.ts';
+import { setLenis } from '../utils/lenis';
 
 interface LayoutProps {
     children: React.ReactNode;
@@ -18,18 +18,20 @@ const Layout: React.FC<LayoutProps> = ({ children }: LayoutProps) => {
             touchMultiplier: 2.0,
             infinite: false,
         });
-        (window as any).lenis = lenis;
+        setLenis(lenis);
 
+        let frame = 0;
         function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            frame = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        frame = requestAnimationFrame(raf);
 
         return () => {
+            cancelAnimationFrame(frame);
             lenis.destroy();
-            (window as any).lenis = undefined;
+            setLenis(null);
         };
     }, []);
 

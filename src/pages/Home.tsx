@@ -4,6 +4,7 @@ import Hero from '../components/Hero';
 import QuickLinks from '../components/QuickLinks';
 import Values from '../components/Values';
 import About from '../components/About';
+import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 import Hackathons from '../components/Hackathons';
@@ -15,47 +16,23 @@ import ScrollEffects from '../components/ScrollEffects';
 import ParticleBackground from '../components/ParticleBackground';
 import SectionTransitions from '../components/SectionTransitions';
 import ScrollModel from '../components/ScrollModel';
+import { scrollToSection } from '../utils/scroll';
 
 
 const Home = () => {
     const location = useLocation();
 
     useEffect(() => {
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const state = location.state as { scrollTo?: string } | null;
         if (state?.scrollTo) {
             const target = state.scrollTo;
-            
+
             // Delay to allow DOM, Images, and Lenis to initialize fully
             // A slightly longer delay (500ms) ensures stable height calculation
-            const timer = setTimeout(() => {
-                const element = document.getElementById(target);
-                if (element) {
-                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                    const lenis = (window as any).lenis;
-                    if (lenis) {
-                        lenis.scrollTo(element, { 
-                            offset: -80, // Account for fixed navbar
-                            duration: 1.2,
-                            easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                        });
-                    } else {
-                        const offset = 80;
-                        const bodyRect = document.body.getBoundingClientRect().top;
-                        const elementRect = element.getBoundingClientRect().top;
-                        const elementPosition = elementRect - bodyRect;
-                        const offsetPosition = elementPosition - offset;
+            const timer = setTimeout(() => scrollToSection(target), 500);
 
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                }
-            }, 500);
-
-            // Clean up state to prevent re-scroll on refresh
-            window.history.replaceState({}, document.title);
+            // Clear our state so a refresh doesn't re-scroll, keeping the router's own history keys intact
+            window.history.replaceState({ ...window.history.state, usr: null }, '');
             return () => clearTimeout(timer);
         }
     }, [location]);
@@ -72,6 +49,7 @@ const Home = () => {
                 <Hero />
                 <Values />
                 <About />
+                <Experience />
                 <Skills />
                 <Projects />
                 <Hackathons />
@@ -86,4 +64,3 @@ const Home = () => {
 };
 
 export default Home;
-

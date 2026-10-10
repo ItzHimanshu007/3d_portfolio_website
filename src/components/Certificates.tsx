@@ -1,32 +1,14 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Award, ExternalLink, Calendar, ShieldCheck, Sparkles } from 'lucide-react';
+import { certificatesData } from '../data/certificates';
 import './Certificates.css';
 
 const Certificates: React.FC = () => {
     const sectionRef = useRef<HTMLDivElement>(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.2 });
 
-    const certificateData = [
-        {
-            id: 1,
-            title: "Machine Learning Masterclass",
-            issuer: "Google Cloud",
-            date: "Dec 2024",
-            description: "Advanced certification covering deep learning, neural networks, and production ML pipelines.",
-            skills: ["TensorFlow", "PyTorch", "GCP"],
-            link: "#"
-        },
-        {
-            id: 2,
-            title: "Full Stack Development",
-            issuer: "Meta",
-            date: "Nov 2024",
-            description: "Comprehensive program focused on modern web architecture and scalable cloud solutions.",
-            skills: ["React", "Node.js", "System Design"],
-            link: "#"
-        }
-    ];
+    if (certificatesData.length === 0) return null;
 
     return (
         <section className="certificates-stunning-section" id="certificates" ref={sectionRef}>
@@ -54,14 +36,14 @@ const Certificates: React.FC = () => {
                     </p>
 
                     <div className="cert-mascot-container">
-                        <img src="/character-certificate.png" alt="Mascot" className="cert-mascot-img" loading="lazy" decoding="async" />
+                        <img src="/character-certificate.webp" width={583} height={1024} alt="" className="cert-mascot-img" loading="lazy" decoding="async" />
                     </div>
                 </motion.div>
 
                 <div className="certificates-grid-premium">
-                    {certificateData.map((cert, index) => (
+                    {certificatesData.map((cert, index) => (
                         <motion.div
-                            key={cert.id}
+                            key={cert.title}
                             className="premium-cert-card-wrapper"
                             initial={{ opacity: 0, y: 50 }}
                             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -75,10 +57,12 @@ const Certificates: React.FC = () => {
                                     <div className="cert-icon-box-stunning">
                                         <Award size={32} />
                                     </div>
-                                    <div className="cert-badge-stunning">
-                                        <ShieldCheck size={14} />
-                                        <span>Verified</span>
-                                    </div>
+                                    {cert.credentialUrl && (
+                                        <div className="cert-badge-stunning">
+                                            <ShieldCheck size={14} />
+                                            <span>Verified</span>
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div className="cert-content-stunning">
@@ -89,25 +73,24 @@ const Certificates: React.FC = () => {
                                         </div>
                                     </div>
                                     <h3 className="cert-title-premium-text">{cert.title}</h3>
-                                    <h4 className="cert-issuer-premium-text">{cert.issuer}</h4>
+                                    <p className="cert-issuer-premium-text">{cert.issuer}</p>
                                     <p className="cert-description-premium-text">{cert.description}</p>
 
                                     <div className="cert-skills-row">
-                                        {cert.skills.map((skill, i) => (
-                                            <span key={i} className="cert-skill-tag">{skill}</span>
+                                        {cert.skills.map((skill) => (
+                                            <span key={skill} className="cert-skill-tag">{skill}</span>
                                         ))}
                                     </div>
                                 </div>
 
-                                <div className="cert-footer-stunning">
-                                    <a href={cert.link} target="_blank" rel="noopener noreferrer" className="cert-primary-btn">
-                                        <span>View Certificate</span>
-                                        <ExternalLink size={18} />
-                                    </a>
-                                    <button className="cert-secondary-btn">
-                                        <Sparkles size={18} />
-                                    </button>
-                                </div>
+                                {cert.credentialUrl && (
+                                    <div className="cert-footer-stunning">
+                                        <a href={cert.credentialUrl} target="_blank" rel="noopener noreferrer" className="cert-primary-btn">
+                                            <span>View Credential</span>
+                                            <ExternalLink size={18} />
+                                        </a>
+                                    </div>
+                                )}
 
                                 <div className="card-decoration-lines">
                                     <span></span>

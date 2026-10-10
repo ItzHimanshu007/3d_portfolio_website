@@ -24,39 +24,52 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
     const hexGrid = useMemo(() => Array.from({ length: 48 }, (_, i) => i), []);
 
     useEffect(() => {
-        const duration = 4000; // Slightly longer for more "detail"
-        const start = Date.now();
+        const duration = 1200;
+        const start = performance.now();
+        let frame = 0;
+        let doneTimer: ReturnType<typeof setTimeout> | undefined;
+        let finished = false;
+
+        const finish = () => {
+            if (finished) return;
+            finished = true;
+            cancelAnimationFrame(frame);
+            setProgress(100);
+            setIsComplete(true);
+            doneTimer = setTimeout(onComplete, 300);
+        };
 
         const update = () => {
-            const elapsed = Date.now() - start;
-            const p = Math.min(elapsed / duration, 1);
-
-            const eased = 1 - Math.pow(1 - p, 4); // More aggressive ease
+            const p = Math.min((performance.now() - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 4);
             setProgress(Math.round(eased * 100));
-
-            // Random coordinates update
             setCoords({
                 x: Math.floor(Math.random() * 9999),
                 y: Math.floor(Math.random() * 9999),
                 z: Math.floor(Math.random() * 999)
             });
-
-            // Random latency update
             setLatency((Math.random() * 10).toFixed(2));
-
-            // Cycle status messages
-            const nextStatusIndex = Math.floor(eased * (statusMessages.length - 1));
-            setStatusIndex(nextStatusIndex);
+            setStatusIndex(Math.floor(eased * (statusMessages.length - 1)));
 
             if (p < 1) {
-                requestAnimationFrame(update);
+                frame = requestAnimationFrame(update);
             } else {
-                setIsComplete(true);
-                setTimeout(onComplete, 1000);
+                finish();
             }
         };
 
-        requestAnimationFrame(update);
+        frame = requestAnimationFrame(update);
+
+        // Any click, tap or key press skips the intro
+        window.addEventListener('pointerdown', finish);
+        window.addEventListener('keydown', finish);
+
+        return () => {
+            cancelAnimationFrame(frame);
+            clearTimeout(doneTimer);
+            window.removeEventListener('pointerdown', finish);
+            window.removeEventListener('keydown', finish);
+        };
     }, [onComplete, statusMessages]);
 
     return (
@@ -64,8 +77,10 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
             {!isComplete && (
                 <motion.div
                     className="ironman-preloader"
-                    exit={{ opacity: 0, scale: 1.2, filter: 'blur(20px)' }}
-                    transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                    role="status"
+                    aria-label="Loading portfolio"
+                    exit={{ opacity: 0, scale: 1.05 }}
+                    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 >
                     {/* Background Hex Grid */}
                     <div className="hex-background">
@@ -138,6 +153,7 @@ const IronManPreloader = ({ onComplete }: { onComplete: () => void }) => {
                                 <span className="value">{progress}</span>
                                 <span className="unit">%</span>
                             </div>
+                            <div className="preloader-skip-hint">Click or press any key to skip</div>
                             <motion.div
                                 key={statusIndex}
                                 initial={{ opacity: 0, y: 5 }}
